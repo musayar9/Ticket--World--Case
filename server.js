@@ -11,7 +11,7 @@ app.use(cors());
 // Import the Mongoose connection
 const mongoose = require("./helpers/db"); // Adjust the path to your db.js file
 
-// Define your Mongoose schema and model for movies
+// Define your Mongoose schema and model for activity
 const activitySchema = new mongoose.Schema({
   artist: String,
   city: String,
