@@ -19,7 +19,7 @@ const activitySchema = new mongoose.Schema({
   category: String,
   image: [{ photo: String }],
   location: String,
-  locationName: String,
+  ticketPrice: String,
   hour: String,
   date: String,
 });
@@ -40,9 +40,9 @@ app.post("/api/activity", async (req, res) => {
     category,
     image,
     location,
-    locationName,
     hour,
     date,
+    ticketPrice,
   } = req.body;
 
   const activity = new Activity({
@@ -52,9 +52,9 @@ app.post("/api/activity", async (req, res) => {
     category,
     image,
     location,
-    locationName,
     hour,
     date,
+    ticketPrice,
   });
 
   try {
@@ -62,6 +62,23 @@ app.post("/api/activity", async (req, res) => {
     res.json({ activity: savedActivity });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+// Endpoint to filter activities by category
+app.get("/api/activity/category/:category", async (req, res) => {
+  const { category } = req.params;
+
+  try {
+    const activities = await Activity.find({ category });
+    if (activities.length > 0) {
+      res.json({ activities });
+    } else {
+      res
+        .status(404)
+        .json({ error: "No activities found for the given category" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -74,7 +91,7 @@ app.put("/api/activity/:id", async (req, res) => {
     category,
     image,
     location,
-    locationName,
+    ticketPrice,
     hour,
     date,
   } = req.body;
@@ -89,9 +106,9 @@ app.put("/api/activity/:id", async (req, res) => {
         category,
         image,
         location,
-        locationName,
         hour,
         date,
+        ticketPrice,
       },
       { new: true } // Return the updated document
     );
