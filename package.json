@@ -2,11 +2,14 @@
   "name": "activity",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=18 <19"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-
-    "start": "node  server.js"
+    "build": "babel src -d lib",
+    "start": "npx nodemon server.js"
   },
   "keywords": [],
   "author": "",
