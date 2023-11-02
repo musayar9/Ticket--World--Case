@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -178,7 +179,7 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
-
+.env
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
