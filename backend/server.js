@@ -14,6 +14,7 @@ const mongoose = require("./helpers/db"); // Adjust the path to your db.js file
 // Define your Mongoose schema and model for activity
 const activitySchema = new mongoose.Schema({
   artist: String,
+  title:String,
   city: String,
   description: String,
   category: String,
@@ -43,6 +44,7 @@ app.get("/api/activity", async (req, res) => {
 app.post("/api/activity", async (req, res) => {
   const {
     artist,
+    title,
     city,
     description,
     category,
@@ -57,6 +59,7 @@ app.post("/api/activity", async (req, res) => {
 
   const activity = new Activity({
     artist,
+    title,
     city,
     description,
     category,
@@ -98,6 +101,7 @@ app.put("/api/activity/:id", async (req, res) => {
   const { id } = req.params;
   const {
     artist,
+    title,
     city,
     description,
     category,
@@ -115,6 +119,7 @@ app.put("/api/activity/:id", async (req, res) => {
       id,
       {
         artist,
+        title,
         city,
         description,
         category,
