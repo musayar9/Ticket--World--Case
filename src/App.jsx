@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [value, setValue] = useState([]);
+  const [filterCategory, setFilterCategory] = useState([]);
+  const [detail, setDetail] = useState([]);
+  
+  
+  useEffect(() => {
+    axios.get("http://localhost:5030/api/activity").then((res) => {
+      setValue(res.data.activity);
+    });
+  }, []);
 
+  const newValue = [...new Set(value.map((item) => item.category))];
+  console.log("newValue: ", newValue);
+
+  // console.log(filterCategory);
+
+  const handleClick = (category) => {
+    const newData = value.filter((item) => item.category === category);
+    setFilterCategory(newData);
+  };
+  console.log("filterCategory: ", filterCategory);
+  const handelDetail = (id) => {
+    axios.get(`http://localhost:5030/api/activity/${id}`).then((res) => {
+      setDetail(res.data.activity);
+    });
+  };
+
+  console.log("detail", detail);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {value &&
+        value.map((item, index) => (
+          <div
+            key={item._id}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flex: "wrap",
+              padding: "5px",
+            }}
+          >
+            <p>{item.title}</p>
+            <img src={item.image[1].photo} width={50} height={50} />
+            <p>
+              {item.date} - {item.hour}
+            </p>
+            <button
+              onClick={() => {
+                handelDetail(item._id);
+              }}
+            >
+              Detayları Gör
+            </button>
+          </div>
+        ))}
+
+      {newValue &&
+        newValue.map((v) => (
+          <button key={v} onClick={() => handleClick(v)}>
+            {v}
+          </button>
+        ))}
+
+      {filterCategory &&
+        filterCategory.map((f) => <div key={f._id}>{f.title}</div>)}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
