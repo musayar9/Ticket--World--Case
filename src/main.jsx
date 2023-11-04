@@ -4,11 +4,14 @@ import App from './App.jsx'
 import "./styles/reset.css"
 import "./styles/global.css"
 import { BrowserRouter } from 'react-router-dom'
+import SiteContextProvider from './context/SiteContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <SiteContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </SiteContextProvider>
   </React.StrictMode>,
 )
