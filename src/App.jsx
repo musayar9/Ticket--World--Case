@@ -1,9 +1,15 @@
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+
 function App() {
   return (
     <>
-    <h1>Home</h1>
+      <div className="container mx-auto w-90">
+        {/* <Signup /> */}
+        {/* <Login/> */}
+      </div>
     </>
-  )
+  );
 }
 
 export default App;
