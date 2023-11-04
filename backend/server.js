@@ -14,7 +14,9 @@ const mongoose = require("./helpers/db"); // Adjust the path to your db.js file
 // Define your Mongoose schema and model for activity
 const activitySchema = new mongoose.Schema({
   artist: String,
-  players: [{name:String}],
+  players: [{name:String,
+    personImage:String
+  }],
   title:String,
   city: String,
   description: String,
@@ -25,13 +27,7 @@ const activitySchema = new mongoose.Schema({
   ticketPrice: String,
   hour: String,
   date: String,
-  socialMedia: [
-    {
-      platform: String,
-      link: String,
-      hashtags: [String],
-    },
-  ],
+   
 });
 
 const Activity = mongoose.model("Activity", activitySchema);
@@ -56,7 +52,7 @@ app.post("/api/activity", async (req, res) => {
     hour,
     date,
     ticketPrice,
-    socialMedia
+     
   } = req.body;
 
   const activity = new Activity({
@@ -72,7 +68,7 @@ app.post("/api/activity", async (req, res) => {
     hour,
     date,
     ticketPrice,
-    socialMedia
+     
   });
 
   try {
@@ -115,7 +111,7 @@ app.put("/api/activity/:id", async (req, res) => {
     ticketPrice,
     hour,
     date,
-    socialMedia
+     
   } = req.body;
 
   try {
@@ -134,7 +130,7 @@ app.put("/api/activity/:id", async (req, res) => {
         hour,
         date,
         ticketPrice,
-        socialMedia
+         
       },
       { new: true } // Return the updated document
     );
