@@ -1,4 +1,5 @@
 export default function Login() {
+
     return (
         <div className="container mx-auto  my-14 max-2xl:w-[35%] max-xl:w-[55%] max-lg:w-[65%] max-sm:w-[100%]">
             <div className=" p-6 border border-solid border-gray-300">
@@ -17,8 +18,6 @@ export default function Login() {
             <div className="border border-solid border-gray-300 p-4 my-2" role="group">
                 <label htmlFor="terms" className="ml-2 text-sm ">Don't you have an account? <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">Sign up</a></label>
             </div>
-
         </div>
-
     )
 }
