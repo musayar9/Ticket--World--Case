@@ -1,26 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "67399fa1-7091-4bbc-b4db-5a35d749b6ec",
       "email": "admin@admin.com",
       "firstName": "Admin",
-      "lastName": "Paşa",
-      "password": "12345"
-    },
-    {
-      "id": "938b1528-5622-4dc6-8928-8cc0f8c79638",
-      "email": "bosoki@mailinator.com",
-      "firstName": "Armando",
-      "lastName": "Nash",
-      "password": "Pa$$w0rd!",
-      "terms": true
-    },
-    {
-      "id": "ed12011b-2ff6-4114-b5c2-aec181885b42",
-      "email": "nypybybigo@mailinator.com",
-      "firstName": "Pamela",
-      "lastName": "Hampton",
-      "password": "Pa$$w0rd!",
+      "lastName": "Admin",
+      "password": "123456",
       "terms": true
     }
   ]
