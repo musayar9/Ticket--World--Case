@@ -1,6 +1,8 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { axiosUserApi } from "../axios/axiosUserApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const validationSchema = Yup.object().shape({
@@ -14,6 +16,9 @@ export default function Login() {
     password: "",
   };
 
+  const showSuccessToast = (message) => toast.success(message);
+  const showErrorToast = (message) => toast.error(message);
+
   const handleLogin = async (loginUser) => {
     const response = await axiosUserApi.get("/users");
     const responseData = await response.data;
@@ -21,14 +26,14 @@ export default function Login() {
       (user) => user.email === loginUser.email
     );
     if (filtered === undefined) {
-      console.log("Böyle bir kullanıcı yok");
+      showErrorToast("User not available");
     } else if (
       filtered?.email === loginUser.email &&
       filtered?.password === loginUser.password
     ) {
-      console.log("giriş yaoıldı");
+      showSuccessToast("Login success");
     } else {
-      console.log("şifre yanlış");
+      showErrorToast("Wrong password");
     }
   };
 
@@ -90,6 +95,7 @@ export default function Login() {
               >
                 Log in
               </button>
+              <ToastContainer />
             </Form>
           )}
         </Formik>

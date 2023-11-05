@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { axiosUserApi } from "../axios/axiosUserApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signup() {
   const validationSchema = Yup.object().shape({
@@ -12,7 +14,7 @@ export default function Signup() {
     password: Yup.string()
       .min(6, "Password must contain at least 6 characters")
       .required("Required"),
-    terms: Yup.boolean().oneOf([true], "you must accept the conditions"),
+    terms: Yup.boolean().oneOf([true]),
   });
 
   const defaultUser = {
@@ -23,16 +25,19 @@ export default function Signup() {
     password: "",
   };
 
+  const showSuccessToast = (message) => toast.success(message);
+  const showErrorToast = (message) => toast.error(message);
+
   const handleSubmit = async (user) => {
     const response = await axiosUserApi.get("/users");
     const responseData = await response.data;
     const filtered = responseData.find((item) => item.email === user.email);
 
     if (filtered !== undefined) {
-      console.log("Bu kullanıcı var");
+      showErrorToast("User exist");
     } else {
       axiosUserApi.post("/users", user);
-      console.log("Kayıt oldunuz");
+      showSuccessToast("Registry success");
     }
   };
 
@@ -156,6 +161,7 @@ export default function Signup() {
               >
                 Register new account
               </button>
+              <ToastContainer />
             </Form>
           )}
         </Formik>

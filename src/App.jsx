@@ -6,7 +6,7 @@ function App() {
     <>
       <div className="container mx-auto w-90">
         {/* <Signup /> */}
-        <Login/>
+        {/* <Login/> */}
       </div>
     </>
   );
