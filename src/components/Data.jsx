@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import image from "./public/logo.png";
+import image from "../assets/logo.png"
 const Data = () => {
   const [value, setValue] = useState([]);
   const [filter, setFilter] = useState(value);
