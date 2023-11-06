@@ -1,0 +1,22 @@
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import PrivateRoute from "./PrivateRoute";
+import Payment from "./pages/Payment";
+
+export default function SiteRoutes() {
+    return (<>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            {/* Private  */}
+            <Route path="/favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
+            <Route path="/payment" element={<Payment />} />
+        </Routes>
+    </>)
+}
