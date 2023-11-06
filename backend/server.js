@@ -99,13 +99,13 @@ app.post("/api/activity", async (req, res) => {
     ticketPrice,
   } = req.body;
 
-  const players = req.body.players || []; // 'players' dizisi yoksa boş bir dizi oluştur
+  const players = req.body.players || []; 
   if (players.length === 0) {
     req.body.players = null;
   }
   const activity = new Activity({
     artist,
-    players: req.body.players, // 'players' dizisi boşsa 'null' olacak
+    players: req.body.players, 
     title,
     city,
     description,
