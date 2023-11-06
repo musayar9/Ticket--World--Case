@@ -36,10 +36,52 @@ app.get("/api/activity", async (req, res) => {
   res.json({ activity });
 });
 
+// app.post("/api/activity", async (req, res) => {
+//   const {
+//     artist,
+//     players,
+//     title,
+//     city,
+//     description,
+//     category,
+//     image,
+//     location,
+//     locationName,
+//     locationMap,
+//     hour,
+//     date,
+//     ticketPrice,
+//   } = req.body;
+
+//   const activity = new Activity({
+//     artist,
+//     players,
+//     title,
+//     city,
+//     description,
+//     category,
+//     image,
+//     location,
+//     locationName,
+//     locationMap,
+//     hour,
+//     date,
+//     ticketPrice,
+//   });
+
+//   try {
+//     const savedActivity = await activity.save();
+//     res.json({ activity: savedActivity });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// });
+// Endpoint to filter activities by category
+
+
 app.post("/api/activity", async (req, res) => {
   const {
     artist,
-    players,
     title,
     city,
     description,
@@ -53,9 +95,13 @@ app.post("/api/activity", async (req, res) => {
     ticketPrice,
   } = req.body;
 
+  const players = req.body.players || []; // 'players' dizisi yoksa boş bir dizi oluştur
+  if (players.length === 0) {
+    req.body.players = null;
+  }
   const activity = new Activity({
     artist,
-    players,
+    players: req.body.players, // 'players' dizisi boşsa 'null' olacak
     title,
     city,
     description,
@@ -76,7 +122,8 @@ app.post("/api/activity", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-// Endpoint to filter activities by category
+
+
 app.get("/api/activity/category/:category", async (req, res) => {
   const { category } = req.params;
 
