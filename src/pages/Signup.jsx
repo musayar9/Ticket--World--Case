@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { axiosUserApi } from "../axios/axiosUserApi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { SiteContext } from "../context/SiteContext";
+import { ToastContainer } from "react-toastify";
 
 export default function Signup() {
+  const { showErrorToast, navigate, setIsSignup } = useContext(SiteContext)
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
-    password: Yup.string()
-      .min(6, "Password must contain at least 6 characters")
-      .required("Required"),
+    password: Yup.string().min(6, "Password must contain at least 6 characters").required("Required"),
     terms: Yup.boolean().oneOf([true]),
   });
 
@@ -25,9 +25,6 @@ export default function Signup() {
     password: "",
   };
 
-  const showSuccessToast = (message) => toast.success(message);
-  const showErrorToast = (message) => toast.error(message);
-
   const handleSubmit = async (user) => {
     const response = await axiosUserApi.get("/users");
     const responseData = await response.data;
@@ -37,7 +34,8 @@ export default function Signup() {
       showErrorToast("User exist");
     } else {
       axiosUserApi.post("/users", user);
-      showSuccessToast("Registry success");
+      setIsSignup(true)
+      navigate("/login")
     }
   };
 
@@ -146,7 +144,7 @@ export default function Signup() {
                   />
                 </div>
                 <label htmlFor="terms" className="ml-2 text-sm">
-                  I agree with the{" "}
+                  I agree with the
                   <a
                     href="#"
                     className="text-blue-600 hover:underline dark:text-blue-500"
@@ -171,7 +169,7 @@ export default function Signup() {
         role="group"
       >
         <label htmlFor="terms" className="ml-2 text-sm">
-          Do you already have an account?{" "}
+          Do you already have an account?
           <a
             href="#"
             className="text-blue-600 hover:underline dark:text-blue-500"

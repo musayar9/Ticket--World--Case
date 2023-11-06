@@ -8,10 +8,10 @@ import SiteContextProvider from './context/SiteContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SiteContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <SiteContextProvider>
         <App />
-      </BrowserRouter>
-    </SiteContextProvider>
+      </SiteContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 )

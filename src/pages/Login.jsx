@@ -1,37 +1,41 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { axiosUserApi } from "../axios/axiosUserApi";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext, useEffect } from "react";
+import { SiteContext } from "../context/SiteContext";
 
 export default function Login() {
+  const { showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, setIsLogin, isValid, setIsValid } = useContext(SiteContext)
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .min(6, "Password must contain at least 6 characters")
-      .required("Required"),
+    password: Yup.string().min(6, "Password must contain at least 6 characters").required("Required"),
   });
+
+  useEffect(() => {
+    if (isSignup) {
+      showSuccessToast("Registry success")
+      setIsSignup(false)
+    }
+  }, [])
+
   const defaultLoginUser = {
     email: "",
     password: "",
   };
 
-  const showSuccessToast = (message) => toast.success(message);
-  const showErrorToast = (message) => toast.error(message);
-
   const handleLogin = async (loginUser) => {
     const response = await axiosUserApi.get("/users");
     const responseData = await response.data;
-    const filtered = responseData?.find(
-      (user) => user.email === loginUser.email
-    );
+    const filtered = responseData?.find((user) => user.email === loginUser.email);
     if (filtered === undefined) {
       showErrorToast("User not available");
-    } else if (
-      filtered?.email === loginUser.email &&
-      filtered?.password === loginUser.password
-    ) {
-      showSuccessToast("Login success");
+    } else if (filtered?.email === loginUser.email && filtered?.password === loginUser.password) {
+      localStorage.setItem("onlineUser", JSON.stringify(filtered))
+      setIsValid(true)
+      setIsLogin(true)
+      navigate("/")
     } else {
       showErrorToast("Wrong password");
     }
@@ -105,7 +109,7 @@ export default function Login() {
         role="group"
       >
         <label htmlFor="terms" className="ml-2 text-sm ">
-          Don't you have an account?{" "}
+          Don't you have an account?
           <a
             href="#"
             className="text-blue-600 hover:underline dark:text-blue-500"
