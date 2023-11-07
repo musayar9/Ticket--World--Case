@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const SearchArea = ({ filter, setFilter, data }) => {
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+const SelectArea = ({ filter, setFilter, data }) => {
   const [city, setCity] = useState([]);
   const [selectValue, setSelectValue] = useState("");
   const [newValue, setNewValue] = useState("");
@@ -26,7 +30,7 @@ const SearchArea = ({ filter, setFilter, data }) => {
   // console.log("value", value);
   return (
     <>
-      <div>
+      {/* <div>
         <label
           htmlFor="countries"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -47,7 +51,26 @@ const SearchArea = ({ filter, setFilter, data }) => {
               </option>
             ))}
         </select>
-      </div>
+      </div> */}
+
+      <FormControl width={50}>
+        <InputLabel id="demo-simple-select-label">City</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={newValue}
+          label="Age"
+          onChange={handleCity}
+        >
+          <MenuItem value="Default">Default Value</MenuItem>
+          {city &&
+            city.map((c) => (
+              <MenuItem key={c._id} value={c.name}>
+                {c.name}
+              </MenuItem>
+            ))}
+        </Select>
+      </FormControl>
 
       {/* {filter.length > 0 ? (
         <>
@@ -62,4 +85,4 @@ const SearchArea = ({ filter, setFilter, data }) => {
   );
 };
 
-export default SearchArea;
+export default SelectArea;
