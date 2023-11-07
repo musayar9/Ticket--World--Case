@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import image from "../assets/logo.png"
+import SearchArea from "./SearchArea";
+
 const Data = () => {
   const [value, setValue] = useState([]);
   const [filter, setFilter] = useState(value);
