@@ -7,22 +7,6 @@
       "lastName": "Admin",
       "password": "123456",
       "terms": true
-    },
-    {
-      "id": "f05d5772-a07c-4aa6-8e2f-dd60c9d3c1ef",
-      "email": "qudykavi@mailinator.com",
-      "firstName": "Kathleen",
-      "lastName": "Dawson",
-      "password": "Pa$$w0rd!",
-      "terms": true
-    },
-    {
-      "id": "203d2ecb-82a8-4643-882f-65b79a917eef",
-      "email": "pyhibypubo@mailinator.com",
-      "firstName": "Shelly",
-      "lastName": "Vance",
-      "password": "Pa$$w0rd!",
-      "terms": true
     }
   ]
 }

@@ -14,9 +14,8 @@ export default function SiteRoutes() {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {/* Private  */}
             <Route path="/favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
         </Routes>
     </>)
 }

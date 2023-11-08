@@ -7,8 +7,7 @@ export default function PrivateRoute({ children }) {
     
     if (!isValid) {
         return <Navigate to="/login" replace />
-    } else {
-        return children
     }
+    return children
 
 }

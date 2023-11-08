@@ -6,12 +6,12 @@ export default function Header() {
     const { isValid, setIsValid, navigate } = useContext(SiteContext)
 
     const handleSignout = (e) => {
-        localStorage.removeItem("onlineUser")
         setIsValid(false)
-        navigate("/login")
+        localStorage.removeItem("onlineUser")
+        navigate("/login")        
     }
 
-    return (
+    return (    
         <>
             <nav className="bg-white border-gray-200 ">
                 <div className="flex flex-wrap justify-between items-center mx-auto p-4 ">
@@ -43,6 +43,11 @@ export default function Header() {
                             <li>
                                 {
                                     isValid && <NavLink to="/favorites" className="text-gray-900 dark:text-white hover:underline">Favorites</NavLink>
+                                }
+                            </li>
+                            <li>
+                                {
+                                    isValid && <NavLink to="/payment" className="text-gray-900 dark:text-white hover:underline">Payment</NavLink>
                                 }
                             </li>
                         </ul>
