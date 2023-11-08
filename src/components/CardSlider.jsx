@@ -1,15 +1,11 @@
+import { useEffect } from "react"
+import { axiosConcertApi } from "../axios/axiosConcertApi";
+import useActivityAxiosApi from "../customHooks/useActivityAxiosApi";
+
 export default function CardSlider() {
+    const [isLoading, isError, error, concertData] = useActivityAxiosApi()
+    console.log(concertData)
     return (<>
-        <div>
-            <a href="#">
-                <img class="rounded-t-lg w-48" src="https://www.bca.co.id/-/media/Feature/News/Edukatips/2022/09/20220912-tips-nonton-konser-pertama-kali-banner.jpg" alt="" />
-            </a>
-            <a href="#">
-                <img class="rounded-t-lg w-48" src="https://www.bca.co.id/-/media/Feature/News/Edukatips/2022/09/20220912-tips-nonton-konser-pertama-kali-banner.jpg" alt="" />
-            </a>
-            <a href="#">
-                <img class="rounded-t-lg w-48" src="https://www.bca.co.id/-/media/Feature/News/Edukatips/2022/09/20220912-tips-nonton-konser-pertama-kali-banner.jpg" alt="" />
-            </a>
-        </div>
+
     </>)
 }
