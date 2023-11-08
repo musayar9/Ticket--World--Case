@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { axiosConcertApi } from "../axios/axiosConcertApi"
 
-export default function useActivityAxiosApi() {
+export default function useActivitiesAxiosApi() {
     const [concertData, setConcertData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
@@ -25,5 +25,5 @@ export default function useActivityAxiosApi() {
         getData()
     }, [])
 
-    return [isLoading, isError, error, concertData]
+    return [concertData]
 }
