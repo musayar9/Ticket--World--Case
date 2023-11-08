@@ -1,9 +1,11 @@
 import { useEffect } from "react"
 import { useActivityAxiosApi } from "../customHooks"
+import { useActivityAxiosApi } from "../customHooks"
 
 export default function CardSlider() {
     const [concertData] = useActivityAxiosApi()
     console.log(concertData)
+    // console.log(cityData)
     return (<>
         {/* <div>
         <div className="header">
