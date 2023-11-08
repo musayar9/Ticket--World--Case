@@ -25,5 +25,5 @@ export default function useActivityAxiosApi() {
         getData()
     }, [])
 
-    return [isLoading, isError, error, concertData]
+    return [concertData]
 }
