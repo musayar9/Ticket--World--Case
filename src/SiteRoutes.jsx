@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "./pages/Payment";
+import ConcertDetailed from "./pages/ConcertDetailed";
+import PageNotFound from "./components/PageNotFound";
 
 export default function SiteRoutes() {
     return (<>
@@ -16,6 +18,8 @@ export default function SiteRoutes() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
             <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
+            <Route path="/concert/:id" element={<ConcertDetailed />} />
+            <Route path="*" element={<PageNotFound />} />
         </Routes>
     </>)
 }

@@ -17,8 +17,7 @@ export default function ConcertDetailed() {
     }, [])
 
     return (<>
-
-        <div className="my-20" style={{ border: "1px solid red" }}>
+        <div className="my-14" style={{ border: "1px solid red" }}>
             <div className="bg-purple-800 text-white py-12">
                 <div className="container mx-auto text-center">
                     <h1 className="text-4xl font-extrabold tracking-wider">Harika Konser</h1>
