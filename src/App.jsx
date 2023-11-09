@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <HeaderSlider />
+      {/* <HeaderSlider /> */}
       <div className="container mx-auto w-90">
         <SiteRoutes />
       </div>
