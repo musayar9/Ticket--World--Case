@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
 import { SiteContext } from "../context/SiteContext";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const { showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, setIsLogin, isValid, setIsValid } = useContext(SiteContext)
@@ -110,12 +111,12 @@ export default function Login() {
       >
         <label htmlFor="terms" className="ml-2 text-sm ">
           Don't you have an account?
-          <a
-            href="#"
+          <Link
+            to="/signup"
             className="text-blue-600 hover:underline dark:text-blue-500"
           >
             Sign up
-          </a>
+          </Link>
         </label>
       </div>
     </div>

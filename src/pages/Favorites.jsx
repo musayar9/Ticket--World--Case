@@ -1,5 +1,8 @@
 export default function Favorites(){
     return (
-        <><h1>Favorites</h1></>
+        <>
+    <h1 className="deneme" />
+
+        </>
     )
 }

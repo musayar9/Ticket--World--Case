@@ -16,8 +16,12 @@ export default function SiteContextProvider({ children }) {
 
     useEffect(() => {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
-        // console.log(storedOnlineUser)  
-        storedOnlineUser !== null ? setIsValid(true) : setIsValid(false)
+        if (storedOnlineUser?.id) {
+            // navigate("/");
+            setIsValid(true);
+        } else {
+            // navigate("/login");
+        }
     }, [])
 
     return (

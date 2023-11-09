@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { SiteContext } from "../context/SiteContext";
 import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const { showErrorToast, navigate, setIsSignup } = useContext(SiteContext)
@@ -170,12 +171,12 @@ export default function Signup() {
       >
         <label htmlFor="terms" className="ml-2 text-sm">
           Do you already have an account?
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="text-blue-600 hover:underline dark:text-blue-500"
           >
             Log in
-          </a>
+          </Link>
         </label>
       </div>
     </div>

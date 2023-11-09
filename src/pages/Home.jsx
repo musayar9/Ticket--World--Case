@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 import { SiteContext } from "../context/SiteContext"
 import { ToastContainer } from "react-toastify";
+import CardSlider from "../components/CardSlider";
 
 export default function Home() {
     const { showSuccessToast, isLogin, setIsLogin } = useContext(SiteContext)
@@ -16,6 +17,7 @@ export default function Home() {
         <>
             <h1>Home</h1>
             <ToastContainer />
+            <CardSlider/>
         </>
 
     )
