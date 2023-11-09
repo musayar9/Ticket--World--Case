@@ -7,11 +7,11 @@ import { BrowserRouter } from 'react-router-dom'
 import SiteContextProvider from './context/SiteContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <SiteContextProvider>
-      <BrowserRouter>
+  // <React.StrictMode>
+    <BrowserRouter>
+      <SiteContextProvider>
         <App />
-      </BrowserRouter>
-    </SiteContextProvider>
-  </React.StrictMode>,
+      </SiteContextProvider>
+    </BrowserRouter>
+  // </React.StrictMode>,
 )

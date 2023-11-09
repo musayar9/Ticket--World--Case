@@ -1,10 +1,17 @@
+import SiteRoutes from "./SiteRoutes";
+import Header from "./components/Header";
+import HeaderSlider from "./components/HeaderSlider";
+
 function App() {
   return (
     <>
-    <h1>Home</h1>
-    <h1>Hello world</h1>
+      <Header />
+      <HeaderSlider />
+      <div className="container mx-auto w-90">
+        <SiteRoutes />
+      </div>
     </>
-  )
+  );
 }
 
 export default App;
