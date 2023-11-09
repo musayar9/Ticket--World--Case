@@ -3,6 +3,7 @@ import { SiteContext } from "../context/SiteContext"
 import { ToastContainer } from "react-toastify";
 import Card from "../components/Card";
 import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+import SeatsModal from "../components/SeatsModal";
 
 export default function Home() {
     const [concertData] = useActivitiesAxiosApi()
@@ -23,6 +24,7 @@ export default function Home() {
                     concertData.map((item, index) => <Card key={index} item = {item}/> )
                 }
             </div>
+            
             <ToastContainer />
         </>
 

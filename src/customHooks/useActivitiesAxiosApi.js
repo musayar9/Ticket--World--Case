@@ -6,24 +6,30 @@ export default function useActivitiesAxiosApi() {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState()
+    const [filteredToCategories, setFilteredToCategories] = useState()
 
     const getData = async () => {
-        const response = await axiosConcertApi.get("/activity");
-        const responseData = await response.data;
-        if (response.status !== 200) {
-            setIsError(true)
-            setError("Veri alınamadı")
-            throw new Error("Veri alınamadı")
-        }
-        else {
-
+        try {
+            const response = await axiosConcertApi.get("/activity");
+            const responseData = await response.data;
+            if (response.status !== 200) {
+                setIsError(true)
+                setError("Veri alınamadı")
+                throw new Error("Veri alınamadı")
+            }
             setConcertData(responseData.activity)
             setIsLoading(false)
+            if(concertData){
+                setFilteredToCategories(responseData.activity);
+            }
+        } catch (error) {
+            setIsLoading(false)
+            throw new Error(error)
         }
     }
     useEffect(() => {
         getData()
     }, [])
 
-    return [concertData]
+    return [concertData, filteredToCategories, setFilteredToCategories]
 }

@@ -43,6 +43,9 @@ const Data = () => {
   if (isError) {
     return <h2>Data is not found</h2>;
   }
+
+
+  //! FİLTERELEME
   const filterData = ["all", ...new Set(value.map((v) => v.category))];
   console.log("filterData", filterData);
 

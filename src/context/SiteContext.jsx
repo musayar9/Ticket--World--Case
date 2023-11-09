@@ -13,6 +13,7 @@ export default function SiteContextProvider({ children }) {
     const [isSignup, setIsSignup] = useState(false) // for toast message
     const [isLogin, setIsLogin] = useState(false) // for toast message
     const [isValid, setIsValid] = useState()
+    const [head, setHead] = useState() // for category filtered title
 
     useEffect(() => {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))

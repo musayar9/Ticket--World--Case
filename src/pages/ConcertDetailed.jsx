@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { axiosConcertApi } from "../axios/axiosConcertApi";
 import { useParams } from "react-router";
 import CardSlider from "../components/CardSlider";
+import SeatsModal from "../components/SeatsModal";
 
 export default function ConcertDetailed() {
   const [concertData, setConcertData] = useState();
@@ -17,7 +18,7 @@ export default function ConcertDetailed() {
   }, []);
 
   return (
-    <>
+    <>  
       <div className="my-14" style={{ border: "1px solid red" }}>
         <div className="bg-purple-800 text-white py-12">
           <div className="container mx-auto text-center">
@@ -91,6 +92,7 @@ export default function ConcertDetailed() {
           </a>
         </div>
       </div>
+      <SeatsModal/>
     </>
   );
 }
