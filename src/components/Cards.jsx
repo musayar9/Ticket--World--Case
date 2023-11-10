@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axiosConcertApi from "../axios/axiosConcertApi";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 import { FaTheaterMasks, FaLaughBeam, FaIcons } from "react-icons/fa";
 import { MdOutlineFestival } from "react-icons/md";
 import { PiConfettiBold, PiShoppingCartSimpleBold} from "react-icons/pi";
@@ -13,7 +13,7 @@ function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosConcertApi.get("");
+        const response = await axiosConcertApi.get("/activity");
         const data = response.data.activity;
         const categories = ["all", ...new Set(data.map((i) => i.category))];
         setUniqueCategory(categories);

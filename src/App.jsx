@@ -1,6 +1,5 @@
-import Categories from "./components/Categories";
+
 import Data from "./components/Data";
-import ConcertCard from "./components/ConcertCard";
 import Cards from "./components/Cards";
 import SiteRoutes from "./SiteRoutes";
 import Header from "./components/Header";
