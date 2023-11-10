@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import image from "./public/logo.png";
+// import image from "./public/logo.png";
 const Data = () => {
   const [value, setValue] = useState([]);
   const [filter, setFilter] = useState(value);
@@ -68,11 +68,11 @@ const Data = () => {
   return (
     <div>
       <>
-        <img
+        {/* <img
           src={image}
           style={{ width: "120px", height: "120px" }}
           alt="logo"
-        />
+        /> */}
 
         {filterData.map((category) => (
           <button key={category} onClick={() => handleFilter(category)}>
