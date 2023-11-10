@@ -24,7 +24,6 @@ export default function Home() {
                     concertData.map((item, index) => <Card key={index} item = {item}/> )
                 }
             </div>
-            
             <ToastContainer />
         </>
 

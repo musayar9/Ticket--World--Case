@@ -6,7 +6,8 @@
       "firstName": "Admin",
       "lastName": "Admin",
       "password": "123456",
-      "terms": true
+      "terms": true,
+      "selectedSeats" : []
     }
   ]
 }

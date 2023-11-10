@@ -6,6 +6,7 @@ import SeatsModal from "../components/SeatsModal";
 
 export default function ConcertDetailed() {
   const [concertData, setConcertData] = useState();
+ 
   const params = useParams();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function ConcertDetailed() {
     };
     getData();
   }, []);
+
 
   return (
     <>  
