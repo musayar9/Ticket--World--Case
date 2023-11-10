@@ -1,13 +1,11 @@
 import SiteRoutes from "./SiteRoutes";
-import Header from "./components/Header";
-import HeaderSlider from "./components/HeaderSlider";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <Header />
-      {/* <HeaderSlider /> */}
-      <div className="mx-auto w-[90%]">
+      <Navbar />
+      <div className="mx-auto w-[100%]">
         <SiteRoutes />
       </div>
     </>

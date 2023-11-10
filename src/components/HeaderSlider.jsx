@@ -10,6 +10,7 @@ import { AiFillTags } from "react-icons/ai";
 import { format, parseISO } from "date-fns";
 import tr from "date-fns/locale/tr";
 import { useActivityAxiosApi } from "../customHooks";
+
 const HeaderSlider = () => {
   const [concertData] = useActivityAxiosApi();
 
