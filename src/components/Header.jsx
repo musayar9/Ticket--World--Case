@@ -50,6 +50,11 @@ export default function Header() {
                                     isValid && <NavLink to="/payment" className="text-gray-900 dark:text-white hover:underline">Payment</NavLink>
                                 }
                             </li>
+                            <li>
+                                {
+                                    isValid && <NavLink to="/cart" className="text-gray-900 dark:text-white hover:underline">Cart</NavLink>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -71,9 +71,9 @@ export default function SeatsModal() {
                                             <span onClick={(e) => handleSelectSeat(rowIndex + 2, columnIndex + 1)}> <ChairIcon className={`${selectedSeats.some(
                                                 seat => seat.rowIndex === rowIndex + 2 && seat.columnIndex === columnIndex + 1
                                             )
-                                                    ? 'text-green-800 cursor-pointer hover:text-green-800'
-                                                    : 'text-red-800 cursor-pointer hover:text-red-800'
-                                                }`} key={columnIndex} id="1" /></span>
+                                                ? 'text-green-800 '
+                                                : 'text-red-800'
+                                                } cursor-pointer hover:text-green-800`} key={columnIndex} id="1" /></span>
                                         ))}
                                     </div>
                                 ))

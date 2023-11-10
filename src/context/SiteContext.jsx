@@ -19,6 +19,8 @@ export default function SiteContextProvider({ children }) {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
         if (storedOnlineUser?.id) {
             setIsValid(true);
+        }else {
+            setIsValid(false)
         }
     }, [])
 

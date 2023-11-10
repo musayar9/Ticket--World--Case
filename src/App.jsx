@@ -7,7 +7,7 @@ function App() {
     <>
       <Header />
       {/* <HeaderSlider /> */}
-      <div className="container mx-auto w-90">
+      <div className="mx-auto w-[90%]">
         <SiteRoutes />
       </div>
     </>
