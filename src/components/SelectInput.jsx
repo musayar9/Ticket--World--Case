@@ -48,15 +48,15 @@ const SelectInput = () => {
 // console.log("filteredCategories", filteredToCategories);
   return (
     <>
-      <div className="">
-        <div>
+   
+        <div className="mr-5">
           <select
             id="countries"
             value={newValue}
-            className="bg-gray-50 w-full   border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
+            className="bg-gray-300 text-gray-600 font-semibold flex rounded-md p-5 outline-none "
             onChange={handleCity}
           >
-            <option defaultValue="Choose a country">Şehir Seç</option>
+            <option defaultValue="Choose a country" className=" font-bold">Select City</option>
             {city &&
               city.map((c) => (
                 <option key={c._id} value={c.name}>
@@ -65,7 +65,7 @@ const SelectInput = () => {
               ))}
           </select>
         </div>
-      </div>
+
 
 
     </>

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -114,4 +114,4 @@ const HeaderSlider = () => {
   );
 };
 
-export default HeaderSlider;
+export default memo(HeaderSlider);

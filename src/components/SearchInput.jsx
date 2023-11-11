@@ -32,18 +32,18 @@ const SearchInput = () => {
     }, 2000);
     navigate("/");
   };
-console.log("fiteredDate", filteredToCategories)
+  console.log("fiteredDate", filteredToCategories);
   return (
     <div
       className="
     "
     >
       <form className="  " onSubmit={handleSubmit}>
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center group">
           <input
             type="search"
             id="search"
-            className="flex   w-full p-4 pl-10 text-sm text-gray-900 border-2 bg-blue-700  rounded-lg focus:none "
+            className=" pl-11 w-72 cursor-pointer text-gray-50 bg-transparent border-b border-gray-50 focus:outline-none pb-3 transition duration-500 "
             placeholder="Sanatçı ve Başlığa göre ara"
             required
             value={search}
@@ -51,7 +51,7 @@ console.log("fiteredDate", filteredToCategories)
           />
           <button
             type="submit"
-            className="absolute   left-4 flex items-center 
+            className="absolute pb-3   left-4 flex items-center 
             pointer-events    font-bold"
           >
             <BsSearch className="text-red-800 bg-transparent" />

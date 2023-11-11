@@ -37,10 +37,11 @@ const DateInput = () => {
     if (isValid) {
       showToast(dateFormat(e.target.value));
     }
-
+    setTimeout(() => {
+      setDate("");
+    }, 2000);
     // setHead(dateFormat(e.target.value));
     setSidebar(false);
-    setDate("");
   };
 
   return (
@@ -48,7 +49,7 @@ const DateInput = () => {
       <div className="">
         <input
           type="date"
-          className=" bg-gray-50 border-2 p-4  border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
+          className=" bg-gray-300 text-gray-600 font-semibold rounded-md p-5 outline-none flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}
