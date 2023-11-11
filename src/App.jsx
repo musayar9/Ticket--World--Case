@@ -1,11 +1,10 @@
 import SiteRoutes from "./SiteRoutes";
-// import Navbar from "./components/Navbar";
-import NavbarExample from "./components/NavbarExample";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
-      <NavbarExample />
+      <Navbar />
       <div className="mx-auto w-[100%]">
         <SiteRoutes />
       </div>

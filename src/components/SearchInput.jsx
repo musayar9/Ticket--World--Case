@@ -8,7 +8,7 @@ const SearchInput = () => {
   const [searchData, setSearchData] = useState("");
   const [concertData, filteredToCategories, setFilteredCategories] =
     useActivitiesAxiosApi();
-const {sidebar, setSidebar} = useContext(SiteContext)
+  const { sidebar, setSidebar } = useContext(SiteContext);
   useEffect(() => {
     const filterSearch = concertData.filter((v) => {
       const newSearch =
@@ -39,8 +39,8 @@ const {sidebar, setSidebar} = useContext(SiteContext)
         <div className="relative flex items-center justify-center">
           <input
             type="search"
-            id="default-search"
-            className="block   w-full p-4 pl-9 md:pl-11 text-sm text-gray-900 border-2   border-[#BC1A45] bg-gray-50 focus:ring-[#BC1A45] focus:border-[#ff648d] "
+            id="search"
+            className="flex   w-full p-4 pl-10 text-sm text-gray-900 border-2 bg-blue-700  rounded-lg focus:none "
             placeholder="Sanatçı ve Başlığa göre ara"
             required
             value={search}
@@ -48,10 +48,10 @@ const {sidebar, setSidebar} = useContext(SiteContext)
           />
           <button
             type="submit"
-            className="absolute inset-y-0 left-3 md:left-4 flex items-center 
-            pointer-events text-black  font-bold"
+            className="absolute   left-4 flex items-center 
+            pointer-events    font-bold"
           >
-            <BsSearch />
+            <BsSearch className="text-red-800 bg-transparent" />
           </button>
         </div>
       </form>

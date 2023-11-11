@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { isToday, format } from "date-fns";
 import { parseISO } from "date-fns";
 import tr from "date-fns/locale/tr";
@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
 import { SiteContext } from "../context/SiteContext";
-const DateInput = ({ data, setFilter, filter, setHead }) => {
+
+const DateInput = () => {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("");
     const [concertData, filteredToCategories, setFilteredCategories] =
@@ -33,9 +34,9 @@ const DateInput = ({ data, setFilter, filter, setHead }) => {
   setFilteredCategories(filterValue)
     showToast(dateFormat(e.target.value));
     // setHead(dateFormat(e.target.value));
-    
+        setSidebar(false);
     setDate("");
-    setSidebar(false)
+
     
   };
 

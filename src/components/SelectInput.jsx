@@ -4,6 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
 import { SiteContext } from "../context/SiteContext";
+
+
+
 const SelectInput = () => {
   const [city, setCity] = useState([]);
   const [selectValue, setSelectValue] = useState("");
@@ -39,7 +42,7 @@ const SelectInput = () => {
       setNewValue("");
     }, 2000);
   };
-console.log("filteredCategories", filteredCategories);
+console.log("filteredCategories", filteredToCategories);
   return (
     <>
       <div className="">
