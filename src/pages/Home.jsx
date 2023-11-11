@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
 import SeatsModal from "../components/SeatsModal";
 import HeaderSlider from "../components/HeaderSlider";
+import FilterArea from "../components/FilterArea";
 
 export default function Home() {
   const [concertData] = useActivitiesAxiosApi();
@@ -20,7 +21,8 @@ export default function Home() {
 
   return (
     <>
-      {/* <HeaderSlider /> */}
+      <HeaderSlider />
+      <FilterArea />
       <div className="flex w-[97%] flex-wrap m-auto">
         <div className="flex w-[97%] flex-wrap m-auto">
           {concertData.map((item, index) => (
@@ -28,7 +30,11 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        autoClose={750}
+        pauseOnFocusLoss={true}
+        pauseOnHover={false}
+      />
     </>
   );
 }

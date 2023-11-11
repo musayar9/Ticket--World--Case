@@ -10,9 +10,9 @@ import { SiteContext } from "../context/SiteContext";
 const DateInput = () => {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("");
-    const [concertData, filteredToCategories, setFilteredCategories] =
-      useActivitiesAxiosApi();
-    const { sidebar, setSidebar } = useContext(SiteContext);
+  const [concertData, filteredToCategories, setFilteredCategories] =
+    useActivitiesAxiosApi();
+  const { isValid, setSidebar } = useContext(SiteContext);
   const dateFormat = (dateValue) => {
     const parsedDate = parseISO(dateValue);
     const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
@@ -29,15 +29,19 @@ const DateInput = () => {
 
   const handleDate = async (e) => {
     setDate(e.target.value);
-    const filterValue = await concertData.filter((d) => d.date === e.target.value);
+    const filterValue = await concertData.filter(
+      (d) => d.date === e.target.value
+    );
     setDateFilter(filterValue);
-  setFilteredCategories(filterValue)
-    showToast(dateFormat(e.target.value));
+    setFilteredCategories(filterValue);
+    if (isValid) {
+      showToast(dateFormat(e.target.value));
+    }
+    setTimeout(() => {
+      setDate("");
+    }, 2000);
     // setHead(dateFormat(e.target.value));
-        setSidebar(false);
-    setDate("");
-
-    
+    setSidebar(false);
   };
 
   return (
@@ -45,7 +49,7 @@ const DateInput = () => {
       <div className="">
         <input
           type="date"
-          className=" bg-gray-50 border-2 p-4  border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
+          className=" bg-gray-300 text-gray-600 font-semibold rounded-md p-5 outline-none flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}
