@@ -17,7 +17,7 @@ const HeaderSlider = () => {
   const shuffledData = useMemo(() => {
     return [...concertData].sort(() => Math.random() - 0.5);
   });
-  console.log("shuffled", shuffledData);
+  // console.log("shuffled", shuffledData);
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,

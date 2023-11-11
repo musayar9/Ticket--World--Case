@@ -21,10 +21,12 @@ export default function Home() {
   return (
     <>
       <HeaderSlider />
-      <div className="border border-solid border-red-800 flex w-[97%] flex-wrap m-auto">
-        {concertData.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
+      <div className="flex w-[97%] flex-wrap m-auto">
+        <div className="flex w-[97%] flex-wrap m-auto">
+          {concertData.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
+        </div>
       </div>
       <ToastContainer />
     </>
