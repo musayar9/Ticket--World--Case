@@ -10,9 +10,9 @@ import { SiteContext } from "../context/SiteContext";
 const DateInput = () => {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("");
-    const [concertData, filteredToCategories, setFilteredCategories] =
-      useActivitiesAxiosApi();
-    const { sidebar, setSidebar } = useContext(SiteContext);
+  const [concertData, filteredToCategories, setFilteredCategories] =
+    useActivitiesAxiosApi();
+  const { isValid, setSidebar } = useContext(SiteContext);
   const dateFormat = (dateValue) => {
     const parsedDate = parseISO(dateValue);
     const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
@@ -29,15 +29,18 @@ const DateInput = () => {
 
   const handleDate = async (e) => {
     setDate(e.target.value);
-    const filterValue = await concertData.filter((d) => d.date === e.target.value);
+    const filterValue = await concertData.filter(
+      (d) => d.date === e.target.value
+    );
     setDateFilter(filterValue);
-  setFilteredCategories(filterValue)
-    showToast(dateFormat(e.target.value));
-    // setHead(dateFormat(e.target.value));
-        setSidebar(false);
-    setDate("");
+    setFilteredCategories(filterValue);
+    if (isValid) {
+      showToast(dateFormat(e.target.value));
+    }
 
-    
+    // setHead(dateFormat(e.target.value));
+    setSidebar(false);
+    setDate("");
   };
 
   return (

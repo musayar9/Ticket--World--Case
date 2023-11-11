@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
 import { SiteContext } from "../context/SiteContext";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const [search, setSearch] = useState("");
@@ -20,6 +21,7 @@ const SearchInput = () => {
     setSearchData(filterSearch);
   }, [search]);
   // console.log(filteredToCategories);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     setFilteredCategories(searchData);
@@ -28,8 +30,9 @@ const SearchInput = () => {
     setTimeout(() => {
       setSearch("");
     }, 2000);
+    navigate("/");
   };
-
+console.log("fiteredDate", filteredToCategories)
   return (
     <div
       className="

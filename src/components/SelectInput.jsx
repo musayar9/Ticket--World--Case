@@ -13,7 +13,7 @@ const SelectInput = () => {
   const [newValue, setNewValue] = useState("");
  const [concertData, filteredToCategories, setFilteredCategories] =
    useActivitiesAxiosApi();
- const { sidebar, setSidebar } = useContext(SiteContext);
+ const { isValid, setSidebar } = useContext(SiteContext);
   useEffect(() => {
     const fetchCity = async () => {
       const res = await axios.get("http://localhost:5030/api/city");
@@ -36,7 +36,10 @@ const SelectInput = () => {
     setSelectValue(filterCity);
     setFilteredCategories(filterCity);
     setSidebar(false)
-    showToast(e.target.value);
+    if(isValid){
+        showToast(e.target.value);
+    }
+
     // setHead(e.target.value);
     setTimeout(() => {
       setNewValue("");
