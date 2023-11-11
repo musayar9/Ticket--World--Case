@@ -13,8 +13,8 @@ export default function ConcertDetailed() {
   const params = useParams();
   const [concertData, setConcertData] = useState(null);
   const [show, setShow] = useState(false);
-  const {setIsOpenModal,isAvailableSelectedSeat, setIsAvailableSelectedSeat} = useContext(SiteContext);
-  
+  const { setIsOpenModal, isAvailableSelectedSeat, setIsAvailableSelectedSeat, selectedSeats, setSelectedSeats } = useContext(SiteContext);
+
 
   useEffect(() => {
     const getData = async () => {
@@ -36,6 +36,10 @@ export default function ConcertDetailed() {
     });
     return formattedDate;
   };
+
+  const handleAddCart = (item) => {
+    // console.log(item)
+  }
 
   return (
     <>
@@ -61,7 +65,6 @@ export default function ConcertDetailed() {
             <p className="font-bold flex items-center">
               <MdDateRange size={20} className="text-red-700" />
               <span className="text-sm">
-                {" "}
                 {concertData?.date && dateFormat(concertData.date)} /{" "}
                 {concertData?.hour}
               </span>
@@ -89,10 +92,19 @@ export default function ConcertDetailed() {
               {show ? "show less" : "read more"}
             </button>
           </div>
+          <div className="text-end font-medium p-4 text-sm text-red-800 rounded-lg" role="alert">
+            Selected seats:
+            {
+             isAvailableSelectedSeat && selectedSeats?.map(item => <span className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${item.rowIndex}-${item.columnIndex} |`}</span>)
+            }
+          </div>
 
           <div className="flex item-center justify-end space-x-2 mt-3">
-            <button className={`px-3 py-2 rounded-lg bg-red-700 text-gray-50 ${isAvailableSelectedSeat ? 'opacity-100': 'opacity-50'} `} disabled = {!isAvailableSelectedSeat}>
-              Add Basket
+            <button onClick={() => handleAddCart(concertData)} className={`px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 ${isAvailableSelectedSeat ? 'opacity-100' : 'opacity-50'} `} disabled={!isAvailableSelectedSeat}>
+              <svg className="w-5 h-5 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+              </svg>
+              Add Cart
             </button>
             <button
               onClick={() => setIsOpenModal((prev) => !prev)}

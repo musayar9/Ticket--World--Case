@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
 
 export default function SeatsModal() {
-  const { isOpenModal, setIsOpenModal, isAvailableSelectedSeat, setIsAvailableSelectedSeat } = useContext(SiteContext)
+  const { isOpenModal, setIsOpenModal, isAvailableSelectedSeat, setIsAvailableSelectedSeat, selectedSeats, setSelectedSeats } = useContext(SiteContext)
 
-  const [selectedSeats, setSelectedSeats] = useState([]);
+ 
 
   const handleChangeSeat = (rowIndex, columnIndex) => {
     const newSelectedSeat = {
@@ -41,6 +41,8 @@ export default function SeatsModal() {
     } else {
       setIsAvailableSelectedSeat(true);
     }
+    // setSelectedSeats(selectedSeats)
+    
   }
 
   return (
@@ -98,7 +100,7 @@ export default function SeatsModal() {
                 <div key={rowIndex} className="row">
                   {[...new Array(21)].map((column, columnIndex) => (
                     <span onClick={(e) => handleChangeSeat(rowIndex + 2, columnIndex + 1)}>
-                      <ChairIcon className={`${selectedSeats.some((seat) => seat.rowIndex === rowIndex + 2 && seat.columnIndex === columnIndex + 1)
+                      <ChairIcon className={`${selectedSeats?.some((seat) => seat.rowIndex === rowIndex + 2 && seat.columnIndex === columnIndex + 1)
                         ? "text-green-800 "
                         : "text-red-800"
                         } cursor-pointer hover:text-green-800`}

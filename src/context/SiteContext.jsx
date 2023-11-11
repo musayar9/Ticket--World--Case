@@ -20,9 +20,17 @@ export default function SiteContextProvider({ children }) {
   const [sidebar, setSidebar] = useState(false); // sidebar
   const [isOpenModal, setIsOpenModal] = useState(false); // seat modal
   const [isAvailableSelectedSeat, setIsAvailableSelectedSeat] = useState() // control of selectedSeat - true/false
+  const [selectedSeats, setSelectedSeats] = useState([]); // selectedSeat List
 
   const location = useLocation();
   const currentPathName = location.pathname;
+
+  // location onchange olduğunda selectedSeat i remove et
+  useEffect(() => {
+    localStorage.removeItem("selectedSeats");
+    setIsAvailableSelectedSeat(false);
+  }, [location]);
+  
 
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
@@ -55,7 +63,9 @@ export default function SiteContextProvider({ children }) {
         isOpenModal,
         setIsOpenModal,
         isAvailableSelectedSeat, 
-        setIsAvailableSelectedSeat
+        setIsAvailableSelectedSeat,
+        selectedSeats, 
+        setSelectedSeats
       }}
     >
       {children}
