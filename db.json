@@ -7,48 +7,7 @@
       "lastName": "Admin",
       "password": "123456",
       "terms": true,
-      "favorites": [
-        {
-          "_id": "6546087319ea40ef9d79bb2e",
-          "artist": "Cem Adrian",
-          "players": [
-            {
-              "name": "Cem Adrian",
-              "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjzScPKPBjDivV4iscS4Z-vQ1Xhwqzgl8Qug&usqp=CAU",
-              "_id": "6546087319ea40ef9d79bb2f"
-            }
-          ],
-          "title": "Cem  Adrian Denizli Konseri",
-          "city": "Denizli",
-          "description": "Cem Adrian, 8 Kasım akşamı Jolly Joker Denizli sahnesinde.",
-          "category": "concerts",
-          "image": [
-            {
-              "photo": "https://i.hbrcdn.com/haber/2021/05/03/cem-adrian-kimdir-cem-adrian-kac-yasinda-nereli-14106540_9871_amp.jpg",
-              "_id": "654b9999b33e639e6afc6b28"
-            },
-            {
-              "photo": "https://pusulagazetesicomtr.teimg.com/crop/1280x720/pusulagazetesi-com-tr/uploads/2023/05/a3c290a5-82a0-41a5-af6e-5559eff38b3e.jpeg",
-              "_id": "654b9999b33e639e6afc6b29"
-            },
-            {
-              "photo": "https://www.armanayse.com/wp-content/uploads/2020/12/cem_adrian_2.jpg",
-              "_id": "654b9999b33e639e6afc6b2a"
-            },
-            {
-              "photo": "https://cemadrian.net/wp-content/uploads/2020/10/cem-adrian-yolun-sonunda-piyano-1024x1024.jpg",
-              "_id": "654b9999b33e639e6afc6b2b"
-            }
-          ],
-          "location": "Cumhuriyet, Tenis Kulübü, 1891. Sk. Üzeri No:198, 20160 Pamukkale/Denizli",
-          "locationName": "Jolly Joker Denizli",
-          "ticketPrice": "678",
-          "hour": "22:00",
-          "date": "2023-11-08",
-          "__v": 0,
-          "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.1133429615643!2d29.116118611394704!3d37.76394047187124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c73f0f9a3043eb%3A0x2395795fac6ab796!2sJolly%20Joker%20Denizli!5e0!3m2!1sen!2str!4v1699200253754!5m2!1sen!2str"
-        }
-      ],
+      "favorites": [],
       "cart": [],
       "tickets": []
     },

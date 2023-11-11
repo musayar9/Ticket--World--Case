@@ -24,21 +24,21 @@ export default function SeatsModal() {
   };
 
   useEffect(() => {
-    const storedSelectedSeats = JSON.parse(JSON.parse(localStorage.getItem("selectedSeats")));
+    const storedSelectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
     if (storedSelectedSeats) {
       setSelectedSeats(storedSelectedSeats);
     }
-    // setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats"))?.length !==0 ? true : false)
+    setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats")?.length !==0 ? true : false)
   }, []);
 
-  useEffect(() => {
-    setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats")) ? true : false)
-  }, [selectedSeats?.length]);
+  // useEffect(() => {
+  //   setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats").length !==0 ? true : false)
+  // }, [selectedSeats]);
 
   const handleSelectSeat = (e) => {
     localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
     setIsOpenModal(false)
-    setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats")) ? true : false)
+    setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats")?.length !==0 ? true : false)
   }
 
   return (

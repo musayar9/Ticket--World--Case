@@ -13,7 +13,7 @@ export default function Card({ item }) {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
         if (storedOnlineUser) {
             setIsFavorite(
-                storedOnlineUser.favorites.some((fav) => fav._id === item._id)
+                storedOnlineUser.favorites?.some((fav) => fav._id === item._id)
             );
         }
     }, [item._id]);
@@ -22,12 +22,12 @@ export default function Card({ item }) {
         let newFavorites;
 
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
-        if (storedOnlineUser?.favorites.some((fav) => fav._id === item._id)) {
+        if (storedOnlineUser?.favorites?.some((fav) => fav._id === item._id)) {
             newFavorites = storedOnlineUser.favorites.filter(
                 (fav) => fav._id !== item._id
             );
         } else {
-            newFavorites = [...storedOnlineUser.favorites, item];
+            newFavorites = [...storedOnlineUser?.favorites, item];
         }
         setFavList(newFavorites)
         const updatedUser = {
