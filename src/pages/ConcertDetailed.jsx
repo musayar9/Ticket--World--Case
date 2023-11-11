@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { axiosConcertApi } from "../axios/axiosConcertApi";
 import { useParams } from "react-router";
 import SeatsModal from "../components/SeatsModal";
@@ -6,11 +6,15 @@ import { BsTagsFill } from "react-icons/bs";
 import { parseISO, format } from "date-fns";
 import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
+import { SiteContext } from "../context/SiteContext";
+
 export default function ConcertDetailed() {
+
+  const params = useParams();
   const [concertData, setConcertData] = useState(null);
   const [show, setShow] = useState(false);
-  const params = useParams();
-  console.log(params);
+  const {setIsOpenModal} = useContext(SiteContext)
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -87,12 +91,20 @@ export default function ConcertDetailed() {
 
           <div className="flex item-center justify-end space-x-2 mt-3">
             <button className="px-3 py-2 rounded-lg bg-red-700 text-gray-50">
-              {" "}
               Add Basket
             </button>
-            <SeatsModal />
+            <button
+              onClick={() => setIsOpenModal((prev) => !prev)}
+              data-modal-target="default-modal"
+              data-modal-toggle="default-modal"
+              className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Select Arm Chair
+            </button>
           </div>
         </div>
+        <SeatsModal />
       </div>
     </>
   );

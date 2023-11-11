@@ -42,7 +42,7 @@ const SelectInput = () => {
       setNewValue("");
     }, 2000);
   };
-console.log("filteredCategories", filteredToCategories);
+// console.log("filteredCategories", filteredToCategories);
   return (
     <>
       <div className="">

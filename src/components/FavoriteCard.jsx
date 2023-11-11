@@ -69,9 +69,9 @@ export default function FavoriteCard({ item }) {
                     <div className="max-md:w-[30%] w-[50%] max-md:w-[60%] max-sm:w-[100%] flex flex-col justify-between h-[100%]">
                         <button onClick={() => handleRemoveFavorite(item)} className="text-white ml-auto text-lg m-2" ><BsFillBookmarkFill /></button>
                         <div>
-                            {showAlert ? <div className="p-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-500" role="alert">
-                                <span className="font-medium">Önce koltuk seçmelisiniz!</span>
-                            </div> : ""}
+                            {showAlert ? <div className="text-end p-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-500" role="alert">
+                                <span className="font-medium ">Önce koltuk seçmelisiniz!</span>
+                            </div> : null}
                             <button onClick={() => setShowAlert(prev => !prev)} type="button" className=" my-2 mr-2 p-2 ml-auto float-right max-lg:w-[95%] max-xl:w-[70%] max-2xl:w-[60%] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Sepete ekle</button>
                         </div>
                     </div>

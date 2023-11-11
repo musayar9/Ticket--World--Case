@@ -19,7 +19,7 @@ const SearchInput = () => {
 
     setSearchData(filterSearch);
   }, [search]);
-  console.log(filteredToCategories);
+  // console.log(filteredToCategories);
   const handleSubmit = (e) => {
     e.preventDefault();
     setFilteredCategories(searchData);

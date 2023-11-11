@@ -3,8 +3,6 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FcAbout } from "react-icons/fc";
-
-import "./Navbar.css";
 import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { SiteContext } from "../context/SiteContext";
@@ -53,7 +51,7 @@ function Navbar() {
               <button
                 onClick={handleSignout}
                 to="/signup"
-                className="mr-6 text-sm text-blue-600 dark:text-blue-500 hover:underline ml-1 bg-blue-700 px-4 py-2 rounded-md"
+                className="mr-6 text-sm text-gray-50 hover:underline bg-blue-700 px-4 py-2 rounded-md"
               >
                 Sign out
               </button>
