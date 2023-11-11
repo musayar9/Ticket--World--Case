@@ -15,6 +15,7 @@ export default function SiteContextProvider({ children }) {
     const [isValid, setIsValid] = useState()
     const [head, setHead] = useState() // for category filtered title
     const [favList, setFavList] = useState()
+    const [cartList, setCartList] = useState()
 
     const location = useLocation()
     const currentPathName = location.pathname
@@ -31,7 +32,7 @@ export default function SiteContextProvider({ children }) {
 
 
     return (
-        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, favList, setFavList }}>
+        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, favList, setFavList, cartList, setCartList }}>
             {children}
         </SiteContext.Provider>
     )
