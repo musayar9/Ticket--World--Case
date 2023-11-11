@@ -1,100 +1,99 @@
 import { useEffect, useState } from "react";
 import { axiosConcertApi } from "../axios/axiosConcertApi";
 import { useParams } from "react-router";
-import CardSlider from "../components/CardSlider";
 import SeatsModal from "../components/SeatsModal";
-
+import { BsTagsFill } from "react-icons/bs";
+import { parseISO, format } from "date-fns";
+import { MdDateRange } from "react-icons/md";
+import en from "date-fns/locale/en-US";
 export default function ConcertDetailed() {
-  const [concertData, setConcertData] = useState();
- 
+  const [concertData, setConcertData] = useState(null);
+  const [show, setShow] = useState(false);
   const params = useParams();
-
+  console.log(params);
   useEffect(() => {
     const getData = async () => {
-      const response = await axiosConcertApi(`/activity/${params.id}`);
-      const responseData = await response.data;
-      setConcertData(responseData.activity);
+      try {
+        const response = await axiosConcertApi(`/activity/${params.id}`);
+        const responseData = await response.data;
+        setConcertData(responseData.activity);
+      } catch (error) {
+        console.error("Error fetching concert data:", error);
+      }
     };
     getData();
-  }, []);
+  }, [params.id]);
 
+  const dateFormat = (dateValue) => {
+    const parsedDate = parseISO(dateValue);
+    const formattedDate = format(parsedDate, "d  MMMM  EEEE", {
+      locale: en,
+    });
+    return formattedDate;
+  };
 
   return (
-    <>  
-      <div className="my-14" style={{ border: "1px solid red" }}>
-        <div className="bg-purple-800 text-white py-12">
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-extrabold tracking-wider">
-              Harika Konser
+    <>
+      <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
+        <div></div>
+        <div className="">
+          <img
+            className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
+            src={
+              concertData?.image[0]?.photo === ""
+                ? "https://via.placeholder.com/600x400"
+                : concertData?.image[0]?.photo
+            }
+            alt=""
+          />
+        </div>
+        <div className="w-[75%]  flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
+          <div className="flex items-center justify-between">
+            <h1 className="font-bold capitalize text-2xl">
+              {concertData?.title}
             </h1>
-            <p className="text-sm">23 Kasım 2023 | Konser Salonu</p>
-          </div>
-        </div>
-        <div className="container mx-auto mt-8 flex">
-          <div className="w-2/3 pr-8">
-            <img
-              src="https://ichef.bbci.co.uk/images/ic/1200x675/p0fq9cyz.jpg"
-              alt="Konser Resmi"
-              className="w-full h-96 object-cover rounded-lg shadow-2xl"
-            />
+
+            <p className="font-bold flex items-center">
+              <MdDateRange size={20} className="text-red-700" />
+              <span className="text-sm">
+                {" "}
+                {concertData?.date && dateFormat(concertData.date)} /{" "}
+                {concertData?.hour}
+              </span>
+            </p>
           </div>
 
-          <div className="w-1/3 p-8 bg-white rounded-lg shadow-lg">
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Kategori:</span>{" "}
-              Category Name
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Şehir:</span> City
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Tarih:</span> Date
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Saat:</span> Hour
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Açıklama:</span>{" "}
-              Description
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Yer:</span> Location
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Yer Adı:</span>{" "}
-              Location Name
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Bilet Fiyatı:</span>{" "}
-              Ticket Price
-            </div>
-            <div className="mb-4">
-              <span className="text-gray-600 font-semibold">Başlık:</span> Title
-            </div>
-          </div>
-        </div>
-        <div className="mb-20 top-5 left-5  w-3/4 flex items-center p-5">
-          <div className="w-full mt-10 mb-4">
-            <CardSlider concertData={concertData} />
-          </div>
-        </div>
+          <p className="flex items-center">
+            <BsTagsFill className="text-red-700" />{" "}
+            <span className="text-gray-600 text-sm capitalize pl-2 font-semibold">
+              {concertData?.category}
+            </span>
+          </p>
 
-        <div className="text-center">
-          <a
-            href="#"
-            className="bg-red-800 text-white py-3 px-6 rounded-full inline-block text-lg font-semibold transition duration-300 hover:bg-purple-600"
-          >
-            Add to favorites
-          </a>
-          <a
-            href="#"
-            className="bg-purple-800 text-white py-3 px-6 rounded-full inline-block text-lg font-semibold transition duration-300 hover:bg-purple-600"
-          >
-            Add to chart
-          </a>
+          <div className="bg-gray-200 p-4 rounded-md mt-5">
+            <span className="font-bold italic text-sm">Activity Detail;</span>
+            <p className="indent-2">
+              {show
+                ? concertData?.description
+                : `${concertData?.description.substring(0, 200)}...`}
+            </p>
+            <button
+              className="text-red-700 capitalize "
+              onClick={() => setShow(!show)}
+            >
+              {show ? "show less" : "read more"}
+            </button>
+          </div>
+
+          <div className="flex item-center justify-end space-x-2 mt-3">
+            <button className="px-3 py-2 rounded-lg bg-red-700 text-gray-50">
+              {" "}
+              Add Basket
+            </button>
+            <SeatsModal />
+          </div>
         </div>
       </div>
-      <SeatsModal/>
     </>
   );
 }

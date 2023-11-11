@@ -7,7 +7,7 @@ export default function useActivitiesAxiosApi() {
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState()
     const [filteredToCategories, setFilteredToCategories] = useState()
-
+      const [sidebar, setSidebar] = useState(false);
     const getData = async () => {
         try {
             const response = await axiosConcertApi.get("/activity");
@@ -31,5 +31,5 @@ export default function useActivitiesAxiosApi() {
         getData()
     }, [])
 
-    return [concertData, filteredToCategories, setFilteredToCategories]
+    return [concertData, filteredToCategories, setFilteredToCategories, sidebar, setSidebar]
 }

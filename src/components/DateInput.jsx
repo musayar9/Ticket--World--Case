@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { isToday, format } from "date-fns";
 import { parseISO } from "date-fns";
 import tr from "date-fns/locale/tr";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+import { SiteContext } from "../context/SiteContext";
 
-const DateInput = ({ data, setFilter, filter, setHead }) => {
+const DateInput = () => {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("");
+    const [concertData, filteredToCategories, setFilteredCategories] =
+      useActivitiesAxiosApi();
+    const { sidebar, setSidebar } = useContext(SiteContext);
   const dateFormat = (dateValue) => {
     const parsedDate = parseISO(dateValue);
     const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
@@ -24,20 +29,23 @@ const DateInput = ({ data, setFilter, filter, setHead }) => {
 
   const handleDate = async (e) => {
     setDate(e.target.value);
-    const filterValue = await data.filter((d) => d.date === e.target.value);
+    const filterValue = await concertData.filter((d) => d.date === e.target.value);
     setDateFilter(filterValue);
-    setFilter(filterValue);
+  setFilteredCategories(filterValue)
     showToast(dateFormat(e.target.value));
-    setHead(dateFormat(e.target.value));
+    // setHead(dateFormat(e.target.value));
+        setSidebar(false);
     setDate("");
+
+    
   };
 
   return (
     <>
-      <div className="md:absolute top-16 left-20 lg:left-32  z-20">
+      <div className="">
         <input
           type="date"
-          className="w-32  md:w-40 lg:w-44 bg-gray-50 border-2 p-4  border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
+          className=" bg-gray-50 border-2 p-4  border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}

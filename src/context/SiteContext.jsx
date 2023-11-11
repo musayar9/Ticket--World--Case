@@ -16,10 +16,11 @@ export default function SiteContextProvider({ children }) {
     const [head, setHead] = useState() // for category filtered title
     const [favList, setFavList] = useState()
     const [cartList, setCartList] = useState()
+    const [sidebar, setSidebar] = useState(false);
 
     const location = useLocation()
     const currentPathName = location.pathname
-
+    
     useEffect(() => {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
         if (storedOnlineUser?.id) {
@@ -32,7 +33,7 @@ export default function SiteContextProvider({ children }) {
 
 
     return (
-        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, favList, setFavList, cartList, setCartList }}>
+        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, favList, setFavList, cartList, setCartList, sidebar, setSidebar }}>
             {children}
         </SiteContext.Provider>
     )
