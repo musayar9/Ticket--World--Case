@@ -19,6 +19,7 @@ export default function SiteContextProvider({ children }) {
   const [cartList, setCartList] = useState(); // cart
   const [sidebar, setSidebar] = useState(false); // sidebar
   const [isOpenModal, setIsOpenModal] = useState(false); // seat modal
+  const [isAvailableSelectedSeat, setIsAvailableSelectedSeat] = useState() // control of selectedSeat - true/false
 
   const location = useLocation();
   const currentPathName = location.pathname;
@@ -53,6 +54,8 @@ export default function SiteContextProvider({ children }) {
         setSidebar,
         isOpenModal,
         setIsOpenModal,
+        isAvailableSelectedSeat, 
+        setIsAvailableSelectedSeat
       }}
     >
       {children}

@@ -3,12 +3,13 @@ import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
 
 export default function SeatsModal() {
-  const { isOpenModal, setIsOpenModal } = useContext(SiteContext)
+  const { isOpenModal, setIsOpenModal, isAvailableSelectedSeat, setIsAvailableSelectedSeat } = useContext(SiteContext)
 
   // const [selectedSeat, setSelectedSeat] = useState();
   const [selectedSeats, setSelectedSeats] = useState([]);
+ 
 
-  const handleSelectSeat = (rowIndex, columnIndex) => {
+  const handleChangeSeat = (rowIndex, columnIndex) => {
     const newSelectedSeat = {
       rowIndex,
       columnIndex,
@@ -23,17 +24,22 @@ export default function SeatsModal() {
   };
 
   useEffect(() => {
-    const storedSelectedSeats = JSON.parse(
-      localStorage.getItem("selectedSeats")
-    );
+    const storedSelectedSeats = JSON.parse(JSON.parse(localStorage.getItem("selectedSeats")));
     if (storedSelectedSeats) {
       setSelectedSeats(storedSelectedSeats);
     }
+    // setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats"))?.length !==0 ? true : false)
   }, []);
 
   useEffect(() => {
+    setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats")) ? true : false)
+  }, [selectedSeats?.length]);
+
+  const handleSelectSeat = (e) => {
     localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
-  }, [selectedSeats]);
+    setIsOpenModal(false)
+    setIsAvailableSelectedSeat(JSON.parse(localStorage.getItem("selectedSeats")) ? true : false)
+  }
 
   return (
     <>
@@ -89,7 +95,7 @@ export default function SeatsModal() {
               {[...new Array(7)].map((row, rowIndex) => (
                 <div key={rowIndex} className="row">
                   {[...new Array(21)].map((column, columnIndex) => (
-                    <span onClick={(e) => handleSelectSeat(rowIndex + 2, columnIndex + 1)}>
+                    <span onClick={(e) => handleChangeSeat(rowIndex + 2, columnIndex + 1)}>
                       <ChairIcon className={`${selectedSeats.some((seat) => seat.rowIndex === rowIndex + 2 && seat.columnIndex === columnIndex + 1)
                         ? "text-green-800 "
                         : "text-red-800"
@@ -121,6 +127,7 @@ export default function SeatsModal() {
             </div>
             <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
               <button
+              onClick={handleSelectSeat}
                 data-modal-hide="default-modal"
                 type="button"
                 className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

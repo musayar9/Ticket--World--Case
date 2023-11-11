@@ -13,7 +13,8 @@ export default function ConcertDetailed() {
   const params = useParams();
   const [concertData, setConcertData] = useState(null);
   const [show, setShow] = useState(false);
-  const {setIsOpenModal} = useContext(SiteContext)
+  const {setIsOpenModal,isAvailableSelectedSeat, setIsAvailableSelectedSeat} = useContext(SiteContext);
+  
 
   useEffect(() => {
     const getData = async () => {
@@ -90,7 +91,7 @@ export default function ConcertDetailed() {
           </div>
 
           <div className="flex item-center justify-end space-x-2 mt-3">
-            <button className="px-3 py-2 rounded-lg bg-red-700 text-gray-50">
+            <button className={`px-3 py-2 rounded-lg bg-red-700 text-gray-50 ${isAvailableSelectedSeat ? 'opacity-100': 'opacity-50'} `} disabled = {!isAvailableSelectedSeat}>
               Add Basket
             </button>
             <button
