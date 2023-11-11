@@ -35,6 +35,7 @@ export default function ConcertDetailed() {
   return (
     <>
       <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
+        <div></div>
         <div className="">
           <img
             className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
@@ -46,7 +47,7 @@ export default function ConcertDetailed() {
             alt=""
           />
         </div>
-        <div className="w-[75%] flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
+        <div className="w-[75%]  flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
           <div className="flex items-center justify-between">
             <h1 className="font-bold capitalize text-2xl">
               {concertData?.title}

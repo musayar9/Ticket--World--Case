@@ -1,41 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
+import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+import { SiteContext } from "../context/SiteContext";
 
 const SearchInput = () => {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState("");
+  const [concertData, filteredToCategories, setFilteredCategories] =
+    useActivitiesAxiosApi();
+const {sidebar, setSidebar} = useContext(SiteContext)
+  useEffect(() => {
+    const filterSearch = concertData.filter((v) => {
+      const newSearch =
+        (v?.artist && v?.artist.toLowerCase().includes(search.toLowerCase())) ||
+        (v?.title && v?.title.toLowerCase().includes(search.toLowerCase()));
+      return newSearch;
+    });
 
+    setSearchData(filterSearch);
+  }, [search]);
+  console.log(filteredToCategories);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFilteredCategories(searchData);
 
-  //   useEffect(() => {
-  //     const filterSearch = data.filter((v) => {
-  //       const newSearch =
-  //         (v?.artist && v?.artist.toLowerCase().includes(search.toLowerCase())) ||
-  //         (v?.title && v?.title.toLowerCase().includes(search.toLowerCase()));
-  //       return newSearch;
-  //     });
-
-  //     setSearchData(filterSearch);
-  //   }, [search]);
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     setFilter(searchData);
-  //     setHead(`${search} filtreleme sonuçlarr;`);
-  //     setTimeout(() => {
-  //       setSearch("");
-  //     }, 2000);
-  //   };
-
+    setSidebar(false);
+    setTimeout(() => {
+      setSearch("");
+    }, 2000);
+  };
 
   return (
-    <div className="md:absolute top-16  z-20">
-      <form className=" w-64 md:w-72 lg:w-96 ">
+    <div
+      className="
+    "
+    >
+      <form className="  " onSubmit={handleSubmit}>
         <div className="relative flex items-center justify-center">
           <input
             type="search"
             id="default-search"
-            className="block rounded-full  w-full p-4 pl-9 md:pl-11 text-sm text-gray-900 border-2   border-[#BC1A45] bg-gray-50 focus:ring-[#BC1A45] focus:border-[#ff648d] "
+            className="block   w-full p-4 pl-9 md:pl-11 text-sm text-gray-900 border-2   border-[#BC1A45] bg-gray-50 focus:ring-[#BC1A45] focus:border-[#ff648d] "
             placeholder="Sanatçı ve Başlığa göre ara"
             required
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button
             type="submit"

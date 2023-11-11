@@ -14,7 +14,7 @@ export default function SiteContextProvider({ children }) {
     const [isLogin, setIsLogin] = useState(false) // for toast message
     const [isValid, setIsValid] = useState()
     const [head, setHead] = useState() // for category filtered title
-
+    const [sidebar, setSidebar] = useState(false);
     useEffect(() => {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
         if (storedOnlineUser?.id) {
@@ -25,7 +25,7 @@ export default function SiteContextProvider({ children }) {
     }, [])
 
     return (
-        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid }}>
+        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, sidebar, setSidebar }}>
             {children}
         </SiteContext.Provider>
     )

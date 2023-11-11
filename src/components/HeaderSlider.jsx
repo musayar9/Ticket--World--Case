@@ -37,10 +37,10 @@ const HeaderSlider = () => {
   };
 
   return (
-    <div>
+    <div className="z-10">
       <Slider {...settings}>
         {shuffledData.slice(0, 10).map((slide) => (
-          <div className="w-full group" key={slide._id}>
+          <div className="w-full group z-20" key={slide._id}>
             <div className="h-auto  w-full relative ">
               <img
                 className="h-[250px] sm:h-[360px] md:h-[400px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-50 "
@@ -50,7 +50,7 @@ const HeaderSlider = () => {
               <div className="absolute top-10 md:top-5 left-2 sm:left-5  p-4 z-20 grid grid-cols-12 flex-col sm:flex-row justify-center ">
                 <div className="col-span-3  relative">
                   <img
-                    className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 "
+                    className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 z-20"
                     src={
                       slide.image[0].photo === ""
                         ? "https://via.placeholder.com/600x400"
@@ -60,7 +60,7 @@ const HeaderSlider = () => {
                   />
                 </div>
 
-                <div className="col-span-8  space-y-1 pl-4 sm:pl-8 ">
+                <div className="col-span-8  space-y-1 pl-4 sm:pl-8 z-20">
                   <div className="absolute  bottom-0">
                     <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white group-hover:mb-1 duration-500">
                       {slide.artist}

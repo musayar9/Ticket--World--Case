@@ -8,19 +8,19 @@ import SearchInput from "./SearchInput";
 import { NavLink } from "react-router-dom";
 import { SiteContext } from "../context/SiteContext";
 
-const Navbar = ({ }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { isValid, setIsValid, navigate } = useContext(SiteContext)
+const Navbar = ({}) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { isValid, setIsValid, navigate } = useContext(SiteContext);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const handleSignout = (e) => {
-    setIsValid(false)
-    localStorage.removeItem("onlineUser")
-    navigate("/login")
-  }
+    setIsValid(false);
+    localStorage.removeItem("onlineUser");
+    navigate("/login");
+  };
 
   return (
     <>
@@ -47,11 +47,25 @@ const Navbar = ({ }) => {
             <div className=" items-center  hidden lg:flex">
               {!isValid ? (
                 <>
-                  <NavLink to="/login" className="mr-3 text-sm text-gray-50 hover:underline">Login </NavLink>
-                  <NavLink to="/signup" className="mr-6 text-sm text-gray-50 hover:underline">Sign Up</NavLink>
+                  <NavLink
+                    to="/login"
+                    className="mr-3 text-sm text-gray-50 hover:underline"
+                  >
+                    Login{" "}
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className="mr-6 text-sm text-gray-50 hover:underline"
+                  >
+                    Sign Up
+                  </NavLink>
                 </>
               ) : (
-                <button onClick={handleSignout} to="/signup" className="mr-6 text-sm text-blue-600 dark:text-blue-500 hover:underline ml-1">
+                <button
+                  onClick={handleSignout}
+                  to="/signup"
+                  className="mr-6 text-sm text-blue-600 dark:text-blue-500 hover:underline ml-1"
+                >
                   Sign out
                 </button>
               )}
@@ -63,24 +77,46 @@ const Navbar = ({ }) => {
           <div className="max-w-screen-xl px-4 py-3 mx-auto">
             <div className="flex items-center">
               <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md  ">
-                <li><NavLink to="/" className="text-gray-50  hover:underline">Home</NavLink></li>
-                <li><NavLink to="/about" className="text-gray-50 hover:underline">About</NavLink></li>
                 <li>
-                  {
-                    isValid && <NavLink to="/favorites" className="text-gray-50 hover:underline">Favorites</NavLink>
-                  }
+                  <NavLink to="/" className="text-gray-50  hover:underline">
+                    Home
+                  </NavLink>
                 </li>
                 <li>
-                  {
-                    isValid && <NavLink to="/payment" className="text-gray-50 hover:underline">Payment</NavLink>
-                  }
+                  <NavLink to="/about" className="text-gray-50 hover:underline">
+                    About
+                  </NavLink>
                 </li>
                 <li>
-                  {
-                    isValid && <NavLink to="/cart" className="text-gray-50 hover:underline">Cart</NavLink>
-                  }
+                  {isValid && (
+                    <NavLink
+                      to="/favorites"
+                      className="text-gray-50 hover:underline"
+                    >
+                      Favorites
+                    </NavLink>
+                  )}
                 </li>
-
+                <li>
+                  {isValid && (
+                    <NavLink
+                      to="/payment"
+                      className="text-gray-50 hover:underline"
+                    >
+                      Payment
+                    </NavLink>
+                  )}
+                </li>
+                <li>
+                  {isValid && (
+                    <NavLink
+                      to="/cart"
+                      className="text-gray-50 hover:underline"
+                    >
+                      Cart
+                    </NavLink>
+                  )}
+                </li>
               </ul>
             </div>
           </div>

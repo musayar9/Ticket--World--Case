@@ -1,13 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const SelectInput = ({ filter, setFilter, data, setHead }) => {
+import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+import { SiteContext } from "../context/SiteContext";
+const SelectInput = () => {
   const [city, setCity] = useState([]);
   const [selectValue, setSelectValue] = useState("");
   const [newValue, setNewValue] = useState("");
-
+ const [concertData, filteredToCategories, setFilteredCategories] =
+   useActivitiesAxiosApi();
+ const { sidebar, setSidebar } = useContext(SiteContext);
   useEffect(() => {
     const fetchCity = async () => {
       const res = await axios.get("http://localhost:5030/api/city");
@@ -26,24 +29,25 @@ const SelectInput = ({ filter, setFilter, data, setHead }) => {
 
   const handleCity = async (e) => {
     setNewValue(e.target.value);
-    const filterCity = await data.filter((v) => v.city === e.target.value);
+    const filterCity = await concertData.filter((v) => v.city === e.target.value);
     setSelectValue(filterCity);
-    setFilter(filterCity);
+    setFilteredCategories(filterCity);
+    setSidebar(false)
     showToast(e.target.value);
-    setHead(e.target.value);
+    // setHead(e.target.value);
     setTimeout(() => {
       setNewValue("");
     }, 2000);
   };
-
+console.log("filteredCategories", filteredCategories);
   return (
     <>
-      <div className="md:absolute top-16 md:right-24 lg:right-44  z-20">
+      <div className="">
         <div>
           <select
             id="countries"
             value={newValue}
-            className="bg-gray-50 w-32 md:w-36 lg:w-44 border-2 p-4  border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
+            className="bg-gray-50 w-full   border-[#BC1A45] text-gray-900 text-sm rounded-full focus:ring-[#BC1A45] focus:border-[#ff648d] flex "
             onChange={handleCity}
           >
             <option defaultValue="Choose a country">Şehir Seç</option>
@@ -57,15 +61,7 @@ const SelectInput = ({ filter, setFilter, data, setHead }) => {
         </div>
       </div>
 
-      {/* {filter.length > 0 ? (
-        <>
-          {filter.map((activity) => (
-            <p key={activity._id}>{activity.title}</p>
-          ))}
-        </>
-      ) : (
-        <p>Veri bulunamadı</p>
-      )} */}
+
     </>
   );
 };
