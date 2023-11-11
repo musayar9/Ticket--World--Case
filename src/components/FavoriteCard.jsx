@@ -1,7 +1,28 @@
 import { Link } from "react-router-dom";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+import { useContext, useEffect, useState } from "react";
+import { SiteContext } from "../context/SiteContext";
+import { axiosUserApi } from "../axios/axiosUserApi";
 
 export default function FavoriteCard({ item }) {
+    const { favList, setFavList } = useContext(SiteContext);
+
+
+    const handleRemoveFavorite = async (item) => {
+        try {
+            const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+            const updatedLocalUser = {
+                ...storedOnlineUser,
+                favorites: storedOnlineUser.favorites.filter((fav) => fav._id !== item._id),
+            };
+            localStorage.setItem("onlineUser", JSON.stringify(updatedLocalUser));
+            await axiosUserApi.put(`/users/${updatedLocalUser.id}`, { ...updatedLocalUser });
+            setFavList(updatedLocalUser.favorites);
+        } catch (error) {
+            console.error("Favori kaldırma işlemi sırasında bir hata oluştu:", error);
+        }
+    };
+
     return (
         <>
             <div className="max-sm:w-[100%] max-md:w-[100%] max-lg:w-[85%] max-xl:w-[80%] max-2xl:w-[60%] max-md:h-[32vh] max-lg:h-[35vh] my-2 h-[25vh] flex bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -22,9 +43,8 @@ export default function FavoriteCard({ item }) {
                         </div>
                     </div>
                     <div className="max-md:w-[30%] w-[50%] max-md:w-[60%] max-sm:w-[100%] flex flex-col justify-between h-[100%]">
-                            <button className="text-white ml-auto text-lg m-2" ><BsFillBookmarkFill /></button>
-                            <button type="button" className=" my-2 mr-2 p-2 ml-auto float-right max-lg:w-[95%] max-xl:w-[70%] max-2xl:w-[60%] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Sepete ekle</button>
-                        {/* <BsFillBookmarkFill/> */}
+                        <button onClick={() => handleRemoveFavorite(item)} className="text-white ml-auto text-lg m-2" ><BsFillBookmarkFill /></button>
+                        <button type="button" className=" my-2 mr-2 p-2 ml-auto float-right max-lg:w-[95%] max-xl:w-[70%] max-2xl:w-[60%] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Sepete ekle</button>
                     </div>
                 </div>
             </div>

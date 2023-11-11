@@ -1,32 +1,48 @@
 import { Link } from "react-router-dom"
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { axiosUserApi } from "../axios/axiosUserApi";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { SiteContext } from "../context/SiteContext";
 
 export default function Card({ item }) {
-    const [isFavorite, setIsFavorite] = useState()
-    const handleAddFavorites = async (item) => {
+    const {favList, setFavList} = useContext(SiteContext)
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+        if (storedOnlineUser) {
+            setIsFavorite(
+                storedOnlineUser.favorites.some((fav) => fav._id === item._id)
+            );
+        }
+    }, [item._id]);
+
+    const handleAddFavorites = async () => {
         let newFavorites;
 
-        const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
-        if (storedOnlineUser.favorites.some(fav => fav._id === item._id)) {
-            newFavorites = storedOnlineUser.favorites.filter(fav => fav._id !== item._id)
+        const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+        if (storedOnlineUser?.favorites.some((fav) => fav._id === item._id)) {
+            newFavorites = storedOnlineUser.favorites.filter(
+                (fav) => fav._id !== item._id
+            );
         } else {
-            newFavorites = [...storedOnlineUser.favorites, item]
+            newFavorites = [...storedOnlineUser.favorites, item];
         }
+        setFavList(newFavorites)
         const updatedUser = {
             ...storedOnlineUser,
-            favorites: newFavorites
+            favorites: newFavorites,
+        };
+
+        try {
+            localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
+            await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+            setIsFavorite(!isFavorite);
+        } catch (error) {
+            console.error("Favori güncelleme hatası:", error.message);
         }
+    };
 
-        // ! BURAYA TRY-CATCH EKLE
-        localStorage.setItem("onlineUser", JSON.stringify(updatedUser))
-        await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser })
-
-        const response = await axiosUserApi.get("/users")
-        const responseData = await response.data
-        setIsFavorite(responseData.find(user => user.id === storedOnlineUser.id).favorites.some(fav => fav._id === item._id))
-    }
     return (
         <div className="max-w-sm w-[280px] h-[75vh] m-3.5 flex flex-col justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 

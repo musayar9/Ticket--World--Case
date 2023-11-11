@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,18 +14,24 @@ export default function SiteContextProvider({ children }) {
     const [isLogin, setIsLogin] = useState(false) // for toast message
     const [isValid, setIsValid] = useState()
     const [head, setHead] = useState() // for category filtered title
+    const [favList, setFavList] = useState()
+
+    const location = useLocation()
+    const currentPathName = location.pathname
 
     useEffect(() => {
         const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"))
         if (storedOnlineUser?.id) {
+            navigate(`${currentPathName}`);
             setIsValid(true);
-        }else {
-            setIsValid(false)
+        } else {
+            navigate("/login");
         }
     }, [])
 
+
     return (
-        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid }}>
+        <SiteContext.Provider value={{ showSuccessToast, showErrorToast, navigate, isSignup, setIsSignup, isLogin, setIsLogin, isValid, setIsValid, favList, setFavList }}>
             {children}
         </SiteContext.Provider>
     )

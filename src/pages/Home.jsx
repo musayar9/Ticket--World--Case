@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      <HeaderSlider />
+      {/* <HeaderSlider /> */}
       <div className="flex w-[97%] flex-wrap m-auto">
         <div className="flex w-[97%] flex-wrap m-auto">
           {concertData.map((item, index) => (
