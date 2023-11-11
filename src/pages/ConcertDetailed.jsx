@@ -8,7 +8,7 @@ import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
 export default function ConcertDetailed() {
   const [concertData, setConcertData] = useState(null);
-
+  const [show, setShow] = useState(false);
   const params = useParams();
   console.log(params);
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function ConcertDetailed() {
 
   return (
     <>
-      <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-2">
+      <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
         <div className="">
           <img
             className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
@@ -69,12 +69,22 @@ export default function ConcertDetailed() {
             </span>
           </p>
 
-          <div>
+          <div className="bg-gray-200 p-4 rounded-md mt-5">
             <span className="font-bold italic text-sm">Activity Detail;</span>
-            <p>{concertData?.description}</p>
+            <p className="indent-2">
+              {show
+                ? concertData?.description
+                : `${concertData?.description.substring(0, 200)}...`}
+            </p>
+            <button
+              className="text-red-700 capitalize "
+              onClick={() => setShow(!show)}
+            >
+              {show ? "show less" : "read more"}
+            </button>
           </div>
 
-          <div className="flex item-center justify-end space-x-2">
+          <div className="flex item-center justify-end space-x-2 mt-3">
             <button className="px-3 py-2 rounded-lg bg-red-700 text-gray-50">
               {" "}
               Add Basket
