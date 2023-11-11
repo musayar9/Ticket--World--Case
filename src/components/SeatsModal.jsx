@@ -5,9 +5,7 @@ import { SiteContext } from "../context/SiteContext";
 export default function SeatsModal() {
   const { isOpenModal, setIsOpenModal, isAvailableSelectedSeat, setIsAvailableSelectedSeat } = useContext(SiteContext)
 
-  // const [selectedSeat, setSelectedSeat] = useState();
   const [selectedSeats, setSelectedSeats] = useState([]);
- 
 
   const handleChangeSeat = (rowIndex, columnIndex) => {
     const newSelectedSeat = {
@@ -28,17 +26,21 @@ export default function SeatsModal() {
     if (storedSelectedSeats) {
       setSelectedSeats(storedSelectedSeats);
     }
-    setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats")?.length !==0 ? true : false)
+    setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats") ? true : false)
   }, []);
-
-  // useEffect(() => {
-  //   setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats").length !==0 ? true : false)
-  // }, [selectedSeats]);
 
   const handleSelectSeat = (e) => {
     localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
     setIsOpenModal(false)
-    setIsAvailableSelectedSeat(localStorage.getItem("selectedSeats")?.length !==0 ? true : false)
+
+    const storedSelectedSeats = JSON.parse(localStorage.getItem("selectedSeats") || "[]");
+
+    if (storedSelectedSeats.length === 0) {
+      localStorage.removeItem("selectedSeats");
+      setIsAvailableSelectedSeat(false);
+    } else {
+      setIsAvailableSelectedSeat(true);
+    }
   }
 
   return (
@@ -127,7 +129,7 @@ export default function SeatsModal() {
             </div>
             <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
               <button
-              onClick={handleSelectSeat}
+                onClick={handleSelectSeat}
                 data-modal-hide="default-modal"
                 type="button"
                 className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
