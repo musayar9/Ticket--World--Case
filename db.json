@@ -7,7 +7,16 @@
       "lastName": "Admin",
       "password": "123456",
       "terms": true,
-      "selectedSeats" : []
+      "favorites": [],
+      "tickets": []
+    },
+    {
+      "id": "679769fb-c4fb-47d3-809c-7093ddcfe24d",
+      "email": "deneme@deneme.com",
+      "firstName": "Kübra",
+      "lastName": "Emektar",
+      "password": "123456",
+      "terms": true
     }
   ]
 }
