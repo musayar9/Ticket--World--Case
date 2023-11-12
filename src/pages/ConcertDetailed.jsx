@@ -8,6 +8,7 @@ import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
 import { SiteContext } from "../context/SiteContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import CardSliderM from "../components/CardSliderM";
 
 export default function ConcertDetailed() {
   const params = useParams();
@@ -100,7 +101,7 @@ export default function ConcertDetailed() {
             </p>
           </div>
 
-          <p>
+          <p className="font-semibold text-md">
             {concertData?.locationName} / {concertData?.city}
           </p>
 
@@ -146,6 +147,12 @@ export default function ConcertDetailed() {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {concertData?.image?.length > 1 && (
+            <div className="w-96 mx-auto ">
+              <CardSliderM image={concertData?.image} />
             </div>
           )}
 
