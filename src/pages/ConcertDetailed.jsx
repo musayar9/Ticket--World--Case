@@ -10,6 +10,7 @@ import { SiteContext } from "../context/SiteContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import CardSliderM from "../components/CardSliderM";
 import { axiosUserApi } from "../axios/axiosUserApi";
+import { ToastContainer } from "react-toastify";
 
 export default function ConcertDetailed() {
   const params = useParams();
@@ -23,7 +24,8 @@ export default function ConcertDetailed() {
     selectedSeats,
     setSelectedSeats,
     cartList,
-    setCartList
+    setCartList,
+    showSuccessToast
   } = useContext(SiteContext);
 
   const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
@@ -49,9 +51,6 @@ export default function ConcertDetailed() {
     return formattedDate;
   };
 
-
-
-
   const handleAddCart = async (item) => {
     setSelectedSeats(selectedSeats)
 
@@ -64,7 +63,7 @@ export default function ConcertDetailed() {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     let newCartList = [...storedOnlineUser?.cart, updatedConcertInfo];
 
-    await setCartList(newCartList)  
+    await setCartList(newCartList)
     const updatedUser = {
       ...storedOnlineUser,
       cart: newCartList,
@@ -74,6 +73,7 @@ export default function ConcertDetailed() {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
       await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
       setCartList(updatedUser?.cart);
+      showSuccessToast("Added to Cart")
     } catch (error) {
       console.error("Favori güncelleme hatası:", error.message);
     }
@@ -234,6 +234,12 @@ export default function ConcertDetailed() {
           </div>
         </div>
         <SeatsModal />
+        <ToastContainer
+          autoClose={750}
+          pauseOnFocusLoss={true}
+          pauseOnHover={false}
+          theme="colored"
+        />
       </div>
     </>
   );
