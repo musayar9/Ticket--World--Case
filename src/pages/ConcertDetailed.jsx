@@ -7,7 +7,8 @@ import { parseISO, format } from "date-fns";
 import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
 import { SiteContext } from "../context/SiteContext";
-
+import { FaMapMarkerAlt } from "react-icons/fa";
+import CardSlider from "../components/CardSlider";
 export default function ConcertDetailed() {
   const params = useParams();
   const [concertData, setConcertData] = useState(null);
@@ -59,23 +60,27 @@ export default function ConcertDetailed() {
             }
             alt=""
           />
-          <div>
-            <>
-              <iframe
-                src={concertData?.locationMap}
-                className="mt-5"
-                width="375"
-                height="350"
-                style={{
-                  border: "0",
-                  borderRadius: "8px",
-                  boxShadow: "1px 1px 5px #888",
-                }}
-                allowFullScreen={true}
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Location Map"
-              ></iframe>
-            </>
+          <div className="mt-5 ">
+            <p className="flex  items-center text-sm text-blue-600 ">
+              <FaMapMarkerAlt />{" "}
+              <span className="">
+                {concertData?.locationName} / {concertData?.city}
+              </span>
+            </p>
+            <iframe
+              src={concertData?.locationMap}
+              className="mt-1"
+              width="375"
+              height="350"
+              style={{
+                border: "0",
+                borderRadius: "8px",
+                boxShadow: "1px 1px 5px #888",
+              }}
+              allowFullScreen={true}
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Location Map"
+            ></iframe>
           </div>
         </div>
 
@@ -95,7 +100,9 @@ export default function ConcertDetailed() {
             </p>
           </div>
 
-          <p>{concertData?.locationName / concertData?.city}</p>
+          <p>
+            {concertData?.locationName} / {concertData?.city}
+          </p>
 
           <p className="flex items-center">
             <BsTagsFill className="text-red-700" />{" "}
@@ -141,6 +148,10 @@ export default function ConcertDetailed() {
               </ul>
             </div>
           )}
+
+
+          
+  
 
           <div
             className="text-end font-medium p-4 text-sm text-red-800 rounded-lg"

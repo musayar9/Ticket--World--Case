@@ -10,6 +10,7 @@ import { AiFillTags } from "react-icons/ai";
 import { format, parseISO } from "date-fns";
 import tr from "date-fns/locale/tr";
 import { useActivityAxiosApi } from "../customHooks";
+import { Link } from "react-router-dom";
 
 const HeaderSlider = () => {
   const [concertData] = useActivityAxiosApi();
@@ -97,10 +98,13 @@ const HeaderSlider = () => {
 
                     <div className="cursor-pointer sm:opacity-0 sm:group-hover:opacity-100 mb-2 group-hover:mb-5 sm:group-hover:mb-10 lg:group-hover:mb-15  duration-500">
                       <div className="  group-hover:text-[#BC1A45]">
-                        <button className="text-gray-100 flex items-center justify-center uppercase text-xs sm:text-sm md:text-md lg:text-lg hover:text-[#BC1A45] duration-500 ease-out">
-                          Etkinliğe Git{" "}
+                        <Link
+                          to={`/concert/${slide._id}`}
+                          className="text-gray-100 flex items-start justify-start uppercase text-xs sm:text-sm md:text-md lg:text-lg hover:text-[#BC1A45] duration-500 ease-out"
+                        >
+                          Detail Activity{" "}
                           <PiConfettiBold className="pl-2" size={26} />
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
