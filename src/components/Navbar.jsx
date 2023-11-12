@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="bg-[#060b26] h-[80px] flex justify-between items-center fixed z-50 w-full">
+        <div className="bg-[#060b26] h-[80px] flex justify-between items-center ">
           <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
@@ -53,10 +53,7 @@ function Navbar() {
               </>
             ) : (
               <div className="flex items-center justify-center p-2">
-                <NavLink
-                  to="/favorites"
-                  className="mr-4"
-                >
+                <NavLink to="/favorites" className="mr-4">
                   <button className="relative">
                     <BsCart4 size={36} className=" bg-transparent" />
                     <span className="flex items-center justify-center absolute top-1 -right-1 w-4 h-4 p-2.5 rounded-full bg-gray-50 text-blue-700">
@@ -77,7 +74,7 @@ function Navbar() {
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="w-[100%]" onClick={showSidebar}>
-            <li className="bg-[#060b26] w-[100%] h-[80px] flex items-center justify-start">
+            <li className="bg-[#010a3bfd] w-[100%] h-[80px] flex items-center justify-start">
               <Link
                 to="#"
                 className="ml-[2rem] absolute top-8 text-[2rem] bg-none"
@@ -96,29 +93,29 @@ function Navbar() {
                 <span className="ml-[16px]"> Home</span>
               </NavLink>
             </li>
-           
-            <li className="flex justify-start items-center ml-4 list-none h-[60px]">
-              {isValid && (
-                <NavLink
-                  to="/favorites"
-                  className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
-                >
-                  <AiFillHeart className="text-gray-50" />
-                  <span className="ml-[16px]"> Favorites</span>
-                </NavLink>
-              )}
-            </li>
-            <li className="flex justify-start items-center ml-4 list-none h-[60px]">
-              {isValid && (
-                <NavLink
-                  to="/payment"
-                  className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
-                >
-                  <MdPayment className="text-gray-50" />
-                  <span className="ml-[16px]">Payment</span>
-                </NavLink>
-              )}
-            </li>
+            {isValid && (
+              <>
+                <li className="flex justify-start items-center ml-4 list-none h-[60px]">
+                  <NavLink
+                    to="/favorites"
+                    className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
+                  >
+                    <AiFillHeart className="text-gray-50" />
+                    <span className="ml-[16px]"> Favorites</span>
+                  </NavLink>
+                </li>
+                <li className="flex justify-start items-center ml-4 list-none h-[60px]">
+                  <NavLink
+                    to="/payment"
+                    className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
+                  >
+                    <MdPayment className="text-gray-50" />
+                    <span className="ml-[16px]">Payment</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+
             <li className="flex justify-start items-center ml-4 list-none h-[60px]">
               <NavLink
                 to="/about"

@@ -126,7 +126,7 @@ export default function ConcertDetailed() {
             </button>
           </div>
 
-          {concertData?.players.length > 1 && (
+          {concertData?.players?.length > 1 && (
             <div className="bg-gray-200 p-4 rounded-md mt-5">
               <h2 className="font-bold italic">Artists;</h2>
               <ul className="flex flex-wrap  items-start justify-start">
