@@ -28,9 +28,13 @@ function Navbar() {
           <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <div className="flex justify-start items-center ml-4 list-none h-[60px]">
-            <SearchInput />
-          </div>
+
+          {isValid && (
+            <div className="flex justify-start items-center ml-4 list-none h-[60px]">
+              <SearchInput />
+            </div>
+          )}
+
           <div>
             {!isValid ? (
               <>
