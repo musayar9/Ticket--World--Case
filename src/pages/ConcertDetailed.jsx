@@ -11,12 +11,14 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import CardSliderM from "../components/CardSliderM";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
+import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 
 export default function ConcertDetailed() {
   const params = useParams();
   const [concertData, setConcertData] = useState(null);
   const [show, setShow] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const {
     setIsOpenModal,
     isAvailableSelectedSeat,
@@ -25,7 +27,8 @@ export default function ConcertDetailed() {
     setSelectedSeats,
     cartList,
     setCartList,
-    showSuccessToast
+    showSuccessToast,
+    setFavList
   } = useContext(SiteContext);
 
   const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
@@ -42,6 +45,41 @@ export default function ConcertDetailed() {
     };
     getData();
   }, [params.id]);
+
+  useEffect(() => {
+    const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+    if (storedOnlineUser) {
+      setIsFavorite(
+        storedOnlineUser.favorites?.some((fav) => fav._id === concertData?._id)
+      );
+    }
+  }, [concertData?._id]);
+
+  const handleAddFavorites = async (item) => {
+    let newFavorites;
+
+    const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+    if (storedOnlineUser?.favorites?.some((fav) => fav._id === item._id)) {
+      newFavorites = storedOnlineUser.favorites.filter(
+        (fav) => fav._id !== item._id
+      );
+    } else {
+      newFavorites = [...storedOnlineUser?.favorites, item];
+    }
+    setFavList(newFavorites)
+    const updatedUser = {
+      ...storedOnlineUser,
+      favorites: newFavorites,
+    };
+
+    try {
+      localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
+      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Favori güncelleme hatası:", error.message);
+    }
+  };
 
   const dateFormat = (dateValue) => {
     const parsedDate = parseISO(dateValue);
@@ -121,15 +159,19 @@ export default function ConcertDetailed() {
           <div className="flex items-center justify-between">
             <h1 className="font-bold capitalize text-2xl">
               {concertData?.title}
+
             </h1>
 
-            <p className="font-bold flex items-center">
-              <MdDateRange size={20} className="text-red-700" />
-              <span className="text-sm">
-                {concertData?.date && dateFormat(concertData.date)} /{" "}
-                {concertData?.hour}
-              </span>
-            </p>
+            <div className="font-bold flex flex-col items-end">
+              <button onClick={() => handleAddFavorites(concertData)} className="text-2xl m-3">{isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}</button>
+              <div className="flex items-center">
+                <MdDateRange size={20} className="text-red-700" />
+                <span className="text-sm">
+                  {concertData?.date && dateFormat(concertData.date)} /{" "}
+                  {concertData?.hour}
+                </span>
+              </div>
+            </div>
           </div>
 
           <p className="font-semibold text-md">
