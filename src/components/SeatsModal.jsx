@@ -99,7 +99,7 @@ export default function SeatsModal() {
               {[...new Array(7)].map((row, rowIndex) => (
                 <div key={rowIndex} className="row">
                   {[...new Array(21)].map((column, columnIndex) => (
-                    <span onClick={(e) => handleChangeSeat(rowIndex + 2, columnIndex + 1)}>
+                    <span key={columnIndex} onClick={(e) => handleChangeSeat(rowIndex + 2, columnIndex + 1)}>
                       <ChairIcon className={`${selectedSeats?.some((seat) => seat.rowIndex === rowIndex + 2 && seat.columnIndex === columnIndex + 1)
                         ? "text-green-800 "
                         : "text-red-800"

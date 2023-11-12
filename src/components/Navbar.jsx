@@ -42,7 +42,7 @@ function Navbar() {
                   to="/login"
                   className="mr-3 text-sm text-gray-50  bg-blue-700 px-4 py-2 rounded-md"
                 >
-                  Login{" "}
+                  Login
                 </NavLink>
                 <NavLink
                   to="/signup"

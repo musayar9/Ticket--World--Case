@@ -45,8 +45,8 @@ export default function CartCard({ item, selectedSeats }) {
                 </div>
                 <div className="text-start font-medium p-4 text-sm text-red-800 rounded-lg" role="alert">Seats:
                     {
-                        selectedSeats?.map((seat) => (
-                            <span className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} |`}</span>
+                        selectedSeats?.map((seat,index) => (
+                            <span key={index} className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} |`}</span>
                         ))
                     }
                 </div>
