@@ -9,6 +9,7 @@ import en from "date-fns/locale/en-US";
 import { SiteContext } from "../context/SiteContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import CardSliderM from "../components/CardSliderM";
+import { axiosUserApi } from "../axios/axiosUserApi";
 
 export default function ConcertDetailed() {
   const params = useParams();
@@ -21,7 +22,11 @@ export default function ConcertDetailed() {
     setIsAvailableSelectedSeat,
     selectedSeats,
     setSelectedSeats,
+    cartList,
+    setCartList
   } = useContext(SiteContext);
+
+  const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
 
   useEffect(() => {
     const getData = async () => {
@@ -44,8 +49,34 @@ export default function ConcertDetailed() {
     return formattedDate;
   };
 
-  const handleAddCart = (item) => {
-    // console.log(item)
+
+
+
+  const handleAddCart = async (item) => {
+    setSelectedSeats(selectedSeats)
+
+    const updatedConcertInfo = {
+      item,
+      selectedSeats
+    }
+    setSelectedConcertInfo(updatedConcertInfo)
+
+    const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
+    let newCartList = [...storedOnlineUser?.cart, updatedConcertInfo];
+
+    await setCartList(newCartList)  
+    const updatedUser = {
+      ...storedOnlineUser,
+      cart: newCartList,
+    };
+
+    try {
+      localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
+      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      setCartList(updatedUser?.cart);
+    } catch (error) {
+      console.error("Favori güncelleme hatası:", error.message);
+    }
   };
 
   return (
@@ -170,9 +201,8 @@ export default function ConcertDetailed() {
           <div className="flex item-center justify-end space-x-2 mt-3">
             <button
               onClick={() => handleAddCart(concertData)}
-              className={`px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 ${
-                isAvailableSelectedSeat ? "opacity-100" : "opacity-50"
-              } `}
+              className={`px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 ${isAvailableSelectedSeat ? "opacity-100" : "opacity-50"
+                } `}
               disabled={!isAvailableSelectedSeat}
             >
               <svg

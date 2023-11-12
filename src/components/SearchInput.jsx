@@ -32,7 +32,7 @@ const SearchInput = () => {
     }, 2000);
     navigate("/");
   };
-  console.log("fiteredDate", filteredToCategories);
+  // console.log("fiteredDate", filteredToCategories);
   return (
     <div
       className="

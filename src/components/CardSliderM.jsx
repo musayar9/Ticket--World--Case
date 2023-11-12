@@ -26,7 +26,7 @@ function SamplePrevArrow(props) {
 }
 
 const CardSliderM = ({ image }) => {
-  console.log("image", image);
+  // console.log("image", image);
 
   const settings = {
     slidesToShow: 1,
