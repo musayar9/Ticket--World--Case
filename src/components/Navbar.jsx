@@ -11,7 +11,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { MdPayment } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 function Navbar() {
-  const { isValid, setIsValid, navigate, sidebar, setSidebar } =
+  const { isValid, setIsValid, navigate, sidebar, setSidebar, favList } =
     useContext(SiteContext);
 
   const handleSignout = (e) => {
@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="bg-[#060b26] h-[80px] flex justify-between items-center ">
+        <div className="bg-[#060b26] h-[80px] flex justify-between items-center fixed z-50 w-full">
           <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
@@ -49,12 +49,17 @@ function Navbar() {
               </>
             ) : (
               <div className="flex items-center justify-center p-2">
-                <button className="relative mr-4">
-                  <BsCart4 size={36} className=" bg-transparent" />
-                  <span className="flex items-center justify-center absolute top-1 -right-1 w-4 h-4 p-2.5 rounded-full bg-gray-50 text-blue-700">
-                    4
-                  </span>
-                </button>
+                <NavLink
+                  to="/favorites"
+                  className="mr-4"
+                >
+                  <button className="relative">
+                    <BsCart4 size={36} className=" bg-transparent" />
+                    <span className="flex items-center justify-center absolute top-1 -right-1 w-4 h-4 p-2.5 rounded-full bg-gray-50 text-blue-700">
+                      {favList?.length ?? "0"}
+                    </span>
+                  </button>
+                </NavLink>
                 <button
                   onClick={handleSignout}
                   to="/signup"
@@ -78,7 +83,7 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="flex justify-start items-center ml-4 list-none h-[60px]">
+            <li className="flex justify-start items-center ml-4 list-none h-[60px] border">
               <NavLink
                 to="/"
                 className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md  hover:bg-[#1a83ff]"
@@ -87,15 +92,7 @@ function Navbar() {
                 <span className="ml-[16px]"> Home</span>
               </NavLink>
             </li>
-            <li className="flex justify-start items-center ml-4 list-none h-[60px]">
-              <NavLink
-                to="/about"
-                className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
-              >
-                <FcAbout className="text-gray-50" />
-                <span className="ml-[16px]"> About</span>
-              </NavLink>
-            </li>
+           
             <li className="flex justify-start items-center ml-4 list-none h-[60px]">
               {isValid && (
                 <NavLink
@@ -118,16 +115,15 @@ function Navbar() {
                 </NavLink>
               )}
             </li>
-            {/* <li className="flex justify-start items-center ml-4 list-none h-[60px]">
-              {isValid && (
-                <NavLink
-                  to="/cart"
-                  className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center p-4 rounded-md hover:bg-[#1a83ff]"
-                >
-                  <span className="ml-[16px]">Cart</span>
-                </NavLink>
-              )}
-            </li> */}
+            <li className="flex justify-start items-center ml-4 list-none h-[60px]">
+              <NavLink
+                to="/about"
+                className="text-[#f5f5f5] text-[18px] w-[95%] h-[100%] flex items-center pl-4 rounded-md hover:bg-[#1a83ff]"
+              >
+                <FcAbout className="text-gray-50" />
+                <span className="ml-[16px]"> About</span>
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </IconContext.Provider>

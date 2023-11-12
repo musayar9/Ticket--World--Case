@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const SiteContext = createContext();
 
 export default function SiteContextProvider({ children }) {
-    
+
   const navigate = useNavigate();
   const showSuccessToast = (message) => toast.success(message, { hideProgressBar: true, pauseOnHover: true });
   const showErrorToast = (message) => toast.error(message, { hideProgressBar: true, pauseOnHover: true });
@@ -30,13 +30,14 @@ export default function SiteContextProvider({ children }) {
     localStorage.removeItem("selectedSeats");
     setIsAvailableSelectedSeat(false);
   }, [location]);
-  
+
 
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     if (storedOnlineUser?.id) {
       navigate(`${currentPathName}`);
       setIsValid(true);
+      setFavList([...JSON.parse(localStorage.getItem("onlineUser"))?.favorites])
     } else {
       navigate("/login");
     }
@@ -62,9 +63,9 @@ export default function SiteContextProvider({ children }) {
         setSidebar,
         isOpenModal,
         setIsOpenModal,
-        isAvailableSelectedSeat, 
+        isAvailableSelectedSeat,
         setIsAvailableSelectedSeat,
-        selectedSeats, 
+        selectedSeats,
         setSelectedSeats
       }}
     >

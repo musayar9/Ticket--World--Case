@@ -16,12 +16,12 @@ export default function Favorites() {
         <div className="flex flex-col w-[97%] flex-wrap m-auto p-5">
             {
                 favList?.length !== 0 ? (<>
-                    <h1 className="text-3xl my-3">Favorites:</h1>
+                    <h1 className="text-3xl my-3 mt-20">Favorites:</h1>
                     {
                         favList?.map((item, index) => <FavoriteCard key={index} item={item} />)
                     }
                 </>) : (<>
-                    <div className="p-4 my-7 w-[50%] text-lg text-red-800 rounded-lg bg-red-100" role="alert">
+                    <div className="p-4 my-7 w-[50%] text-lg text-red-800 rounded-lg bg-red-100 mt-20" role="alert">
                         <span className="font-medium">YOUR FAVORITE BASKET IS EMPTY !</span> 
                     </div>
                 </>)
