@@ -53,11 +53,11 @@ function Navbar() {
               </>
             ) : (
               <div className="flex items-center justify-center p-2">
-                <NavLink to="/favorites" className="mr-4">
+                <NavLink to="/cart" className="mr-4">
                   <button className="relative">
                     <BsCart4 size={36} className=" bg-transparent" />
                     <span className="flex items-center justify-center absolute top-1 -right-1 w-4 h-4 p-2.5 rounded-full bg-gray-50 text-blue-700">
-                      {favList?.length ?? "0"}
+                     4 {/* {favList?.length ?? "0"} */}
                     </span>
                   </button>
                 </NavLink>
