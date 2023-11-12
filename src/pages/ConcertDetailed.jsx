@@ -12,6 +12,8 @@ import CardSliderM from "../components/CardSliderM";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+
 
 export default function ConcertDetailed() {
   const params = useParams();
@@ -116,7 +118,7 @@ export default function ConcertDetailed() {
       console.error("Favori güncelleme hatası:", error.message);
     }
   };
-
+  console.log(concertData)
   return (
     <>
       <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
@@ -170,6 +172,27 @@ export default function ConcertDetailed() {
                   {concertData?.date && dateFormat(concertData.date)} /{" "}
                   {concertData?.hour}
                 </span>
+              </div>
+              <div className="my-4 w-[50%] flex justify-between">
+                <FacebookShareButton
+                  description={concertData?.description}
+                  url={concertData?.image[0].photo}
+                  // quote="deneme"
+                  hashtag={`#${concertData?.artist}`}>
+                  <FacebookIcon size={28} round />
+                </FacebookShareButton>
+                <LinkedinShareButton
+                  title={concertData?.title}
+                  summary={concertData?.description}
+                  url={concertData?.image[0].photo}
+                  source={window.location.href}>
+                  <LinkedinIcon size={28} round />
+                </LinkedinShareButton>
+                <WhatsappShareButton
+                  url={concertData?.image[0].photo}
+                  title={concertData?.title}>
+                  <WhatsappIcon size={28} round />
+                </WhatsappShareButton>
               </div>
             </div>
           </div>
@@ -235,7 +258,7 @@ export default function ConcertDetailed() {
           >
             Selected seats:
             {isAvailableSelectedSeat &&
-              selectedSeats?.map((item,index) => (
+              selectedSeats?.map((item, index) => (
                 <span key={index} className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${item.rowIndex}-${item.columnIndex} |`}</span>
               ))}
           </div>
