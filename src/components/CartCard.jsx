@@ -35,12 +35,11 @@ export default function CartCard({ item, selectedSeats }) {
         <Link to={`/concert/${item._id}`} className="w-[100%]">
             <div className="w-[100%]">
                 <div className="flex text-gray-800 items-center px-4 py-2 ">
-                    <a href="#" className="w-[35%]">
-                        <h5 className="mb-2 text-medium font-bold tracking-tight text-gray-900">{item.title}</h5>
-                    </a>
+
+                    <h5 className="w-[35%] mb-2 text-medium font-bold tracking-tight text-gray-900">{item.title}</h5>
                     <p className="text-center w-[30%] mb-2 font-normal text-gray-700">{`${item.date} | ${item.hour}`}</p>
                     <div className="w-[30%] text-center mb-2">
-                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${item.ticketPrice} TL`}</span>
+                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${item?.ticketPrice}x${selectedSeats?.length} = ${item?.ticketPrice * selectedSeats?.length} TL`}</span>
                     </div>
 
                 </div>

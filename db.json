@@ -8,7 +8,190 @@
       "password": "123456",
       "terms": true,
       "favorites": [],
-      "cart": [],
+      "cart": [
+        {
+          "item": {
+            "_id": "6546087319ea40ef9d79bb2e",
+            "artist": "Cem Adrian",
+            "players": [
+              {
+                "name": "Cem Adrian",
+                "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjzScPKPBjDivV4iscS4Z-vQ1Xhwqzgl8Qug&usqp=CAU",
+                "_id": "6546087319ea40ef9d79bb2f"
+              }
+            ],
+            "title": "Cem  Adrian Denizli Konseri",
+            "city": "Denizli",
+            "description": "Cem Adrian, 8 Kasım akşamı Jolly Joker Denizli sahnesinde.",
+            "category": "concerts",
+            "image": [
+              {
+                "photo": "https://i.hbrcdn.com/haber/2021/05/03/cem-adrian-kimdir-cem-adrian-kac-yasinda-nereli-14106540_9871_amp.jpg",
+                "_id": "655104716c7da97a7d998756"
+              },
+              {
+                "photo": "https://pusulagazetesicomtr.teimg.com/crop/1280x720/pusulagazetesi-com-tr/uploads/2023/05/a3c290a5-82a0-41a5-af6e-5559eff38b3e.jpeg",
+                "_id": "655104716c7da97a7d998757"
+              },
+              {
+                "photo": "https://egetelgrafcom.teimg.com/crop/1280x720/egetelgraf-com/uploads/2023/09/cem-adrian-konserinde-hayranlarina-sitem-etti-burasi-ciftlesebilecegiz-bir-yer-degil-1.jpg",
+                "_id": "655104716c7da97a7d998758"
+              },
+              {
+                "photo": "https://cemadrian.net/wp-content/uploads/2020/10/cem-adrian-yolun-sonunda-piyano-1024x1024.jpg",
+                "_id": "655104716c7da97a7d998759"
+              }
+            ],
+            "location": "Cumhuriyet, Tenis Kulübü, 1891. Sk. Üzeri No:198, 20160 Pamukkale/Denizli",
+            "locationName": "Jolly Joker Denizli",
+            "ticketPrice": "678",
+            "hour": "22:00",
+            "date": "2023-11-08",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.1133429615643!2d29.116118611394704!3d37.76394047187124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c73f0f9a3043eb%3A0x2395795fac6ab796!2sJolly%20Joker%20Denizli!5e0!3m2!1sen!2str!4v1699200253754!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 4,
+              "columnIndex": 14
+            },
+            {
+              "rowIndex": 4,
+              "columnIndex": 15
+            }
+          ]
+        },
+        {
+          "item": {
+            "_id": "6546158319ea40ef9d79c1bb",
+            "artist": "Erdinç Doğan",
+            "players": [
+              {
+                "name": "Erdinç Doğan",
+                "personImage": "https://tiyatrolar.com.tr/files/contributer/e/erdinc-dogan/image/erdinc-dogan-125x165.jpg",
+                "_id": "6546158319ea40ef9d79c1bc"
+              },
+              {
+                "name": "Gökçe Yurtsal",
+                "personImage": "https://tiyatrolar.com.tr/files/contributer/g/gokce-yurtsal/image/gokce-yurtsal-125x165.jpg",
+                "_id": "6546158319ea40ef9d79c1bd"
+              },
+              {
+                "name": "Nazlı Özdemir",
+                "personImage": "https://tiyatrolar.com.tr/files/contributer/n/nazli-ozdemir/image/nazli-ozdemir-125x165.jpg",
+                "_id": "6546158319ea40ef9d79c1be"
+              },
+              {
+                "name": "Mesut Turan",
+                "personImage": "https://tiyatrolar.com.tr/files/contributer/m/mesut-turan/image/mesut-turan-125x165.jpg",
+                "_id": "6546158319ea40ef9d79c1bf"
+              }
+            ],
+            "title": "Siyahlı Kadın (Bir Hayalet Oyunu)",
+            "city": "İzmir",
+            "description": "“Etraf Noel kokuyordu. Eve girince heyecanlı bir sohbeti böldüğümü fark ettim. ‘Hortlak hikâyeleri anlatıyorduk. Noel için biçilmiş kaftan! Şimdi sıra sende.’ dedi biri… Evet anlatıyorlardı. En korkunç, en tüyler ürpertici hikâyeyi anlatmak için birbirleriyle yarışıyorlardı… Evet benim de bir hikâyem vardı, gerçek bir hikâye. Akıldan çıkmayan, insanın peşini bırakmayan, ne yapacağını bilemediği; korkuyla, kötülükle, dehşet ve trajediyle dolu bir hayalet hikâyesi… Fakat bu, Noel gecesi şömine başında anlatılacak bir öykü değildi…” diye geçirdi aklından Arthur KIPPS… Artık bu lânetten kurtulmalıydı. Bunu ancak yaşadıklarını kâğıda döküp, ailesi ve dostlarına anlatarak yapabileceğini düşündü… Ve… Kendisine yardım etmesi için genç bir aktörle anlaştı… Bu zorlu ve korku dolu yolculuğa bir tiyatro sahnesinde birlikte tekrar çıkacaklardı…",
+            "category": "theatre",
+            "image": [
+              {
+                "photo": "https://tiyatrolar.com.tr/files/activity/s/siyahli-kadin-bir-hayalet-oyunu/gallery/14900/siyahli-kadin-bir-hayalet-oyunu-14900.jpg",
+                "_id": "6546158319ea40ef9d79c1c0"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSJqOYvAbHF1rGh3RShJHS4U5ec2D1Mz_V1kh-dEEu4s032qkGEQlkXnMIQM4JNEEObQ&usqp=CAU",
+                "_id": "6546158319ea40ef9d79c1c1"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFj300U9byENNDPVge8KWWKqomg9xSDUeEkDcN2m8cDnxQgWyg0RZPYQ54nA-8uBz_zx0&usqp=CAU",
+                "_id": "6546158319ea40ef9d79c1c2"
+              }
+            ],
+            "location": "Yeşiltepe Mahallesi, Mithatpaşa Cd. No: 110 Konak / İzmir",
+            "locationName": "Konak Sahnesi",
+            "ticketPrice": "250",
+            "hour": "20:00",
+            "date": "2023-11-23",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.155753796847!2d27.12100497572097!3d38.41476527503753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd91f81d9cd05%3A0x53e42dfa53f6ac73!2sYe%C5%9Filtepe%2C%20Mithatpa%C5%9Fa%20Cd.%20%C4%B0zmir%20State%20Theatre%20Konak%20Stage%2C%2035260%20Konak%2F%C4%B0zmir!5e0!3m2!1sen!2str!4v1699253124364!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 4,
+              "columnIndex": 14
+            },
+            {
+              "rowIndex": 6,
+              "columnIndex": 17
+            }
+          ]
+        },
+        {
+          "item": {
+            "_id": "65460bb819ea40ef9d79bc5d",
+            "artist": "Zakkum",
+            "players": [
+              {
+                "name": "Yusuf Demirkol",
+                "personImage": "https://i.discogs.com/com8vd8UUXXkHERfEE6fY4IHPldCKIMu1stYFs25-VA/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTM2MTMw/NjAtMTU1NDIyNDY2/My0yOTc3LmpwZWc.jpeg",
+                "_id": "65460bb819ea40ef9d79bc5e"
+              },
+              {
+                "name": "Emre Yılmaztürk",
+                "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYILXZv3pYpx-mw86lqBXQigAfPJgpBxqpQ&usqp=CAU",
+                "_id": "65460bb819ea40ef9d79bc5f"
+              },
+              {
+                "name": "Eren Parlakgümüş",
+                "personImage": "https://blog.reklamverelim.com/upload/21/eren-parlakgumus.jpg",
+                "_id": "65460bb819ea40ef9d79bc60"
+              },
+              {
+                "name": "Cem Senyücel",
+                "personImage": "https://galeri2.uludagsozluk.com/202/cem-senyucel_268124.jpg",
+                "_id": "65460bb819ea40ef9d79bc61"
+              }
+            ],
+            "title": "Zakkum İstanbul Konseri",
+            "city": "İstanbul",
+            "description": "Zakkum, Hayal Kahvesi Aqua Florya sahnesinde...",
+            "category": "concerts",
+            "image": [
+              {
+                "photo": "https://cdn1.ntv.com.tr/gorsel/4erg1-JzJkKt7uPf3EjkUg.jpg?width=960&mode=crop&scale=both",
+                "_id": "65460bb819ea40ef9d79bc62"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW6oRdETdDqIymYdQLCwOB7B4mH2AmfO9dD7gFH6FHRFxWMeZDykQvL4T50wsXtl-Ptco&usqp=CAU",
+                "_id": "65460bb819ea40ef9d79bc63"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfIAdvo5FryDKl-ErwG3bxvlUalNKk7mcbg&usqp=CAU",
+                "_id": "65460bb819ea40ef9d79bc64"
+              }
+            ],
+            "location": "Yeşilköy Halkalı Cd.Şenlikköy Mahallesi, 34153 FLORYA / İstanbul",
+            "locationName": "Hayal Kahvesi Aqua Florya",
+            "ticketPrice": "168",
+            "hour": "22:00",
+            "date": "2023-11-18",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3012.694589058837!2d28.793966411553416!3d40.96626897123692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa3fc0c4708ff%3A0x40f0f14f847530ad!2sHayal%20Kahvesi!5e0!3m2!1sen!2str!4v1699200651130!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 4,
+              "columnIndex": 17
+            },
+            {
+              "rowIndex": 5,
+              "columnIndex": 13
+            },
+            {
+              "rowIndex": 5,
+              "columnIndex": 6
+            }
+          ]
+        }
+      ],
       "tickets": []
     },
     {

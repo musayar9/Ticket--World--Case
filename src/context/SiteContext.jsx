@@ -46,7 +46,8 @@ export default function SiteContextProvider({ children }) {
   let totalCost = 0;
   cartList?.forEach(concert => {
     const ticketPrice = Number(concert.item.ticketPrice)
-    totalCost += ticketPrice
+    const seatsNumber = concert.selectedSeats.length
+    totalCost += ticketPrice * seatsNumber
   })
 
   return (
