@@ -11,7 +11,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { MdPayment } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 function Navbar() {
-  const { isValid, setIsValid, navigate, sidebar, setSidebar, favList } =
+  const { isValid, setIsValid, navigate, sidebar, setSidebar, favList, cartList } =
     useContext(SiteContext);
 
   const handleSignout = (e) => {
@@ -57,7 +57,7 @@ function Navbar() {
                   <button className="relative">
                     <BsCart4 size={36} className=" bg-transparent" />
                     <span className="flex items-center justify-center absolute top-1 -right-1 w-4 h-4 p-2.5 rounded-full bg-gray-50 text-blue-700">
-                     4 {/* {favList?.length ?? "0"} */}
+                      {cartList?.length ?? "0"}
                     </span>
                   </button>
                 </NavLink>

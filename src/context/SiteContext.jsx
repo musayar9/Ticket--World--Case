@@ -43,6 +43,12 @@ export default function SiteContextProvider({ children }) {
     }
   }, []);
 
+  let totalCost = 0;
+  cartList?.forEach(concert => {
+    const ticketPrice = Number(concert.item.ticketPrice)
+    totalCost += ticketPrice
+  })
+
   return (
     <SiteContext.Provider
       value={{
@@ -66,7 +72,8 @@ export default function SiteContextProvider({ children }) {
         isAvailableSelectedSeat,
         setIsAvailableSelectedSeat,
         selectedSeats,
-        setSelectedSeats
+        setSelectedSeats,
+        totalCost
       }}
     >
       {children}
