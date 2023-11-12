@@ -4,7 +4,7 @@ import { FaTheaterMasks, FaLaughBeam, FaIcons } from "react-icons/fa";
 import { MdOutlineFestival } from "react-icons/md";
 import { PiConfettiBold, PiShoppingCartSimpleBold} from "react-icons/pi";
 
-function Cards() {
+function CardsB() {
   const [uniqueCategory, setUniqueCategory] = useState(["all"]);
   const [cardsData, setCardsData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -140,4 +140,4 @@ function Cards() {
   );
 }
 
-export default Cards;
+export default CardsB;
