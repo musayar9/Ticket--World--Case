@@ -41,7 +41,7 @@ const HeaderSlider = () => {
     <div className="z-10">
       <Slider {...settings}>
         {shuffledData.slice(0, 10).map((slide) => (
-          <div className="w-full group z-20" key={slide._id}>
+          <div className="w-full group z-20 mt-20" key={slide._id}>
             <div className="h-auto  w-full relative ">
               <img
                 className="h-[250px] sm:h-[360px] md:h-[400px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-50 "
