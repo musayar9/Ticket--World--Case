@@ -35,6 +35,7 @@ const CategoriesButton = () => {
 
     if (category === "all") {
       await setFilteredToCategories(concertData);
+        setShowPastEvents(false);
       setHead(`Filter results by ${category}`);
       return;
     }
