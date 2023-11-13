@@ -11,13 +11,23 @@ import { AiFillHeart } from "react-icons/ai";
 import { MdPayment } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 function Navbar() {
-  const { isValid, setIsValid, navigate, sidebar, setSidebar, favList, cartList } =
-    useContext(SiteContext);
+  const {
+    isValid,
+    setIsValid,
+    navigate,
+    sidebar,
+    setSidebar,
+    favList,
+    cartList,
+    concertData,
+    setFilteredToCategories,
+  } = useContext(SiteContext);
 
   const handleSignout = (e) => {
     setIsValid(false);
     localStorage.removeItem("onlineUser");
     navigate("/login");
+    setFilteredToCategories(concertData)
   };
   const showSidebar = () => setSidebar(!sidebar);
 

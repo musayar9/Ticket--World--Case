@@ -7,9 +7,15 @@ import { useNavigate } from "react-router-dom";
 const SearchInput = () => {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState("");
-  const [concertData, filteredToCategories, setFilteredCategories] =
-    useActivitiesAxiosApi();
-  const { sidebar, setSidebar } = useContext(SiteContext);
+
+  const {
+    concertData,
+    setFilteredToCategories,
+    setSidebar,
+    setIsCategory,
+    setShowPastEvents,
+    setHead,
+  } = useContext(SiteContext);
   useEffect(() => {
     const filterSearch = concertData.filter((v) => {
       const newSearch =
@@ -24,9 +30,11 @@ const SearchInput = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFilteredCategories(searchData);
-
+    setFilteredToCategories(searchData);
+    setIsCategory(false);
+    setShowPastEvents(false);
     setSidebar(false);
+    setHead(`Filter results by ${search}`);
     setTimeout(() => {
       setSearch("");
     }, 2000);

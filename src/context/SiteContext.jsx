@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export const SiteContext = createContext();
 
 export default function SiteContextProvider({ children }) {
@@ -49,7 +49,35 @@ export default function SiteContextProvider({ children }) {
     const seatsNumber = concert.selectedSeats.length
     totalCost += ticketPrice*seatsNumber
   })
-
+const [concertData, setConcertData] = useState([]);
+const [isLoading, setIsLoading] = useState(true);
+const [isError, setIsError] = useState(false);
+const [error, setError] = useState();
+const [filteredToCategories, setFilteredToCategories] = useState();
+const [isCategory, setIsCategory] = useState(true)
+  const [showPastEvents, setShowPastEvents] = useState(false);
+const getData = async () => {
+  try {
+    const response = await axiosConcertApi.get("/activity");
+    const responseData = response.data;
+    if (response.status !== 200) {
+      setIsError(true);
+      setError("Veri alınamadı");
+      throw new Error("Veri alınamadı");
+    }
+    setConcertData(responseData.activity);
+    setIsLoading(false);
+    if (concertData) {
+      setFilteredToCategories(responseData.activity);
+    }
+  } catch (error) {
+    setIsLoading(false);
+    throw new Error(error);
+  }
+};
+useEffect(() => {
+  getData();
+}, []);
   return (
     <SiteContext.Provider
       value={{
@@ -74,7 +102,15 @@ export default function SiteContextProvider({ children }) {
         setIsAvailableSelectedSeat,
         selectedSeats,
         setSelectedSeats,
-        totalCost
+        totalCost,
+        concertData,
+        filteredToCategories,
+        setFilteredToCategories,
+        isCategory,
+        setIsCategory,
+        showPastEvents,
+        setShowPastEvents,
+        head, setHead
       }}
     >
       {children}

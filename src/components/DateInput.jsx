@@ -1,22 +1,29 @@
 import React, { useContext, useState } from "react";
 import { isToday, format } from "date-fns";
 import { parseISO } from "date-fns";
-import tr from "date-fns/locale/tr";
+import en from "date-fns/locale/en-US";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+
 import { SiteContext } from "../context/SiteContext";
 
 const DateInput = () => {
   const [date, setDate] = useState("");
-  const [dateFilter, setDateFilter] = useState("");
-  const [concertData, filteredToCategories, setFilteredCategories] =
-    useActivitiesAxiosApi();
-  const { isValid, setSidebar } = useContext(SiteContext);
+
+  const {
+    isValid,
+    setSidebar,
+    concertData,
+    setFilteredToCategories,
+    setIsCategory,
+    setHead,
+    setShowPastEvents,
+  } = useContext(SiteContext);
+
   const dateFormat = (dateValue) => {
     const parsedDate = parseISO(dateValue);
     const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
-      locale: tr,
+      locale: en,
     });
     return formattedDate;
   };
@@ -32,21 +39,24 @@ const DateInput = () => {
     const filterValue = await concertData.filter(
       (d) => d.date === e.target.value
     );
-    setDateFilter(filterValue);
-    setFilteredCategories(filterValue);
+
+    setFilteredToCategories(filterValue);
+    setIsCategory(false);
+    setShowPastEvents(false);
     if (isValid) {
       showToast(dateFormat(e.target.value));
     }
+
+    setHead(`Filter results by ${dateFormat(e.target.value)}`);
+    setSidebar(false);
     setTimeout(() => {
       setDate("");
     }, 2000);
-    // setHead(dateFormat(e.target.value));
-    setSidebar(false);
   };
 
   return (
     <>
-      <div className="">
+      <div className="w-44">
         <input
           type="date"
           className=" bg-gray-300 text-gray-600 font-semibold rounded-md p-5 outline-none flex "
