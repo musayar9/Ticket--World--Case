@@ -24,12 +24,11 @@ export default function Home() {
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
-
-      <div className="flex w-[97%] flex-wrap m-auto">
-        <h2 className="flex item-center ml-5 text-2xl font-bold capitalize mb-4">
-          {head}
-        </h2>
-        <div className="flex w-[97%] flex-wrap m-auto">
+      <h2 className="flex item-center ml-5 text-xl  lg:text-2xl font-bold capitalize mb-4">
+        {head}
+      </h2>
+      <div className="flex w-[100%] md:w-[97%]  m-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto overflow-y-hidden">
           {filteredToCategories?.length !== 0 ? (
             filteredToCategories &&
             filteredToCategories?.map((item, index) => (

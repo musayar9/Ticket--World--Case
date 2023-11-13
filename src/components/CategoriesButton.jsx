@@ -85,12 +85,12 @@ const CategoriesButton = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mt-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   xl:flex  items-center justify-center  text-center  md:gap-x-2 gap-y-2 p-4 text-white  lg:gap-y-1 xl:gap-y-0 ">
+      <div className="flex flex-col items-center justify-center mt-3 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:flex  items-center justify-center  text-center  md:gap-x-2 gap-y-2 p-4 text-white  lg:gap-y-1 xl:gap-y-0 ">
           {uniqueCategory?.map((category, index) => (
             <button
               key={index}
-              className={`flex items-center justify-center   w-44 px-4 py-2 rounded-md focus:z-10   ease-in duration-300    ${
+              className={`flex items-center justify-center w-44   px-4 py-2 rounded-md focus:z-10   ease-in duration-300    ${
                 isCategory && selectedCategory === category
                   ? "bg-blue-900 text-gray-50"
                   : "bg-[#010A3B]"
