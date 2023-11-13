@@ -5,9 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { dateFormat, formatPrice } from "./Functions";
 import { BsCalendar2DateFill } from "react-icons/bs";
-import {FaMapMarkerAlt} from "react-icons/fa"
+import { FaMapMarkerAlt } from "react-icons/fa";
+import LazyLoadImage from "./LazyLoadImage";
 export default function Card({ item }) {
-  const { favList, setFavList } = useContext(SiteContext);
+  const { setFavList } = useContext(SiteContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -48,26 +49,15 @@ export default function Card({ item }) {
 
   return (
     <div
-      className="max-w-sm w-[280px] h-[70vh] m-3.5 flex flex-col  justify-between  border
-    border-gray-200 rounded-lg shadow bg-[#010A3B]"
-    >
+      className="max-w-md  w-[420px] md:w-[280px] h-[70vh]  m-3.5 flex flex-col justify-between border border-gray-200 rounded-lg shadow-lg bg-[#010A3B]">
       <Link to={`/concert/${item._id}`}>
-        <div className="w-[280px] h-[180px] overflow-hidden">
-          <img
-            className="rounded-t-lg object-fill w-[350px] h-[100%]"
-            src={
-              item?.image[0]?.photo === ""
-                ? "https://via.placeholder.com/600x400"
-                : item?.image[0]?.photo
-            }
-            alt={item?.title}
-            title={item?.title}
-          />
+        <div className=" w-full md:w-[280px] h-[180px] overflow-hidden">
+          <LazyLoadImage className="rounded-t-lg object-fill w-full lg:w-[350px] h-[100%]" src={item?.image[0]?.photo} alt={item?.title} title={item?.title} />
         </div>
       </Link>
       <button
         onClick={() => handleAddFavorites(item)}
-        className="text-white ml-auto text-lg mx-2  "
+        className="text-white ml-auto text-lg mx-2 mt-2 "
       >
         {isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}
       </button>
@@ -79,25 +69,26 @@ export default function Card({ item }) {
         </a>
 
         <p className="font-normal flex items-center  text-gray-700 dark:text-gray-400">
-       
-          <FaMapMarkerAlt   />{" "}
+          <FaMapMarkerAlt />{" "}
           <span className="pl-2 truncate">{`${item?.locationName}`}</span>
         </p>
         <p className="font-normal flex items-center  text-gray-700 dark:text-gray-400">
           <BsCalendar2DateFill className="" />
-          <span className="pl-1 text-md">{`${dateFormat(item.date)} | ${
-            item.hour
-          }`}</span>
+          <span className="pl-1 text-md">{`${dateFormat(item.date)} | ${item.hour
+            }`}</span>
         </p>
 
-        <p className="font-normal text-lg pt-1 text-gray-50  flex items-center 
-        ">{`${formatPrice(
-          item.ticketPrice
-        )} `}</p>
+        <p
+          className="font-normal text-lg pt-1 text-gray-50  flex items-center 
+        "
+        >{`${formatPrice(item.ticketPrice)} `}</p>
       </div>
 
       <button
-        onClick={() => setShowAlert((prev) => !prev)}
+        onClick={() => {
+          setShowAlert((prev) => !prev)
+          setTimeout(() => { setShowAlert(false) }, 1000);
+        }}
         className={`m-2  p-2 px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}
       >
         <svg

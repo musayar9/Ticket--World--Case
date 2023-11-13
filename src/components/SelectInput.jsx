@@ -59,11 +59,11 @@ const SelectInput = () => {
   // console.log("filteredCategories", filteredToCategories);
   return (
     <>
-      <div className="w-44">
+      <div className="">
         <select
           id="countries"
           value={newValue}
-          className="bg-gray-300 text-gray-600 font-semibold flex rounded-md p-5 outline-none "
+          className="bg-gray-300  w-44 px-4 py-3 text-gray-600 font-semibold flex rounded-md  outline-none "
           onChange={handleCity}
         >
           <option defaultValue="Choose a country" className=" font-bold">

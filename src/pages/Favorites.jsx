@@ -21,7 +21,7 @@ export default function Favorites() {
                         favList?.map((item, index) => <FavoriteCard key={index} item={item} />)
                     }
                 </>) : (<>
-                    <div className="p-4 my-7 w-[50%] text-lg text-red-800 rounded-lg bg-red-100 mt-20" role="alert">
+                    <div className="p-4 my-7 w-[50%] text-lg text-gray-800 rounded-lg bg-gray-200 mt-20" role="alert">
                         <span className="font-medium">YOUR FAVORITE BASKET IS EMPTY !</span> 
                     </div>
                 </>)

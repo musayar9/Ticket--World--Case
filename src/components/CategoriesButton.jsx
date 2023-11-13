@@ -21,7 +21,7 @@ const CategoriesButton = () => {
 
   useEffect(() => {
     const categories = ["all", ...new Set(concertData?.map((v) => v.category))];
-    console.log(categories);
+    // console.log(categories);
     setUniqueCategory(categories);
   }, [setUniqueCategory, concertData]);
 
@@ -35,6 +35,7 @@ const CategoriesButton = () => {
 
     if (category === "all") {
       await setFilteredToCategories(concertData);
+        setShowPastEvents(false);
       setHead(`Filter results by ${category}`);
       return;
     }
@@ -42,6 +43,7 @@ const CategoriesButton = () => {
     const filterValue = concertData.filter((c) => c.category === category);
 
     await setFilteredToCategories(filterValue);
+    setShowPastEvents(false);
   };
 
   const handleCheckboxChange = async () => {
@@ -63,7 +65,7 @@ const CategoriesButton = () => {
       setHead(`Filter results by All`);
     }
   };
-  console.log(filteredToCategories);
+  // console.log(filteredToCategories);
 
   const getIconsCategory = (categoryName) => {
     switch (categoryName) {
@@ -84,38 +86,40 @@ const CategoriesButton = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mt-3">
-        <div className="lg:flex text-center inline-block md:gap-x-2 text-white">
+      <div className="flex flex-col items-center justify-center mt-3 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:flex  items-center justify-center  text-center  md:gap-x-2 gap-y-2 p-4 text-white  lg:gap-y-1 xl:gap-y-0 ">
           {uniqueCategory?.map((category, index) => (
             <button
               key={index}
-              className={`flex items-center justify-center  w-44 px-4 py-2 rounded-md focus:z-10   ease-in duration-300    ${
+              className={`flex items-center justify-center w-44   px-4 py-2 rounded-md focus:z-10   ease-in duration-300    ${
                 isCategory && selectedCategory === category
                   ? "bg-blue-900 text-gray-50"
                   : "bg-[#010A3B]"
               } `}
               onClick={() => handleFilter(category)}
             >
-              <span className="text-2xl p-2 ">
-                {getIconsCategory(category)}
-              </span>
+              <span className="text-xl p-2 ">{getIconsCategory(category)}</span>
               <h4 className="h-full flex items-center justify-center capitalize">
                 {category}
               </h4>
             </button>
           ))}
-        </div>
-        <div className="ml-auto px-4 py-2 mr-3 bg-[#010A3B] rounded-md">
-          <input
-            className=""
-            type="checkbox"
-            id="checkbox"
-            checked={showPastEvents}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="checkbox" className="m-2 text-lg text-gray-50">
-            Past Events
-          </label>
+          <div
+            className={`flex w-44 items-center justify-center px-2 py-2  rounded-md ${
+              showPastEvents ? "bg-blue-900 text-gray-50" : "bg-[#010A3B]"
+            }`}
+          >
+            <input
+              className=""
+              type="checkbox"
+              id="checkbox"
+              checked={showPastEvents}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="checkbox" className="p-2 text-md text-gray-50">
+              Past Events
+            </label>
+          </div>
         </div>
       </div>
     </>

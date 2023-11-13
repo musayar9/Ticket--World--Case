@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CartCard from "../components/CartCard";
 import { useContext, useEffect } from "react";
 import { SiteContext } from "../context/SiteContext";
+import { dateFormat, formatPrice } from "../components/Functions"
 
 export default function Cart() {
     const { cartList, setCartList, totalCost } = useContext(SiteContext)
@@ -28,7 +29,7 @@ export default function Cart() {
                 <a href="#">
                     <h5 className="mb-2 text-medium font-bold tracking-tight text-gray-900">TOTAL COST:</h5>
                 </a>
-                <p className="mb-3 font-bold text-gray-700">{`${totalCost} TL`}</p>
+                <p className="mb-3 font-bold text-gray-700">{`${formatPrice(totalCost.toFixed(2))}`}</p>
 
                 <Link to="/payment">
                     <button type="button" className={`text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 ${cartList?.length !== 0 ? "opacity-100" : "opacity-50"}`} disabled={cartList?.length == 0}>

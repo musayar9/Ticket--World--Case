@@ -21,6 +21,8 @@ export default function SiteContextProvider({ children }) {
   const [isOpenModal, setIsOpenModal] = useState(false); // seat modal
   const [isAvailableSelectedSeat, setIsAvailableSelectedSeat] = useState() // control of selectedSeat - true/false
   const [selectedSeats, setSelectedSeats] = useState([]); // selectedSeat List
+  const [isOpenAvatarModal, setIsOpenAvatarModal] = useState()
+  const [avatarUrl, setAvatarUrl] = useState()
 
   const location = useLocation();
   const currentPathName = location.pathname;
@@ -29,6 +31,7 @@ export default function SiteContextProvider({ children }) {
   useEffect(() => {
     localStorage.removeItem("selectedSeats");
     setIsAvailableSelectedSeat(false);
+    setAvatarUrl(JSON.parse(localStorage.getItem("onlineUser"))?.avatar)
   }, [location]);
 
 
@@ -38,6 +41,8 @@ export default function SiteContextProvider({ children }) {
       navigate(`${currentPathName}`);
       setIsValid(true);
       setFavList([...JSON.parse(localStorage.getItem("onlineUser"))?.favorites])
+      setCartList([...JSON.parse(localStorage.getItem("onlineUser"))?.cart])
+      setAvatarUrl(JSON.parse(localStorage.getItem("onlineUser"))?.avatar)
     } else {
       navigate("/login");
     }
@@ -45,39 +50,41 @@ export default function SiteContextProvider({ children }) {
 
   let totalCost = 0;
   cartList?.forEach(concert => {
-    const ticketPrice = Number(concert.item.ticketPrice)
-    const seatsNumber = concert.selectedSeats.length
-    totalCost += ticketPrice*seatsNumber
+    concert.selectedSeats.forEach(seat => {
+      const ticketPrice = Number(concert.item.ticketPrice);
+      const rowIndex = seat.rowIndex;
+      totalCost += ticketPrice * (8 / rowIndex);
+    });
   })
-const [concertData, setConcertData] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
-const [isError, setIsError] = useState(false);
-const [error, setError] = useState();
-const [filteredToCategories, setFilteredToCategories] = useState();
-const [isCategory, setIsCategory] = useState(true)
+  const [concertData, setConcertData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState();
+  const [filteredToCategories, setFilteredToCategories] = useState();
+  const [isCategory, setIsCategory] = useState(true)
   const [showPastEvents, setShowPastEvents] = useState(false);
-const getData = async () => {
-  try {
-    const response = await axiosConcertApi.get("/activity");
-    const responseData = response.data;
-    if (response.status !== 200) {
-      setIsError(true);
-      setError("Veri alınamadı");
-      throw new Error("Veri alınamadı");
+  const getData = async () => {
+    try {
+      const response = await axiosConcertApi.get("/activity");
+      const responseData = response.data;
+      if (response.status !== 200) {
+        setIsError(true);
+        setError("Veri alınamadı");
+        throw new Error("Veri alınamadı");
+      }
+      setConcertData(responseData.activity);
+      setIsLoading(false);
+      if (concertData) {
+        setFilteredToCategories(responseData.activity);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      throw new Error(error);
     }
-    setConcertData(responseData.activity);
-    setIsLoading(false);
-    if (concertData) {
-      setFilteredToCategories(responseData.activity);
-    }
-  } catch (error) {
-    setIsLoading(false);
-    throw new Error(error);
-  }
-};
-useEffect(() => {
-  getData();
-}, []);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <SiteContext.Provider
       value={{
@@ -110,7 +117,9 @@ useEffect(() => {
         setIsCategory,
         showPastEvents,
         setShowPastEvents,
-        head, setHead
+        head, setHead,
+        isOpenAvatarModal, setIsOpenAvatarModal,
+        avatarUrl, setAvatarUrl
       }}
     >
       {children}

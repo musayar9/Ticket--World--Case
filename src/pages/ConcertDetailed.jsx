@@ -13,6 +13,8 @@ import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+import LazyLoadImage from "../components/LazyLoadImage";
+import { formatPrice } from "../components/Functions"
 
 
 export default function ConcertDetailed() {
@@ -24,13 +26,12 @@ export default function ConcertDetailed() {
   const {
     setIsOpenModal,
     isAvailableSelectedSeat,
-    setIsAvailableSelectedSeat,
     selectedSeats,
     setSelectedSeats,
-    cartList,
     setCartList,
     showSuccessToast,
-    setFavList
+    setFavList,
+    isValid
   } = useContext(SiteContext);
 
   const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
@@ -118,20 +119,11 @@ export default function ConcertDetailed() {
       console.error("Favori güncelleme hatası:", error.message);
     }
   };
-  console.log(concertData)
   return (
     <>
       <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
         <div className="">
-          <img
-            className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
-            src={
-              concertData?.image[0]?.photo === ""
-                ? "https://via.placeholder.com/600x400"
-                : concertData?.image[0]?.photo
-            }
-            alt=""
-          />
+          <LazyLoadImage className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl" src={concertData?.image[0]?.photo} alt={concertData?.title} title={concertData?.title} />
           <div className="mt-5 ">
             <p className="flex  items-center text-sm text-blue-600 ">
               <FaMapMarkerAlt />{" "}
@@ -159,11 +151,12 @@ export default function ConcertDetailed() {
         <div></div>
         <div className="w-[75%]  flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
           <div className="flex items-center justify-between">
-            <h1 className="font-bold capitalize text-2xl">
-              {concertData?.title}
-
-            </h1>
-
+            <div className="flex flex-col">
+              <h1 className="font-bold capitalize text-2xl">
+                {concertData?.title}
+              </h1>
+              <h3 className="text-lg">{formatPrice(concertData?.ticketPrice)}</h3>
+            </div>
             <div className="font-bold flex flex-col items-end">
               <button onClick={() => handleAddFavorites(concertData)} className="text-2xl m-3">{isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}</button>
               <div className="flex items-center">
@@ -177,7 +170,6 @@ export default function ConcertDetailed() {
                 <FacebookShareButton
                   description={concertData?.description}
                   url={concertData?.image[0].photo}
-                  // quote="deneme"
                   hashtag={`#${concertData?.artist}`}>
                   <FacebookIcon size={28} round />
                 </FacebookShareButton>
@@ -291,8 +283,9 @@ export default function ConcertDetailed() {
               onClick={() => setIsOpenModal((prev) => !prev)}
               data-modal-target="default-modal"
               data-modal-toggle="default-modal"
-              className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className={`block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${isValid ? "opacity-100" : "opacity-50"}`}
               type="button"
+              disabled={!isValid}
             >
               Select Arm Chair
             </button>

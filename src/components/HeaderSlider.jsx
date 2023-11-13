@@ -11,6 +11,7 @@ import { format, parseISO } from "date-fns";
 import tr from "date-fns/locale/tr";
 import { useActivityAxiosApi } from "../customHooks";
 import { Link } from "react-router-dom";
+import LazyLoadImage from "./LazyLoadImage";
 
 const HeaderSlider = () => {
   const [concertData] = useActivityAxiosApi();
@@ -50,15 +51,7 @@ const HeaderSlider = () => {
 
               <div className="absolute top-10 md:top-5 left-2 sm:left-5  p-4 z-20 grid grid-cols-12 flex-col sm:flex-row justify-center ">
                 <div className="col-span-3  relative">
-                  <img
-                    className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 z-20"
-                    src={
-                      slide.image[0].photo === ""
-                        ? "https://via.placeholder.com/600x400"
-                        : slide.image[0].photo
-                    }
-                    alt={slide.title}
-                  />
+                  <LazyLoadImage className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 z-20" src={slide.image[0].photo} alt={slide.title} title={slide.title} />
                 </div>
 
                 <div className="col-span-8  space-y-1 pl-4 sm:pl-8 z-20">

@@ -1,17 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsTrash3Fill } from "react-icons/bs";
 import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { axiosUserApi } from "../axios/axiosUserApi";
+import { dateFormat, formatPrice } from "./Functions";
 
 export default function CartCard({ item, selectedSeats }) {
     const { cartList, setCartList } = useContext(SiteContext)
 
-    const handleRemoveFromCart = async (item) => {
-        const indexToRemove = cartList.findIndex(concert => concert.item._id === item._id);
+    // total seat price for each
+    let totalSeatCost = 0;
+    selectedSeats.forEach(element => {
+        const price = ((8 / element.rowIndex) * item.ticketPrice).toFixed(2)
+        totalSeatCost += Number(price)
+    });
 
-        if (indexToRemove !== -1) {
-            const filtered = [...cartList.slice(0, indexToRemove), ...cartList.slice(indexToRemove + 1)];
+
+    const handleRemoveFromCart = async (item) => {
+        const index = cartList.findIndex(concert => concert.item._id === item._id);
+        if (index !== -1) {
+            const filtered = [...cartList.slice(0, index), ...cartList.slice(index + 1)];
             setCartList(filtered);
 
             const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
@@ -35,20 +43,22 @@ export default function CartCard({ item, selectedSeats }) {
         <Link to={`/concert/${item._id}`} className="w-[100%]">
             <div className="w-[100%]">
                 <div className="flex text-gray-800 items-center px-4 py-2 ">
-
-                    <h5 className="w-[35%] mb-2 text-medium font-bold tracking-tight text-gray-900">{item.title}</h5>
-                    <p className="text-center w-[30%] mb-2 font-normal text-gray-700">{`${item.date} | ${item.hour}`}</p>
+                    <h5 className="w-[35%] mb-2 text-medium font-bold tracking-tight text-gray-900">{`${item.title}-(${formatPrice(item?.ticketPrice)})`}</h5>
+                    <p className="text-center w-[30%] mb-2 font-normal text-sm text-gray-700">{`${dateFormat(item.date)} | ${item.hour}`}</p>
                     <div className="w-[30%] text-center mb-2">
-                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${item?.ticketPrice}x${selectedSeats?.length} = ${item?.ticketPrice * selectedSeats?.length} TL`}</span>
+                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${formatPrice(totalSeatCost)}`}</span>
                     </div>
 
                 </div>
-                <div className="text-start font-medium p-4 text-sm text-red-800 rounded-lg" role="alert">Seats:
+                <div className="text-start font-medium p-4 text-sm text-red-800 rounded-lg flex flex-wrap" role="alert">Seats:
                     {
-                        selectedSeats?.map((seat,index) => (
-                            <span key={index} className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} |`}</span>
+                        selectedSeats?.map((seat, index) => (
+                            <div key={index} className="flex flex-col">
+                                <div key={index} className="bg-red-100 text-red-800 text-xs font-medium mb-2 mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} | ${formatPrice(((8 / seat.rowIndex) * item.ticketPrice).toFixed(2))}`}</div>
+                            </div>
                         ))
                     }
+
                 </div>
             </div>
         </Link>
