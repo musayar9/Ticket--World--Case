@@ -26,7 +26,7 @@ export default function FavoriteCard({ item }) {
 
     return (
         <>
-            <div className="max-sm:w-[100%] max-md:w-[100%] max-lg:w-[85%] max-xl:w-[80%] max-2xl:w-[60%] max-md:h-[32vh] max-lg:h-[35vh] my-2 h-[25vh] flex bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-sm:w-[100%] max-md:w-[100%] max-lg:w-[85%] max-xl:w-[80%] max-2xl:w-[60%] max-md:h-[32vh] max-lg:h-[35vh] my-2 h-[25vh] flex bg-white  border border-gray-200 rounded-lg shadow dark:bg-[#010A3B] dark:border-gray-700 shadow-lg shadow-gray-800">
                 <div className="w-[190px] h-[100%] overflow-hidden">
                     <img className="rounded-t-lg object-fill w-[350px] h-[100%]" src={item.image[0].photo} alt="" />
                 </div>
@@ -47,7 +47,12 @@ export default function FavoriteCard({ item }) {
                             {showAlert ? <div className="text-end mr-2 text-[14px] text-white rounded-lg" role="alert">
                                 <span className="font-light ">Choose the seat first!</span>
                             </div> : null}
-                            <button onClick={() => setShowAlert(prev => !prev)} className={`m-2 p-2 px-3 float-right flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}>
+                            <button
+                                onClick={() => {
+                                    setShowAlert((prev) => !prev)
+                                    setTimeout(() => { setShowAlert(false) }, 1000);
+                                }}
+                                className={`m-2 p-2 px-3 float-right flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}>
                                 <svg className="w-5 h-5 text-gray-800 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
                                 </svg>

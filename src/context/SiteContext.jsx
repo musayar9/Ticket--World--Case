@@ -45,9 +45,11 @@ export default function SiteContextProvider({ children }) {
 
   let totalCost = 0;
   cartList?.forEach(concert => {
-    const ticketPrice = Number(concert.item.ticketPrice)
-    const seatsNumber = concert.selectedSeats.length
-    totalCost += ticketPrice*seatsNumber
+    concert.selectedSeats.forEach(seat => {
+      const ticketPrice = Number(concert.item.ticketPrice);
+      const rowIndex = seat.rowIndex;
+      totalCost += ticketPrice * (8/rowIndex);
+  });
   })
 const [concertData, setConcertData] = useState([]);
 const [isLoading, setIsLoading] = useState(true);
