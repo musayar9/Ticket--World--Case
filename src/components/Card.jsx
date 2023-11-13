@@ -49,7 +49,7 @@ export default function Card({ item }) {
   return (
     <div
       className="max-w-sm w-[280px] h-[70vh] m-3.5 flex flex-col  justify-between  border
-    border-gray-200 rounded-lg shadow bg-[#010A3B]"
+    border-gray-200 rounded-lg shadow bg-[#010A3B] shadow-lg shadow-gray-800"
     >
       <Link to={`/concert/${item._id}`}>
         <div className="w-[280px] h-[180px] overflow-hidden">
@@ -97,7 +97,10 @@ export default function Card({ item }) {
       </div>
 
       <button
-        onClick={() => setShowAlert((prev) => !prev)}
+        onClick={() => {
+          setShowAlert((prev) => !prev)
+          setTimeout(() => {setShowAlert(false)}, 1000);
+        }}
         className={`m-2  p-2 px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}
       >
         <svg
