@@ -1,7 +1,3 @@
-// export default function Payment(){
-//     return <h1>Payment</h1>
-// }
-
 import React, {useState,useEffect} from 'react'
 
 function Payment() {
