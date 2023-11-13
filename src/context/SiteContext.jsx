@@ -38,6 +38,7 @@ export default function SiteContextProvider({ children }) {
       navigate(`${currentPathName}`);
       setIsValid(true);
       setFavList([...JSON.parse(localStorage.getItem("onlineUser"))?.favorites])
+      setCartList([...JSON.parse(localStorage.getItem("onlineUser"))?.cart])
     } else {
       navigate("/login");
     }
@@ -48,38 +49,38 @@ export default function SiteContextProvider({ children }) {
     concert.selectedSeats.forEach(seat => {
       const ticketPrice = Number(concert.item.ticketPrice);
       const rowIndex = seat.rowIndex;
-      totalCost += ticketPrice * (8/rowIndex);
-  });
+      totalCost += ticketPrice * (8 / rowIndex);
+    });
   })
-const [concertData, setConcertData] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
-const [isError, setIsError] = useState(false);
-const [error, setError] = useState();
-const [filteredToCategories, setFilteredToCategories] = useState();
-const [isCategory, setIsCategory] = useState(true)
+  const [concertData, setConcertData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState();
+  const [filteredToCategories, setFilteredToCategories] = useState();
+  const [isCategory, setIsCategory] = useState(true)
   const [showPastEvents, setShowPastEvents] = useState(false);
-const getData = async () => {
-  try {
-    const response = await axiosConcertApi.get("/activity");
-    const responseData = response.data;
-    if (response.status !== 200) {
-      setIsError(true);
-      setError("Veri alınamadı");
-      throw new Error("Veri alınamadı");
+  const getData = async () => {
+    try {
+      const response = await axiosConcertApi.get("/activity");
+      const responseData = response.data;
+      if (response.status !== 200) {
+        setIsError(true);
+        setError("Veri alınamadı");
+        throw new Error("Veri alınamadı");
+      }
+      setConcertData(responseData.activity);
+      setIsLoading(false);
+      if (concertData) {
+        setFilteredToCategories(responseData.activity);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      throw new Error(error);
     }
-    setConcertData(responseData.activity);
-    setIsLoading(false);
-    if (concertData) {
-      setFilteredToCategories(responseData.activity);
-    }
-  } catch (error) {
-    setIsLoading(false);
-    throw new Error(error);
-  }
-};
-useEffect(() => {
-  getData();
-}, []);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <SiteContext.Provider
       value={{

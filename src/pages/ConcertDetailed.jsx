@@ -13,6 +13,8 @@ import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+import LazyLoadImage from "../components/LazyLoadImage";
+import { formatPrice } from "../components/Functions"
 
 
 export default function ConcertDetailed() {
@@ -24,10 +26,8 @@ export default function ConcertDetailed() {
   const {
     setIsOpenModal,
     isAvailableSelectedSeat,
-    setIsAvailableSelectedSeat,
     selectedSeats,
     setSelectedSeats,
-    cartList,
     setCartList,
     showSuccessToast,
     setFavList,
@@ -119,20 +119,11 @@ export default function ConcertDetailed() {
       console.error("Favori güncelleme hatası:", error.message);
     }
   };
-  console.log(concertData)
   return (
     <>
       <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
         <div className="">
-          <img
-            className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
-            src={
-              concertData?.image[0]?.photo === ""
-                ? "https://via.placeholder.com/600x400"
-                : concertData?.image[0]?.photo
-            }
-            alt=""
-          />
+          <LazyLoadImage className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl" src={concertData?.image[0]?.photo} alt={concertData?.title} title={concertData?.title} />
           <div className="mt-5 ">
             <p className="flex  items-center text-sm text-blue-600 ">
               <FaMapMarkerAlt />{" "}
@@ -160,11 +151,12 @@ export default function ConcertDetailed() {
         <div></div>
         <div className="w-[75%]  flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
           <div className="flex items-center justify-between">
-            <h1 className="font-bold capitalize text-2xl">
-              {concertData?.title}
-
-            </h1>
-
+            <div className="flex flex-col">
+              <h1 className="font-bold capitalize text-2xl">
+                {concertData?.title}
+              </h1>
+              <h3 className="text-lg">{formatPrice(concertData?.ticketPrice)}</h3>
+            </div>
             <div className="font-bold flex flex-col items-end">
               <button onClick={() => handleAddFavorites(concertData)} className="text-2xl m-3">{isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}</button>
               <div className="flex items-center">

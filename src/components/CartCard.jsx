@@ -3,6 +3,7 @@ import { BsTrash3Fill } from "react-icons/bs";
 import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { axiosUserApi } from "../axios/axiosUserApi";
+import { dateFormat, formatPrice } from "./Functions";
 
 export default function CartCard({ item, selectedSeats }) {
     const { cartList, setCartList } = useContext(SiteContext)
@@ -42,18 +43,18 @@ export default function CartCard({ item, selectedSeats }) {
         <Link to={`/concert/${item._id}`} className="w-[100%]">
             <div className="w-[100%]">
                 <div className="flex text-gray-800 items-center px-4 py-2 ">
-                    <h5 className="w-[35%] mb-2 text-medium font-bold tracking-tight text-gray-900">{`${item.title}-(${item?.ticketPrice} TL)`}</h5>
-                    <p className="text-center w-[30%] mb-2 font-normal text-gray-700">{`${item.date} | ${item.hour}`}</p>
+                    <h5 className="w-[35%] mb-2 text-medium font-bold tracking-tight text-gray-900">{`${item.title}-(${formatPrice(item?.ticketPrice)})`}</h5>
+                    <p className="text-center w-[30%] mb-2 font-normal text-sm text-gray-700">{`${dateFormat(item.date)} | ${item.hour}`}</p>
                     <div className="w-[30%] text-center mb-2">
-                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${totalSeatCost} TL`}</span>
+                        <span className="text-center  bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5  rounded">{`${formatPrice(totalSeatCost)}`}</span>
                     </div>
 
                 </div>
                 <div className="text-start font-medium p-4 text-sm text-red-800 rounded-lg flex flex-wrap" role="alert">Seats:
                     {
                         selectedSeats?.map((seat, index) => (
-                            <div className="flex flex-col">
-                                <div key={index} className="bg-red-100 text-red-800 text-xs font-medium mb-2 mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} | ${((8 / seat.rowIndex) * item.ticketPrice).toFixed(2)} TL`}</div>
+                            <div key={index} className="flex flex-col">
+                                <div key={index} className="bg-red-100 text-red-800 text-xs font-medium mb-2 mx-0.5 px-2 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${seat.rowIndex}-${seat.columnIndex} | ${formatPrice(((8 / seat.rowIndex) * item.ticketPrice).toFixed(2))}`}</div>
                             </div>
                         ))
                     }

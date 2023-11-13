@@ -7,8 +7,161 @@
       "lastName": "Admin",
       "password": "123456",
       "terms": true,
-      "favorites": [],
-      "cart": [],
+      "favorites": [
+        {
+          "_id": "65460e9c19ea40ef9d79be2d",
+          "artist": "Simge",
+          "players": [
+            {
+              "name": "Simge",
+              "personImage": "https://www.fonajans.com.tr/wp-content/uploads/2022/07/simge-sagin-1-768x489.jpg",
+              "_id": "65460e9c19ea40ef9d79be2e"
+            }
+          ],
+          "title": "Simge İstanbul Konseri",
+          "city": "İstanbul",
+          "description": "Simge, 18 Kasım akşamı Jolly Joker Vadi İstanbul sahnesinde.",
+          "category": "concerts",
+          "image": [
+            {
+              "photo": "",
+              "_id": "65460e9c19ea40ef9d79be2f"
+            },
+            {
+              "photo": "https://kultur.istanbul/gorsel/2022/10/simge-roportaj-768x398.jpg",
+              "_id": "65460e9c19ea40ef9d79be30"
+            },
+            {
+              "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKbNroz1xOe_KjYvec_l1YyHabjD77Lt4enA&usqp=CAU",
+              "_id": "65460e9c19ea40ef9d79be31"
+            }
+          ],
+          "location": "Ayazağa Mahallesi, Cendere Cd. 1/A, 34418 SARIYER / İstanbul",
+          "locationName": "Jolly Joker Vadistanbul",
+          "ticketPrice": "565",
+          "hour": "21:00",
+          "date": "2023-11-18",
+          "__v": 0,
+          "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3006.243273704133!2d28.984583911560605!3d41.10737777121719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab426441d72f5%3A0x86bf969766e3137!2sJolly%20Joker%20Vadistanbul!5e0!3m2!1sen!2str!4v1699201443189!5m2!1sen!2str"
+        }
+      ],
+      "cart": [
+        {
+          "item": {
+            "_id": "65460b0f19ea40ef9d79bbc9",
+            "artist": "Zakkum",
+            "players": [
+              {
+                "name": "Yusuf Demirkol",
+                "personImage": "https://i.discogs.com/com8vd8UUXXkHERfEE6fY4IHPldCKIMu1stYFs25-VA/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTM2MTMw/NjAtMTU1NDIyNDY2/My0yOTc3LmpwZWc.jpeg",
+                "_id": "65460b0f19ea40ef9d79bbca"
+              },
+              {
+                "name": "Emre Yılmaztürk",
+                "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYILXZv3pYpx-mw86lqBXQigAfPJgpBxqpQ&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbcb"
+              },
+              {
+                "name": "Eren Parlakgümüş",
+                "personImage": "https://blog.reklamverelim.com/upload/21/eren-parlakgumus.jpg",
+                "_id": "65460b0f19ea40ef9d79bbcc"
+              },
+              {
+                "name": "Cem Senyücel",
+                "personImage": "https://galeri2.uludagsozluk.com/202/cem-senyucel_268124.jpg",
+                "_id": "65460b0f19ea40ef9d79bbcd"
+              }
+            ],
+            "title": "Zakkum Aksaray Konseri",
+            "city": "Aksaray",
+            "description": "Zakkum, 09 Kasım akşamı Sonat Sahne Aksaray'da...",
+            "category": "concerts",
+            "image": [
+              {
+                "photo": "https://cdn1.ntv.com.tr/gorsel/4erg1-JzJkKt7uPf3EjkUg.jpg?width=960&mode=crop&scale=both",
+                "_id": "65460b0f19ea40ef9d79bbce"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW6oRdETdDqIymYdQLCwOB7B4mH2AmfO9dD7gFH6FHRFxWMeZDykQvL4T50wsXtl-Ptco&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbcf"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfIAdvo5FryDKl-ErwG3bxvlUalNKk7mcbg&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbd0"
+              }
+            ],
+            "location": "Bayram Baba, 3512. Sk. No:8, 68200 Gençosman/Aksaray Merkez/Aksaray",
+            "locationName": "Sonat Sahne",
+            "ticketPrice": "335",
+            "hour": "21:00",
+            "date": "2023-11-10",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3127.6763981383483!2d34.03790131142445!3d38.37960687172175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d6713779e2b48d%3A0x4245bca12a01d9ed!2sBayram%20Baba%2C%203512.%20Sk.%20No%3A8%2C%2068010%20Gen%C3%A7osman%2FAksaray%20Merkez%2FAksaray!5e0!3m2!1sen!2str!4v1699200509806!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 4,
+              "columnIndex": 16
+            },
+            {
+              "rowIndex": 6,
+              "columnIndex": 10
+            }
+          ]
+        },
+        {
+          "item": {
+            "_id": "65460dcf19ea40ef9d79bd99",
+            "artist": "Emir Can İğrek",
+            "players": [
+              {
+                "name": "Emir Can İğrek",
+                "personImage": "https://mediacdns.karnaval.com/media/artist_media/21197/biography_1280x720/photo_21197_0.jpg?v=210722041452",
+                "_id": "65460dcf19ea40ef9d79bd9a"
+              }
+            ],
+            "title": "Emir Can İğrek Ankara Konseri",
+            "city": "Ankara",
+            "description": "Emir Can İğrek, 11 Kasım akşamı Jolly Joker Ankara sahnesinde.",
+            "category": "concerts",
+            "image": [
+              {
+                "photo": "https://i.pinimg.com/1200x/77/c6/6c/77c66c950f17be46fb86427238b5661d.jpg",
+                "_id": "65460dcf19ea40ef9d79bd9b"
+              },
+              {
+                "photo": "https://mediacdns.karnaval.com/media/artist_media/21197/biography_1280x720/photo_21197_0.jpg?v=210722041452",
+                "_id": "65460dcf19ea40ef9d79bd9c"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT--9roDTOu4wuBvBS3H0swbclBXdDJYL95qQ&usqp=CAU",
+                "_id": "65460dcf19ea40ef9d79bd9d"
+              }
+            ],
+            "location": "Kavaklıdere, Kızılırmak Cd. No:14, 06420 Çankaya/Ankara",
+            "locationName": "Jolly Joker Ankara",
+            "ticketPrice": "452",
+            "hour": "21:00",
+            "date": "2023-11-11",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.1965587615555!2d32.855620111500095!3d39.914617271405966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34fa938960ad5%3A0xc3fc4d94f126f2d8!2sJolly%20Joker%20Ankara!5e0!3m2!1sen!2str!4v1699200841544!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 4,
+              "columnIndex": 12
+            },
+            {
+              "rowIndex": 4,
+              "columnIndex": 15
+            },
+            {
+              "rowIndex": 7,
+              "columnIndex": 14
+            }
+          ]
+        }
+      ],
       "tickets": []
     },
     {
