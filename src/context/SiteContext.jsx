@@ -21,6 +21,8 @@ export default function SiteContextProvider({ children }) {
   const [isOpenModal, setIsOpenModal] = useState(false); // seat modal
   const [isAvailableSelectedSeat, setIsAvailableSelectedSeat] = useState() // control of selectedSeat - true/false
   const [selectedSeats, setSelectedSeats] = useState([]); // selectedSeat List
+  const [isOpenAvatarModal, setIsOpenAvatarModal] = useState()
+  const [avatarUrl, setAvatarUrl] = useState()
 
   const location = useLocation();
   const currentPathName = location.pathname;
@@ -29,6 +31,7 @@ export default function SiteContextProvider({ children }) {
   useEffect(() => {
     localStorage.removeItem("selectedSeats");
     setIsAvailableSelectedSeat(false);
+    setAvatarUrl(JSON.parse(localStorage.getItem("onlineUser"))?.avatar)
   }, [location]);
 
 
@@ -39,6 +42,7 @@ export default function SiteContextProvider({ children }) {
       setIsValid(true);
       setFavList([...JSON.parse(localStorage.getItem("onlineUser"))?.favorites])
       setCartList([...JSON.parse(localStorage.getItem("onlineUser"))?.cart])
+      setAvatarUrl(JSON.parse(localStorage.getItem("onlineUser"))?.avatar)
     } else {
       navigate("/login");
     }
@@ -113,7 +117,9 @@ export default function SiteContextProvider({ children }) {
         setIsCategory,
         showPastEvents,
         setShowPastEvents,
-        head, setHead
+        head, setHead,
+        isOpenAvatarModal, setIsOpenAvatarModal,
+        avatarUrl, setAvatarUrl
       }}
     >
       {children}

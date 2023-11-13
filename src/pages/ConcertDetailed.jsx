@@ -170,7 +170,6 @@ export default function ConcertDetailed() {
                 <FacebookShareButton
                   description={concertData?.description}
                   url={concertData?.image[0].photo}
-                  // quote="deneme"
                   hashtag={`#${concertData?.artist}`}>
                   <FacebookIcon size={28} round />
                 </FacebookShareButton>

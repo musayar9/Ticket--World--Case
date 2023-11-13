@@ -10,6 +10,7 @@ import SearchInput from "./SearchInput";
 import { AiFillHeart } from "react-icons/ai";
 import { MdPayment } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
+import { Avatar } from "@mui/material";
 function Navbar() {
   const {
     isValid,
@@ -21,7 +22,11 @@ function Navbar() {
     cartList,
     concertData,
     setFilteredToCategories,
+    isOpenAvatarModal, 
+    setIsOpenAvatarModal,
+    avatarUrl
   } = useContext(SiteContext);
+
 
   const handleSignout = (e) => {
     setIsValid(false);
@@ -71,13 +76,17 @@ function Navbar() {
                     </span>
                   </button>
                 </NavLink>
+                  
                 <button
                   onClick={handleSignout}
                   to="/signup"
-                  className="mr-6 text-sm text-blue-700  bg-gray-50 font-semibold px-4 py-2 rounded-md hover:bg-blue-700 hover:text-gray-50  ease duration-200"
+                  className=" text-sm text-blue-700  bg-gray-50 font-semibold px-4 py-2 rounded-md hover:bg-blue-700 hover:text-gray-50  ease duration-200"
                 >
                   Sign out
                 </button>
+                <button onClick={()=> setIsOpenAvatarModal(prev => !prev)} className="relative mr-6 ml-2">
+                    <Avatar alt="Travis Howard" src={avatarUrl} />
+                  </button>
               </div>
             )}
           </div>
