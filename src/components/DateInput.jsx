@@ -56,10 +56,10 @@ const DateInput = () => {
 
   return (
     <>
-      <div className="w-44">
+      <div className="">
         <input
           type="date"
-          className=" bg-gray-300 text-gray-600 font-semibold rounded-md p-5 outline-none flex "
+          className=" bg-gray-300  w-44 px-4 py-3 text-gray-600 font-semibold rounded-md  outline-none flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}

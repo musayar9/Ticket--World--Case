@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
-import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
 import { SiteContext } from "../context/SiteContext";
 import { useNavigate } from "react-router-dom";
 
@@ -52,7 +51,7 @@ const SearchInput = () => {
             type="search"
             id="search"
             className=" pl-11 w-72 cursor-pointer text-gray-50 bg-transparent border-b border-gray-50 focus:outline-none pb-3 transition duration-500 "
-            placeholder="Sanatçı ve Başlığa göre ara"
+            placeholder="Search by artist or title"
             required
             value={search}
             onChange={(e) => setSearch(e.target.value)}
