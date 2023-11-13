@@ -16,3 +16,7 @@ import en from "date-fns/locale/en-US";
     const price = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(value)
     return price
   }
+  
+  export const backToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };

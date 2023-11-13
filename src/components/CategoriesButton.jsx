@@ -103,7 +103,11 @@ const CategoriesButton = () => {
               </h4>
             </button>
           ))}
-          <div className="flex w-44 items-center justify-center px-2 py-2 bg-[#010A3B] rounded-md">
+          <div
+            className={`flex w-44 items-center justify-center px-2 py-2  rounded-md ${
+              showPastEvents ? "bg-blue-900 text-gray-50" : "bg-[#010A3B]"
+            }`}
+          >
             <input
               className=""
               type="checkbox"
