@@ -162,3 +162,36 @@ li {
         font-size: 2.5rem;
     }
 }
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px; /* veya logonuzun uygun boyutu */
+  }
+  
+  .search-bar {
+    margin-left: 20px;
+  }
+  
+  .menu-link ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .menu-link ul li {
+    margin-right: 20px;
+  }
+  
+  .h-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar .MuiOutlinedInput-input {
+    background-color: white;
+  }
