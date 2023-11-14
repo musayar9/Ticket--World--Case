@@ -11,7 +11,13 @@ import en from "date-fns/locale/en-US";
     return formattedDate;
   };
   
-  
+   export const dateLongFormat= (date) => {
+    const parsedDate = parseISO(date);
+    const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
+      locale: en,
+    });
+    return formattedDate;
+  };
   export const formatPrice = (value)=>{
     const price = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(value)
     return price

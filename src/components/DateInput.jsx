@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import { isToday, format } from "date-fns";
 import { parseISO } from "date-fns";
 import en from "date-fns/locale/en-US";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import { SiteContext } from "../context/SiteContext";
 
@@ -28,12 +26,6 @@ const DateInput = () => {
     return formattedDate;
   };
 
-  const showToast = (dateValue) => {
-    toast.success(`${dateValue} tarihine göre veriler filrelleniyor`, {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
-
   const handleDate = async (e) => {
     setDate(e.target.value);
     const filterValue = await concertData.filter(
@@ -43,9 +35,6 @@ const DateInput = () => {
     setFilteredToCategories(filterValue);
     setIsCategory(false);
     setShowPastEvents(false);
-    if (isValid) {
-      showToast(dateFormat(e.target.value));
-    }
 
     setHead(`Filter results by ${dateFormat(e.target.value)}`);
     setSidebar(false);
@@ -56,10 +45,10 @@ const DateInput = () => {
 
   return (
     <>
-      <div className="">
+      <div className="cursor-pointer">
         <input
           type="date"
-          className=" bg-gray-300  w-44 px-4 py-3 text-gray-600 font-semibold rounded-md  outline-none flex "
+          className=" bg-gray-300  w-44 px-4 py-3 font-bold text-[#010A3B]  cursor-pointer rounded-md  outline-none flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}
