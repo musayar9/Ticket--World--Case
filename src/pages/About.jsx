@@ -14,7 +14,7 @@ function About() {
   ];
   return (
     <>
-      <div className="my-16 max-w-2xl mx-auto">
+      <div className="my-20 max-w-2xl mx-auto">
         {/* buttons */}
         <div className="flex gap-x-4 mb-4">
           {buttonData.map((button) => (
