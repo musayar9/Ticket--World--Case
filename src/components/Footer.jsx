@@ -193,7 +193,7 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="bg-blue-900 dark:bg-red-700 flex items-center">
+      <div className="bg-red-900 dark:bg-red-700 flex items-center">
         <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" />
 
         <div className="sm:flex sm:items-center sm:justify-between mx-2">
