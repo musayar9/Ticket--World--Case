@@ -8,7 +8,8 @@ import CategoriesButton from "../components/CategoriesButton";
 import { FiArrowUp } from "react-icons/fi";
 import { backToTop } from "../components/Functions";
 import { useLocation } from "react-router";
-
+import { BiSolidErrorCircle } from "react-icons/bi";
+import { TbError404 } from "react-icons/tb";
 export default function Home() {
   const {
     concertData,
@@ -31,10 +32,9 @@ export default function Home() {
 
     if (location.pathname === "/") {
       setFilteredToCategories(concertData);
-      setShowPastEvents(false)
-      setIsCategory(true)
+      setShowPastEvents(false);
+      setIsCategory(true);
       setHead(`Filter Results By All`);
-      
     }
   }, []);
 
@@ -43,21 +43,32 @@ export default function Home() {
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
-      <h2 className="flex item-center ml-16 text-xl  lg:text-2xl font-bold capitalize mb-4">
+      <h2 className=" mx-auto px-4 py-2 w-fit text-[#010A3B] bg-gray-300 text-xl rounded-lg  lg:text-2xl font-bold capitalize mb-4">
         {head}
       </h2>
-      <div className="flex w-[100%] md:w-[97%]  m-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto overflow-y-hidden">
-          {filteredToCategories?.length !== 0 ? (
-            filteredToCategories &&
-            filteredToCategories?.map((item, index) => (
-              <Card key={index} item={item} />
-            ))
-          ) : (
-            <div>Data is Not fOUND</div>
-          )}
-        </div>
-      </div>
+      <>
+        {filteredToCategories?.length !== 0 ? (
+          <div className="flex w-[100%] md:w-[97%]  mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto overflow-y-hidden">
+              {filteredToCategories &&
+                filteredToCategories?.map((item, index) => (
+                  <Card key={index} item={item} />
+                ))}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="flex items-center flex-col justify-center   bg-gray-50 text-red-800 rounded-lg mb-10">
+              <div className="flex items-center justify-center">
+                <BiSolidErrorCircle className="text-red-800 w-24 h-24" />
+                <TbError404 className="text-red-800 w-36 h-36" />
+              </div>
+
+              <p className="text-2xl font-bold capitalize">Data is not found</p>
+            </div>
+          </div>
+        )}
+      </>
 
       {filteredToCategories?.length >= 10 && (
         <button

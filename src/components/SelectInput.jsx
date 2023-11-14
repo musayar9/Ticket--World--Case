@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import useActivitiesAxiosApi from "../customHooks/useActivitiesAxiosApi";
+
 import { SiteContext } from "../context/SiteContext";
 
 const SelectInput = () => {
@@ -30,12 +28,6 @@ const SelectInput = () => {
     fetchCity();
   }, []);
 
-  const showToast = (cityValue) => {
-    toast.success(`${cityValue} şehrine göre veriler filtreleniyor`, {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
-
   const handleCity = async (e) => {
     setNewValue(e.target.value);
     const filterCity = await concertData.filter(
@@ -46,12 +38,9 @@ const SelectInput = () => {
     setShowPastEvents(false);
     setIsCategory(false);
     setSidebar(false);
-    if (isValid) {
-      showToast(e.target.value);
-    }
 
     // setHead(e.target.value);
-    setHead(`Filter results by ${e.target.value}`);
+    await setHead(`Filter results by ${e.target.value}`);
     setTimeout(() => {
       setNewValue("");
     }, 2000);
@@ -63,7 +52,7 @@ const SelectInput = () => {
         <select
           id="countries"
           value={newValue}
-          className="bg-gray-300  w-44 px-4 py-3 text-gray-600 font-semibold flex rounded-md  outline-none "
+          className="bg-gray-300  w-44 px-4 py-3 font-bold text-[#010A3B] cursor-pointer flex rounded-md  outline-none "
           onChange={handleCity}
         >
           <option defaultValue="Choose a country" className=" font-bold">

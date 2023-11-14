@@ -91,7 +91,7 @@ const CategoriesButton = () => {
           {uniqueCategory?.map((category, index) => (
             <button
               key={index}
-              className={`flex items-center justify-center w-44   px-4 py-2 rounded-md hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150    ${
+              className={`flex items-center justify-center w-44 shadow-lg shadow-gray-600   px-4 py-2 rounded-md hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150    ${
                 isCategory && selectedCategory === category
                   ? "bg-blue-900 text-gray-50"
                   : "bg-[#010A3B]"
@@ -105,7 +105,7 @@ const CategoriesButton = () => {
             </button>
           ))}
           <div
-            className={`flex w-44 items-center justify-center px-2 py-2  cursor-pointer rounded-md  hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150   ${
+            className={`flex w-44 items-center justify-center px-2 py-2 shadow-lg shadow-gray-500 cursor-pointer rounded-md  hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150   ${
               showPastEvents ? "bg-blue-900 text-gray-50" : "bg-[#010A3B]"
             }`}
           >

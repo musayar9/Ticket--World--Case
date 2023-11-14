@@ -203,7 +203,7 @@ export default function ConcertDetailed() {
             {formatPrice(concertData?.ticketPrice)}
           </h3>
           <p className="font-semibold text-md flex items-center">
-            <FaMapMarkerAlt className="text-blue-600"/>
+            <FaMapMarkerAlt className="text-blue-600" />
             <span className="pl-2 flex flex-wrap">
               {concertData?.locationName} / {concertData?.city}
             </span>
@@ -264,7 +264,7 @@ export default function ConcertDetailed() {
             className="text-end font-medium p-4 text-sm text-red-800 rounded-lg"
             role="alert"
           >
-            Selected seats:
+            {isAvailableSelectedSeat && "Selected seats:"} 
             {isAvailableSelectedSeat &&
               selectedSeats?.map((item, index) => (
                 <span

@@ -7,16 +7,14 @@ import { BiMinus } from "react-icons/bi";
 import { SiGooglemaps } from "react-icons/si";
 import { PiConfettiBold } from "react-icons/pi";
 import { AiFillTags } from "react-icons/ai";
-import { format, parseISO } from "date-fns";
-import tr from "date-fns/locale/tr";
-import { useActivityAxiosApi } from "../customHooks";
 import { Link } from "react-router-dom";
 import LazyLoadImage from "./LazyLoadImage";
 import { SiteContext } from "../context/SiteContext";
+import { dateLongFormat } from "./Functions";
 
 const HeaderSlider = () => {
   // const [concertData] = useActivityAxiosApi();
-const {concertData} = useContext(SiteContext)
+  const { concertData } = useContext(SiteContext);
   const shuffledData = useMemo(() => {
     return [...concertData].sort(() => Math.random() - 0.5);
   });
@@ -29,14 +27,6 @@ const {concertData} = useContext(SiteContext)
     autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
-  };
-
-  const dateFormat = (date) => {
-    const parsedDate = parseISO(date);
-    const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
-      locale: tr,
-    });
-    return formattedDate;
   };
 
   return (
@@ -52,7 +42,12 @@ const {concertData} = useContext(SiteContext)
 
               <div className="absolute top-10 md:top-5 left-2 sm:left-5  p-4 z-20 grid grid-cols-12 flex-col sm:flex-row justify-center ">
                 <div className="col-span-3  relative">
-                  <LazyLoadImage className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 z-20" src={slide.image[0].photo} alt={slide.title} title={slide.title} />
+                  <LazyLoadImage
+                    className="rounded-lg h-44 w-42 sm:h-56 sm:w-56 md:h-80 md:w-64 z-20"
+                    src={slide.image[0].photo}
+                    alt={slide.title}
+                    title={slide.title}
+                  />
                 </div>
 
                 <div className="col-span-8  space-y-1 pl-4 sm:pl-8 z-20">
@@ -66,7 +61,7 @@ const {concertData} = useContext(SiteContext)
                       </h4>
                       <BiMinus className="text-gray-50 hidden md:flex" />
                       <p className="text-sm sm:text-lg md:text-xl  italic semibold text-gray-50 font-semibold">
-                        ( {dateFormat(slide.date)})
+                        ( {dateLongFormat(slide.date)})
                       </p>
                     </div>
                     <div className="text-gray-50 flex mt-2  items-center justify-start group-hover:mb-2 duration-500">
@@ -83,7 +78,7 @@ const {concertData} = useContext(SiteContext)
                     </div>
                     <div className="hidden md:block">
                       <p className="text-md font-semibold underline italic text-gray-50 ">
-                        Etkinlik Detayı
+                        Activity Detail
                       </p>
                       <p className="text-sm italic text-gray-50 line-clamp-3 mt-1 ">
                         {slide.description}

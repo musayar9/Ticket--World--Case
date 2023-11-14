@@ -11,7 +11,7 @@ export default function Card({ item }) {
   const { setFavList } = useContext(SiteContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  
+
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     if (storedOnlineUser) {
@@ -48,11 +48,15 @@ export default function Card({ item }) {
   };
 
   return (
-    <div
-      className="max-w-md  w-[420px] md:w-[280px] h-[70vh]  m-3.5 flex flex-col justify-between border border-gray-200 rounded-lg shadow-lg bg-[#010A3B]">
+    <div className="max-w-md   w-[420px] md:w-[280px] h-[70vh]  m-3.5 flex flex-col justify-between border border-gray-200 rounded-lg shadow-xl drop-shadow-lg shadow-gray-600 bg-[#010A3B]">
       <Link to={`/concert/${item._id}`}>
-        <div className=" w-full md:w-[280px] h-[180px] overflow-hidden">
-          <LazyLoadImage className="rounded-t-lg object-fill w-full lg:w-[350px] h-[100%]" src={item?.image[0]?.photo} alt={item?.title} title={item?.title} />
+        <div className=" w-full md:w-[280px] h-[180px] overflow-hidden group hover:rounded-t-lg flip-card-inner">
+          <LazyLoadImage
+            className="rounded-t-lg object-fill w-full lg:w-[350px] h-[100%] group-hover:scale-110  duration-500 ease-linear   group-hover:opacity-90 flip-cart-front"
+            src={item?.image[0]?.photo}
+            alt={item?.title}
+            title={item?.title}
+          />
         </div>
       </Link>
       <button
@@ -74,8 +78,9 @@ export default function Card({ item }) {
         </p>
         <p className="font-normal flex items-center  text-gray-700 dark:text-gray-400">
           <BsCalendar2DateFill className="" />
-          <span className="pl-1 text-md">{`${dateFormat(item.date)} | ${item.hour
-            }`}</span>
+          <span className="pl-1 text-md">{`${dateFormat(item.date)} | ${
+            item.hour
+          }`}</span>
         </p>
 
         <p
@@ -86,8 +91,10 @@ export default function Card({ item }) {
 
       <button
         onClick={() => {
-          setShowAlert((prev) => !prev)
-          setTimeout(() => { setShowAlert(false) }, 1000);
+          setShowAlert((prev) => !prev);
+          setTimeout(() => {
+            setShowAlert(false);
+          }, 1000);
         }}
         className={`m-2  p-2 px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}
       >
