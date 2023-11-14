@@ -1,5 +1,6 @@
 import SiteRoutes from "./SiteRoutes";
 import AvatarModal from "./components/AvatarModal";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <SiteRoutes />
       </div>
       <AvatarModal/>
+      <Footer/>
     </>
   );
 }
