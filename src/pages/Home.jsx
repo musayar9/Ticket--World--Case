@@ -43,7 +43,7 @@ export default function Home() {
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
-      <h2 className="flex item-center ml-5 text-xl  lg:text-2xl font-bold capitalize mb-4">
+      <h2 className="flex item-center ml-16 text-xl  lg:text-2xl font-bold capitalize mb-4">
         {head}
       </h2>
       <div className="flex w-[100%] md:w-[97%]  m-auto">
@@ -61,10 +61,10 @@ export default function Home() {
 
       {filteredToCategories?.length >= 10 && (
         <button
-          className="border border-blue-400 px-5 py-2 
+          className="border bg-[#060b26] opacity-90 px-5 py-2  text-gray-50 font-semibold
                                                     rounded-xl flex items-center justify-between space-x-3
-                                                    hover:bg-gray-600 hover:text-gray-50 duration-700
-                                                    hover:border-gray-300 active:translate-y-7
+                                                    hover:bg-gray-600 hover:text-[#060b26] duration-700
+                                                    hover:border-[#060b26] active:translate-y-7
                                                     "
           onClick={backToTop}
           style={{ bottom: "20px", right: "40px", position: "fixed" }}

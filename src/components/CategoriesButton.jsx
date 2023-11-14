@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, memo } from "react";
 import { FaTheaterMasks, FaLaughBeam, FaIcons } from "react-icons/fa";
 import { MdOutlineFestival } from "react-icons/md";
 import { PiConfettiBold } from "react-icons/pi";
@@ -91,7 +91,7 @@ const CategoriesButton = () => {
           {uniqueCategory?.map((category, index) => (
             <button
               key={index}
-              className={`flex items-center justify-center w-44   px-4 py-2 rounded-md focus:z-10   ease-in duration-300    ${
+              className={`flex items-center justify-center w-44   px-4 py-2 rounded-md hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150    ${
                 isCategory && selectedCategory === category
                   ? "bg-blue-900 text-gray-50"
                   : "bg-[#010A3B]"
@@ -105,7 +105,7 @@ const CategoriesButton = () => {
             </button>
           ))}
           <div
-            className={`flex w-44 items-center justify-center px-2 py-2  rounded-md ${
+            className={`flex w-44 items-center justify-center px-2 py-2  cursor-pointer rounded-md  hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150   ${
               showPastEvents ? "bg-blue-900 text-gray-50" : "bg-[#010A3B]"
             }`}
           >
@@ -116,7 +116,10 @@ const CategoriesButton = () => {
               checked={showPastEvents}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="checkbox" className="p-2 text-md text-gray-50">
+            <label
+              htmlFor="checkbox"
+              className="p-2 text-md text-gray-50 cursor-pointer"
+            >
               Past Events
             </label>
           </div>
@@ -126,4 +129,4 @@ const CategoriesButton = () => {
   );
 };
 
-export default CategoriesButton;
+export default memo(CategoriesButton);
