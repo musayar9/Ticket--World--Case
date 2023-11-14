@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from "react";
+import React, { useMemo, memo, useContext } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -12,10 +12,11 @@ import tr from "date-fns/locale/tr";
 import { useActivityAxiosApi } from "../customHooks";
 import { Link } from "react-router-dom";
 import LazyLoadImage from "./LazyLoadImage";
+import { SiteContext } from "../context/SiteContext";
 
 const HeaderSlider = () => {
-  const [concertData] = useActivityAxiosApi();
-
+  // const [concertData] = useActivityAxiosApi();
+const {concertData} = useContext(SiteContext)
   const shuffledData = useMemo(() => {
     return [...concertData].sort(() => Math.random() - 0.5);
   });

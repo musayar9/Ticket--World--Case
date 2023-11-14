@@ -120,12 +120,17 @@ export default function ConcertDetailed() {
     }
   };
   return (
-    <>
-      <div className="w-[90vw] flex items-start justify-center m-5 p-8 space-x-4">
+    <div className="flex items-center justify-center">
+      <div className="w-[85vw] md:w-[90vw]  flex flex-col md:flex-row items-center md:items-start justify-center m-8 md:m-5 p-4 md:p-8 space-y-4 md:space-y-0 md:space-x-4">
         <div className="">
-          <LazyLoadImage className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl" src={concertData?.image[0]?.photo} alt={concertData?.title} title={concertData?.title} />
-          <div className="mt-5 ">
-            <p className="flex  items-center text-sm text-blue-600 ">
+          <LazyLoadImage
+            className="w-96 h-80 border border-gray-200 rounded-lg shadow-xl"
+            src={concertData?.image[0]?.photo}
+            alt={concertData?.title}
+            title={concertData?.title}
+          />
+          <div className="mt-5 pl-2 md:pl-0">
+            <p className="flex  items-center  text-sm text-blue-600 ">
               <FaMapMarkerAlt />{" "}
               <span className="">
                 {concertData?.locationName} / {concertData?.city}
@@ -148,49 +153,60 @@ export default function ConcertDetailed() {
           </div>
         </div>
 
-        <div></div>
-        <div className="w-[75%]  flex flex-col pl-8 p-4  shadow-lg drop-shadow-sm border border-red-900 bg-gray-100 rounded-lg">
+        <div className="w-[100%] md:w-[75%]   flex flex-col  md:pl-8 p-4  shadow-lg drop-shadow-sm  bg-gray-100 rounded-lg">
           <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              <h1 className="font-bold capitalize text-2xl">
-                {concertData?.title}
-              </h1>
-              <h3 className="text-lg">{formatPrice(concertData?.ticketPrice)}</h3>
+            <div className=" w-[50%] flex items-center  justify-start space-x-2 md:space-x-4 ">
+              <FacebookShareButton
+                description={concertData?.description}
+                url={concertData?.image[0].photo}
+                hashtag={`#${concertData?.artist}`}
+              >
+                <FacebookIcon size={28} round />
+              </FacebookShareButton>
+              <LinkedinShareButton
+                title={concertData?.title}
+                summary={concertData?.description}
+                url={concertData?.image[0].photo}
+                source={window.location.href}
+              >
+                <LinkedinIcon size={28} round />
+              </LinkedinShareButton>
+              <WhatsappShareButton
+                url={concertData?.image[0].photo}
+                title={concertData?.title}
+              >
+                <WhatsappIcon size={28} round />
+              </WhatsappShareButton>
             </div>
-            <div className="font-bold flex flex-col items-end">
-              <button onClick={() => handleAddFavorites(concertData)} className="text-2xl m-3">{isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}</button>
-              <div className="flex items-center">
-                <MdDateRange size={20} className="text-red-700" />
-                <span className="text-sm">
-                  {concertData?.date && dateFormat(concertData.date)} /{" "}
-                  {concertData?.hour}
-                </span>
-              </div>
-              <div className="my-4 w-[50%] flex justify-between">
-                <FacebookShareButton
-                  description={concertData?.description}
-                  url={concertData?.image[0].photo}
-                  hashtag={`#${concertData?.artist}`}>
-                  <FacebookIcon size={28} round />
-                </FacebookShareButton>
-                <LinkedinShareButton
-                  title={concertData?.title}
-                  summary={concertData?.description}
-                  url={concertData?.image[0].photo}
-                  source={window.location.href}>
-                  <LinkedinIcon size={28} round />
-                </LinkedinShareButton>
-                <WhatsappShareButton
-                  url={concertData?.image[0].photo}
-                  title={concertData?.title}>
-                  <WhatsappIcon size={28} round />
-                </WhatsappShareButton>
-              </div>
-            </div>
+            <button
+              onClick={() => handleAddFavorites(concertData)}
+              className="text-2xl m-1 md:m-3 flex items-center "
+            >
+              {isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}
+            </button>
           </div>
 
-          <p className="font-semibold text-md">
-            {concertData?.locationName} / {concertData?.city}
+          <div className="flex items-center flex-col  md:flex-row justify-between">
+            <h1 className="font-bold capitalize mt-5 md:mt-0 text-2xl">
+              {concertData?.title}
+            </h1>
+
+            <div className="flex items-center mt-3 md:mt-0">
+              <MdDateRange size={20} className="text-red-700" />
+              <span className="text-sm font-bold">
+                {concertData?.date && dateFormat(concertData.date)} /{" "}
+                {concertData?.hour}
+              </span>
+            </div>
+          </div>
+          <h3 className=" text-2xl md:text-lg font-semibold mt-2 md:mt-0">
+            {formatPrice(concertData?.ticketPrice)}
+          </h3>
+          <p className="font-semibold text-md flex items-center">
+            <FaMapMarkerAlt className="text-blue-600"/>
+            <span className="pl-2 flex flex-wrap">
+              {concertData?.locationName} / {concertData?.city}
+            </span>
           </p>
 
           <p className="flex items-center">
@@ -218,14 +234,14 @@ export default function ConcertDetailed() {
           {concertData?.players?.length > 1 && (
             <div className="bg-gray-200 p-4 rounded-md mt-5">
               <h2 className="font-bold italic">Artists;</h2>
-              <ul className="flex flex-wrap  items-start justify-start">
+              <ul className="flex flex-wrap  items-center justify-center">
                 {concertData?.players?.map((player) => (
                   <li
                     key={player._id}
                     className=" flex flex-col items-center justify-center p-4"
                   >
                     <img
-                      className="w-24 h-24 rounded-full   "
+                      className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full   "
                       src={player?.personImage}
                       alt={player?.name}
                     />
@@ -251,15 +267,19 @@ export default function ConcertDetailed() {
             Selected seats:
             {isAvailableSelectedSeat &&
               selectedSeats?.map((item, index) => (
-                <span key={index} className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{`${item.rowIndex}-${item.columnIndex} |`}</span>
+                <span
+                  key={index}
+                  className="bg-red-100 text-red-800 text-xs font-medium mx-0.5 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
+                >{`${item.rowIndex}-${item.columnIndex} |`}</span>
               ))}
           </div>
 
           <div className="flex item-center justify-end space-x-2 mt-3">
             <button
               onClick={() => handleAddCart(concertData)}
-              className={`px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 ${isAvailableSelectedSeat ? "opacity-100" : "opacity-50"
-                } `}
+              className={`px-3 flex py-2 rounded-lg bg-red-700 text-gray-50 ${
+                isAvailableSelectedSeat ? "opacity-100" : "opacity-50"
+              } `}
               disabled={!isAvailableSelectedSeat}
             >
               <svg
@@ -283,7 +303,9 @@ export default function ConcertDetailed() {
               onClick={() => setIsOpenModal((prev) => !prev)}
               data-modal-target="default-modal"
               data-modal-toggle="default-modal"
-              className={`block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${isValid ? "opacity-100" : "opacity-50"}`}
+              className={`block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
+                isValid ? "opacity-100" : "opacity-50"
+              }`}
               type="button"
               disabled={!isValid}
             >
@@ -299,6 +321,6 @@ export default function ConcertDetailed() {
           theme="colored"
         />
       </div>
-    </>
+    </div>
   );
 }

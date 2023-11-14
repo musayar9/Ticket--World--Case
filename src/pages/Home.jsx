@@ -7,15 +7,34 @@ import FilterArea from "../components/FilterArea";
 import CategoriesButton from "../components/CategoriesButton";
 import { FiArrowUp } from "react-icons/fi";
 import { backToTop } from "../components/Functions";
+import { useLocation } from "react-router";
 
 export default function Home() {
-  const { filteredToCategories, showSuccessToast, isLogin, setIsLogin, head } =
-    useContext(SiteContext);
-
+  const {
+    concertData,
+    filteredToCategories,
+    setFilteredToCategories,
+    showSuccessToast,
+    isLogin,
+    setIsLogin,
+    head,
+    setHead,
+    setShowPastEvents,
+    setIsCategory,
+  } = useContext(SiteContext);
+  const location = useLocation();
   useEffect(() => {
     if (isLogin) {
       showSuccessToast("Login success");
       setIsLogin(false);
+    }
+
+    if (location.pathname === "/") {
+      setFilteredToCategories(concertData);
+      setShowPastEvents(false)
+      setIsCategory(true)
+      setHead(`Filter Results By All`);
+      
     }
   }, []);
 
@@ -42,7 +61,7 @@ export default function Home() {
 
       {filteredToCategories?.length >= 10 && (
         <button
-          className="border border-gray-700 px-5 py-2 
+          className="border border-blue-400 px-5 py-2 
                                                     rounded-xl flex items-center justify-between space-x-3
                                                     hover:bg-gray-600 hover:text-gray-50 duration-700
                                                     hover:border-gray-300 active:translate-y-7
