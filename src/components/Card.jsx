@@ -11,7 +11,7 @@ export default function Card({ item }) {
   const { setFavList } = useContext(SiteContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
+  
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     if (storedOnlineUser) {

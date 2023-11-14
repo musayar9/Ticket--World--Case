@@ -7,15 +7,34 @@ import FilterArea from "../components/FilterArea";
 import CategoriesButton from "../components/CategoriesButton";
 import { FiArrowUp } from "react-icons/fi";
 import { backToTop } from "../components/Functions";
+import { useLocation } from "react-router";
 
 export default function Home() {
-  const { filteredToCategories, showSuccessToast, isLogin, setIsLogin, head } =
-    useContext(SiteContext);
-
+  const {
+    concertData,
+    filteredToCategories,
+    setFilteredToCategories,
+    showSuccessToast,
+    isLogin,
+    setIsLogin,
+    head,
+    setHead,
+    setShowPastEvents,
+    setIsCategory,
+  } = useContext(SiteContext);
+  const location = useLocation();
   useEffect(() => {
     if (isLogin) {
       showSuccessToast("Login success");
       setIsLogin(false);
+    }
+
+    if (location.pathname === "/") {
+      setFilteredToCategories(concertData);
+      setShowPastEvents(false)
+      setIsCategory(true)
+      setHead(`Filter Results By All`);
+      
     }
   }, []);
 
@@ -24,7 +43,7 @@ export default function Home() {
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
-      <h2 className="flex item-center ml-5 text-xl  lg:text-2xl font-bold capitalize mb-4">
+      <h2 className="flex item-center ml-16 text-xl  lg:text-2xl font-bold capitalize mb-4">
         {head}
       </h2>
       <div className="flex w-[100%] md:w-[97%]  m-auto">
@@ -42,10 +61,10 @@ export default function Home() {
 
       {filteredToCategories?.length >= 10 && (
         <button
-          className="border border-gray-700 px-5 py-2 
+          className="border bg-[#060b26] opacity-90 px-5 py-2  text-gray-50 font-semibold
                                                     rounded-xl flex items-center justify-between space-x-3
-                                                    hover:bg-gray-600 hover:text-gray-50 duration-700
-                                                    hover:border-gray-300 active:translate-y-7
+                                                    hover:bg-gray-600 hover:text-[#060b26] duration-700
+                                                    hover:border-[#060b26] active:translate-y-7
                                                     "
           onClick={backToTop}
           style={{ bottom: "20px", right: "40px", position: "fixed" }}
