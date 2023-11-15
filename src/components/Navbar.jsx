@@ -37,7 +37,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="bg-[#D7D4D4] h-[80px] flex justify-between items-center ">
+      <div className="bg-[#F5F5F5]  h-[80px] flex justify-between items-center ">
         <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
           <FaIcons.FaBars
             onClick={showSidebar}
@@ -99,7 +99,7 @@ function Navbar() {
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="w-[100%]" onClick={showSidebar}>
-          <li className="bg-[#d7d4d4] w-[100%] h-[80px] flex items-center justify-start">
+          <li className="bg-[#f5f5f5] w-[100%] h-[80px] flex items-center justify-start">
             <Link
               to="#"
               className="ml-[2rem] absolute top-8 text-[2rem] bg-none"
