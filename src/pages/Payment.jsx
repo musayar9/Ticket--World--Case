@@ -7,12 +7,6 @@ function Payment() {
   const [submitted, setSubmitted] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
 
-  //sayisal deger- kart no ve cvv icin
-  const handleNumericInput = (e) => {
-    const inputVal = e.target.value;
-    e.target.value = inputVal.replace(/\D/g, "");
-  };
-
   //kart no uzunlugu
   const handleCardNumberChange = (e) => {
     if (e.target.value.length <= 16) {
@@ -53,6 +47,7 @@ function Payment() {
 
   return (
     <>
+      {/* progress stepper */}
       <div className="mx-3">
         <ul className="flex items-center my-10 w-full mb-4 sm:mb-5">
           <li
@@ -108,15 +103,17 @@ function Payment() {
           </li>
         </ul>
       </div>
+      {/* payment form */}
       <div className="mx-3">
         {!submitted && (
           <form onSubmit={handleSubmit}>
             <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-black">
-              Ödeme Bilgileri
+              Payment Information
             </h3>
+            {/* payment method */}
             <div className="mb-4">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                Ödeme Yöntemi Seçiniz
+                Select Payment Method
               </label>
               <div className="flex">
                 <button
@@ -154,16 +151,18 @@ function Payment() {
                 </button>
               </div>
             </div>
+            {/* card information */}
             <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              {/* card number */}
               <div>
                 <label
                   htmlFor="cardNumber"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  Kart Numarası
+                  Card Number
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="cardNumber"
                   id="cardNumber"
                   value={cardNumber}
@@ -171,15 +170,15 @@ function Payment() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="1234 5678 9012 3456"
                   required=""
-                  onInput={handleNumericInput}
                 />
               </div>
+              {/* card holder name */}
               <div>
                 <label
                   htmlFor="nameOnCard"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  Kart Üzerindeki Ad Soyad
+                  Card Holder Name
                 </label>
                 <input
                   type="text"
@@ -192,12 +191,13 @@ function Payment() {
                   required=""
                 />
               </div>
+              {/* expiration date */}
               <div>
                 <label
                   htmlFor="expirationDate"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  Son Kullanma Tarihi
+                  Expiration Date
                 </label>
                 <input
                   type="month"
@@ -208,6 +208,7 @@ function Payment() {
                   required=""
                 />
               </div>
+              {/* cvv */}
               <div>
                 <label
                   htmlFor="cvv"
@@ -225,38 +226,39 @@ function Payment() {
                   </svg>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="cvv"
                   id="cvv"
                   value={cvv}
                   onChange={handleCVVChange}
-                  onInput={handleNumericInput}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="0123"
                   required=""
                 />
               </div>
             </div>
+            {/* checkbox */}
             <div>
               <p>
                 <input type="checkbox" id="3dsecure" />
                 <label className="mx-2" htmlFor="3dsecure">
-                  3D Secure ile ödemek istiyorum.
+                  I want to pay with 3D Secure.
                 </label>
               </p>
               <p>
                 <input type="checkbox" id="kredikayit" />
                 <label className="mx-2" htmlFor="kredikayit">
-                  Kredi kartı bilgilerimin kaydedilmesini onaylıyorum.
+                  I accept <span className='text-blue-700 font-semibold'>Information Notice Regarding Personal Data Processing</span> regarding the storage of my card.
                 </label>
               </p>
             </div>
+            {/* pay */}
             <button
               type="submit"
               className=" my-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
                 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Ödemeyi Onayla
+              Confirm Payment
             </button>
           </form>
         )}

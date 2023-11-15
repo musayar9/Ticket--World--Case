@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -28,14 +29,14 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="https://flowbite.com/" className="hover:underline">
+                <Link to="/about" className="hover:underline">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://tailwindcss.com/" className="hover:underline">
-                  Contact
-                </a>
+              <Link to="/about" className="hover:underline">
+                Contact
+              </Link>
               </li>
             </ul>
           </div>
@@ -46,12 +47,12 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+              <Link to="/about" className="hover:underline">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <a href="/about" className="hover:underline">
                   Terms &amp; Conditions
                 </a>
               </li>
@@ -65,7 +66,7 @@ function Footer() {
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
                 <a
-                  href="https://github.com/themesberg/flowbite"
+                  href="https://github.com/musayar9/activity"
                   className="hover:underline "
                 >
                   Github
@@ -73,7 +74,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://discord.gg/4eeurUVvTy"
+                  href="https://discord.com"
                   className="hover:underline"
                 >
                   Discord
@@ -84,7 +85,7 @@ function Footer() {
           {/* //social media icons */}
           <div className=" flex-col mt-3 sm:mt-0 ">
             <a
-              href="#"
+              href="https://www.facebook.com/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -103,7 +104,7 @@ function Footer() {
               <span className="sr-only">Facebook page</span>
             </a>
             <a
-              href="#"
+              href="https://discord.com/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -118,7 +119,7 @@ function Footer() {
               <span className="sr-only">Discord community</span>
             </a>
             <a
-              href="#"
+              href="https://twitter.com/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -193,13 +194,14 @@ function Footer() {
         </ul>
       </div>
 
+      {/* footer bottom */}
       <div className="bg-red-900 dark:bg-red-700 flex items-center">
         <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" />
 
-        <div className="sm:flex sm:items-center sm:justify-between mx-2">
+        <div className="sm:flex-1 flex justify-center mx-2">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
+            <a href="/" className="hover:underline">
               Ticket™
             </a>
             . All Rights Reserved.
