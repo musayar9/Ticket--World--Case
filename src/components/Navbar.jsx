@@ -6,11 +6,16 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useNavigate } from 'react-router-dom';
+import { MdShoppingCart } from "react-icons/md";
 
 const Navbar = () => {
   const [showMediaIcons, setShowMediaIcons] = useState(false);
   const [concertTitles, setConcertTitles] = useState([]);
   const navigate = useNavigate();
+
+  const handleShoppingCartClick = () => {
+    navigate("/city");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,6 +98,12 @@ const Navbar = () => {
               <GiHamburgerMenu className="h-menu-button" />
             </a>
           </div>
+          <div 
+        className="shopping-cart-icon" 
+        onClick={handleShoppingCartClick}
+        >
+          <MdShoppingCart  style={{ fontSize: "3rem", color: "white" }} />
+      </div>
         </div>
       </nav>
     </>

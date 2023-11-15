@@ -171,7 +171,7 @@ li {
   }
   
   .logo img {
-    height: 50px; /* veya logonuzun uygun boyutu */
+    height: 50px;
   }
   
   .search-bar {
@@ -194,4 +194,15 @@ li {
   
   .search-bar .MuiOutlinedInput-input {
     background-color: white;
+  }
+
+  .shopping-cart-icon:hover .shopping-cart-hover {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+
+  }
+  .shopping-cart-icon {
+    cursor: pointer;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
   }
