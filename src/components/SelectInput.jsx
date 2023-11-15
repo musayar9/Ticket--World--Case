@@ -5,7 +5,7 @@ import { SiteContext } from "../context/SiteContext";
 
 const SelectInput = () => {
   const [city, setCity] = useState([]);
-  // const [selectValue, setSelectValue] = useState("");
+
   const [newValue, setNewValue] = useState("");
   const {
     isValid,
@@ -16,6 +16,8 @@ const SelectInput = () => {
     setIsCategory,
     setShowPastEvents,
     setHead,
+    isSearch,
+    setIsSearch,
   } = useContext(SiteContext);
 
   useEffect(() => {
@@ -33,14 +35,14 @@ const SelectInput = () => {
     const filterCity = await concertData.filter(
       (v) => v.city === e.target.value
     );
-
+    setIsSearch(true);
     setFilteredToCategories(filterCity);
     setShowPastEvents(false);
     setIsCategory(false);
     setSidebar(false);
 
     // setHead(e.target.value);
-    await setHead(`Filter results by ${e.target.value}`);
+    await setHead(`${e.target.value} activitys`);
     setTimeout(() => {
       setNewValue("");
     }, 2000);
@@ -52,7 +54,7 @@ const SelectInput = () => {
         <select
           id="countries"
           value={newValue}
-          className="bg-gray-300  w-44 px-4 py-3 font-bold text-[#010A3B] cursor-pointer flex rounded-md  outline-none "
+          className="bg-[#F5F5F5]   w-44 px-4 py-3 font-semibold text-gray-600 shadow-md shadow-gray-300 cursor-pointer flex rounded-md  outline-none "
           onChange={handleCity}
         >
           <option defaultValue="Choose a country" className=" font-bold">

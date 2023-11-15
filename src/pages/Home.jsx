@@ -22,6 +22,8 @@ export default function Home() {
     setHead,
     setShowPastEvents,
     setIsCategory,
+    isSearch,
+    setIsSearch,
   } = useContext(SiteContext);
   const location = useLocation();
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function Home() {
       setFilteredToCategories(concertData);
       setShowPastEvents(false);
       setIsCategory(true);
-      setHead(`Filter Results By All`);
+     
     }
   }, []);
 
@@ -43,9 +45,12 @@ export default function Home() {
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
-      <h2 className=" mx-auto px-4 py-2 w-fit text-[#010A3B] bg-gray-300 text-xl rounded-lg  lg:text-2xl font-bold capitalize mb-4">
-        {head}
-      </h2>
+      {isSearch && (
+        <h2 className=" mx-auto px-4 py-2 w-fit text-[#010A3B]  text-xl rounded-lg  lg:text-2xl font-bold capitalize mb-4">
+          {head}
+        </h2>
+      )}
+
       <>
         {filteredToCategories?.length !== 0 ? (
           <div className="flex w-[100%] md:w-[97%]  mx-auto">
@@ -72,10 +77,10 @@ export default function Home() {
 
       {filteredToCategories?.length >= 10 && (
         <button
-          className="border bg-[#060b26] opacity-90 px-5 py-2  text-gray-50 font-semibold
+          className="border bg-[#949494] opacity-90 px-5 py-2  text-white font-semibold
                                                     rounded-xl flex items-center justify-between space-x-3
-                                                    hover:bg-gray-600 hover:text-[#060b26] duration-700
-                                                    hover:border-[#060b26] active:translate-y-7
+                                                  hover:bg-[#7a7a7a] hover:text-[#f3f3f3] duration-700
+                                                    hover:border-[#7a7a7a] active:translate-y-7
                                                     "
           onClick={backToTop}
           style={{ bottom: "20px", right: "40px", position: "fixed" }}

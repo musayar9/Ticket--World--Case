@@ -16,6 +16,8 @@ const DateInput = () => {
     setIsCategory,
     setHead,
     setShowPastEvents,
+    isSearch,
+    setIsSearch,
   } = useContext(SiteContext);
 
   const dateFormat = (dateValue) => {
@@ -35,8 +37,9 @@ const DateInput = () => {
     setFilteredToCategories(filterValue);
     setIsCategory(false);
     setShowPastEvents(false);
+    setIsSearch(true);
 
-    setHead(`Filter results by ${dateFormat(e.target.value)}`);
+    setHead(`${dateFormat(e.target.value)}`);
     setSidebar(false);
     setTimeout(() => {
       setDate("");
@@ -48,7 +51,7 @@ const DateInput = () => {
       <div className="cursor-pointer">
         <input
           type="date"
-          className=" bg-gray-300  w-44 px-4 py-3 font-bold text-[#010A3B]  cursor-pointer rounded-md  outline-none flex "
+          className=" bg-[#F5F5F5]  w-44 px-4 py-3 font-semibold text-gray-700 shadow-md shadow-gray-300  cursor-pointer rounded-md  outline-none flex "
           placeholder="Select date"
           onChange={handleDate}
           value={date}

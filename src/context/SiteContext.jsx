@@ -67,6 +67,7 @@ export default function SiteContextProvider({ children }) {
   const [filteredToCategories, setFilteredToCategories] = useState();
   const [isCategory, setIsCategory] = useState(true);
   const [showPastEvents, setShowPastEvents] = useState(false);
+  const [isSearch, setIsSearch] = useState(false)
   const getData = async () => {
     try {
       const response = await axiosConcertApi.get("/activity");
@@ -137,6 +138,8 @@ export default function SiteContextProvider({ children }) {
         setIsOpenAvatarModal,
         avatarUrl,
         setAvatarUrl,
+        isSearch,
+        setIsSearch,
       }}
     >
       {children}
