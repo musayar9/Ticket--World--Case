@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .nav-menu {
-  background-color: #010a3bfd;
+  background-color: #d7d4d4;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -13,6 +13,7 @@
   left: -100%;
   transition: 850ms;
   z-index: 6;
+  
 }
 
 .nav-menu.active {

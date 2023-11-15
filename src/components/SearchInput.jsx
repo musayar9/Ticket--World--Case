@@ -53,7 +53,7 @@ const SearchInput = () => {
           <input
             type="search"
             id="search"
-            className="pl-8 md:pl-11 w-44 text-sm md:text-lg md:w-72 cursor-pointer placeholder:text-gray-50 text-gray-50 bg-transparent border-b border-gray-50 focus:outline-none pb-3 transition duration-500 "
+            className="pl-8 md:pl-11 w-44 text-sm md:text-lg md:w-72 cursor-pointer placeholder:text-gray-600  bg-transparent border-b border-gray-600 focus:outline-none pb-3 transition duration-500 "
             placeholder="Search by artist or title"
             required
             value={search}
@@ -64,7 +64,7 @@ const SearchInput = () => {
             className="absolute pb-3  left-2 md:left-4 flex items-center 
             pointer-events    font-bold"
           >
-            <BsSearch className="text-gray-50 bg-transparent" />
+            <BsSearch className="text-gray-600 bg-transparent" />
           </button>
         </div>
       </form>

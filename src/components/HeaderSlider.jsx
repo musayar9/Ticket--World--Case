@@ -2,7 +2,7 @@ import React, { useMemo, memo, useContext } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import images from "../assets/activity.jpg";
+import images from "../assets/activity.avif";
 import { BiMinus } from "react-icons/bi";
 import { SiGooglemaps } from "react-icons/si";
 import { PiConfettiBold } from "react-icons/pi";
@@ -36,7 +36,7 @@ const HeaderSlider = () => {
           <div className="w-full group z-20 " key={slide._id}>
             <div className="h-auto  w-full relative ">
               <img
-                className="h-[250px] sm:h-[360px] md:h-[400px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-50 "
+                className="h-[250px] sm:h-[360px] md:h-[450px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-50 "
                 src={images}
               />
 

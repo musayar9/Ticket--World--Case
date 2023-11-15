@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="mt-24 bottom-0 w-full bg-white dark:bg-gray-900">
+    <footer className="mt-24 bottom-0 w-full bg-[#d7d4d4]">
       <div className="mx-auto w-full max-w-screen-xl p-4 lg:py-4">
         {/* footer logo */}
         <div className="md:mb-6 my-2 flex items-center text-center justify-center">
@@ -193,11 +193,11 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="bg-red-900 dark:bg-red-700 flex items-center">
+      <div className="bg-gray-400 flex items-center">
         <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" />
 
         <div className="sm:flex sm:items-center sm:justify-between mx-2">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm text-gray-50 sm:text-center dark:text-gray-50">
             © 2023{" "}
             <a href="https://flowbite.com/" className="hover:underline">
               Ticket™

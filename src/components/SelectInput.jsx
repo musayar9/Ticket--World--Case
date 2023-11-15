@@ -54,7 +54,7 @@ const SelectInput = () => {
         <select
           id="countries"
           value={newValue}
-          className="bg-[#F5F5F5]   w-44 px-4 py-3 font-semibold text-gray-700 shadow-md shadow-gray-300 cursor-pointer flex rounded-md  outline-none "
+          className="bg-[#F5F5F5]   w-44 px-4 py-3 font-semibold text-gray-600 shadow-md shadow-gray-300 cursor-pointer flex rounded-md  outline-none "
           onChange={handleCity}
         >
           <option defaultValue="Choose a country" className=" font-bold">
