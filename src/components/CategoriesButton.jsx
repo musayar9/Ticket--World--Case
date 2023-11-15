@@ -15,8 +15,8 @@ const CategoriesButton = () => {
     setIsCategory,
     showPastEvents,
     setShowPastEvents,
-    head,
-    setHead,
+    isSearch,
+    setIsSearch,
   } = useContext(SiteContext);
 
   useEffect(() => {
@@ -27,6 +27,7 @@ const CategoriesButton = () => {
 
   const handleFilter = async (category) => {
     setIsCategory(true);
+    setIsSearch(false);
     if (isCategory) {
       setFilteredToCategories(concertData);
       setSelectedCategory("all");
@@ -36,10 +37,10 @@ const CategoriesButton = () => {
     if (category === "all") {
       await setFilteredToCategories(concertData);
       setShowPastEvents(false);
-      setHead(`Filter results by ${category}`);
+
       return;
     }
-    setHead(`Filter results by ${category}`);
+
     const filterValue = concertData.filter((c) => c.category === category);
 
     await setFilteredToCategories(filterValue);
@@ -48,7 +49,7 @@ const CategoriesButton = () => {
 
   const handleCheckboxChange = async () => {
     setIsCategory(false);
-
+    setIsSearch(false);
     if (isCategory) {
       setShowPastEvents(false);
     }
@@ -59,10 +60,8 @@ const CategoriesButton = () => {
         (d) => new Date(d.date) <= new Date()
       );
       setFilteredToCategories(filteredCards);
-      setHead(`Filter results by past events`);
     } else {
       setFilteredToCategories(concertData);
-      setHead(`Filter results by All`);
     }
   };
   console.log(filteredToCategories);
@@ -87,14 +86,20 @@ const CategoriesButton = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:flex  items-center justify-center  text-center  md:gap-x-2 gap-y-2 p-4 text-white  lg:gap-y-1 xl:gap-y-0 ">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  
+        xl:flex  items-center justify-center  text-center  md:gap-x-2 gap-y-2 p-4
+        text-white  lg:gap-y-1 xl:gap-y-0 "
+        >
           {uniqueCategory?.map((category, index) => (
             <button
               key={index}
-              className={`flex items-center justify-center w-44 shadow-lg shadow-gray-600   px-4 py-2 rounded-md hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150    ${
+              className={`flex items-center justify-center  w-44 shadow-md
+              shadow-gray-300   px-4 py-2 rounded-md hover:bg-[#888888]
+              hover:text-gray-100 transition    ease-in duration-150    ${
                 isCategory && selectedCategory === category
-                  ? "bg-blue-900 text-gray-50"
-                  : "bg-[#010A3B]"
+                  ? "bg-[#888888] text-gray-50"
+                  : "bg-[#F5F5F5] text-gray-700"
               } `}
               onClick={() => handleFilter(category)}
             >
@@ -105,9 +110,11 @@ const CategoriesButton = () => {
             </button>
           ))}
           <div
-            className={`flex w-44 items-center justify-center px-2 py-2 shadow-lg shadow-gray-500 cursor-pointer rounded-md  hover:bg-blue-900 hover:text-gray-50 transition    ease-in duration-150   ${
-              showPastEvents ? "bg-blue-900 text-gray-50" : "bg-[#010A3B]"
-            }`}
+            className={`flex w-44 items-center justify-center px-2 py-2 shadow-md shadow-gray-300 cursor-pointer rounded-md 
+            hover:bg-[#888888]
+              hover:text-gray-100 transition    ease-in duration-150   ${
+                showPastEvents ? "bg-[#888888]" : "bg-[#F5F5F5] "
+              }`}
           >
             <input
               className=""
@@ -118,7 +125,9 @@ const CategoriesButton = () => {
             />
             <label
               htmlFor="checkbox"
-              className="p-2 text-md text-gray-50 cursor-pointer"
+              className={`p-2 text-md text-gray-700 cursor-pointer hover:text-gray-100 ${
+                showPastEvents ? "text-gray-50" : "text-gray-700"
+              } `}
             >
               Past Events
             </label>

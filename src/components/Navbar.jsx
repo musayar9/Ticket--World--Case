@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="bg-[#060b26] h-[80px] flex justify-between items-center ">
+      <div className="bg-[#b2b2b2] h-[80px] flex justify-between items-center ">
         <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
           <FaIcons.FaBars
             onClick={showSidebar}

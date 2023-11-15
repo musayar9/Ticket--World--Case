@@ -14,6 +14,8 @@ const SearchInput = () => {
     setIsCategory,
     setShowPastEvents,
     setHead,
+    isSearch,
+    setIsSearch,
   } = useContext(SiteContext);
   useEffect(() => {
     const filterSearch = concertData.filter((v) => {
@@ -31,9 +33,10 @@ const SearchInput = () => {
     e.preventDefault();
     setFilteredToCategories(searchData);
     setIsCategory(false);
+    setIsSearch(true)
     setShowPastEvents(false);
     setSidebar(false);
-    setHead(`Filter results by ${search}`);
+    setHead(`${search}`);
     setTimeout(() => {
       setSearch("");
     }, 2000);
@@ -50,7 +53,7 @@ const SearchInput = () => {
           <input
             type="search"
             id="search"
-            className="pl-8 md:pl-11 w-44 text-sm md:text-lg md:w-72 cursor-pointer text-gray-50 bg-transparent border-b border-gray-50 focus:outline-none pb-3 transition duration-500 "
+            className="pl-8 md:pl-11 w-44 text-sm md:text-lg md:w-72 cursor-pointer placeholder:text-gray-50 text-gray-50 bg-transparent border-b border-gray-50 focus:outline-none pb-3 transition duration-500 "
             placeholder="Search by artist or title"
             required
             value={search}
