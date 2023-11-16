@@ -7,7 +7,7 @@ import { parseISO, format } from "date-fns";
 import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
 import { SiteContext } from "../context/SiteContext";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaHeart, FaMapMarkerAlt } from "react-icons/fa";
 import CardSliderM from "../components/CardSliderM";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
@@ -15,6 +15,7 @@ import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 import LazyLoadImage from "../components/LazyLoadImage";
 import { formatPrice } from "../components/Functions"
+import { CiHeart } from "react-icons/ci";
 
 
 export default function ConcertDetailed() {
@@ -120,7 +121,7 @@ export default function ConcertDetailed() {
     }
   };
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mt-24">
       <div className="w-[85vw] md:w-[90vw]  flex flex-col md:flex-row items-center md:items-start justify-center m-8 md:m-5 p-4 md:p-8 space-y-4 md:space-y-0 md:space-x-4">
         <div className="">
           <LazyLoadImage
@@ -182,7 +183,7 @@ export default function ConcertDetailed() {
               onClick={() => handleAddFavorites(concertData)}
               className="text-2xl m-1 md:m-3 flex items-center "
             >
-              {isFavorite ? <BsFillBookmarkFill /> : <BsBookmark />}
+              {isFavorite ? <FaHeart className="text-red-600" /> : <CiHeart />}
             </button>
           </div>
 

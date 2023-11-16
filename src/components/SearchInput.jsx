@@ -16,6 +16,8 @@ const SearchInput = () => {
     setHead,
     isSearch,
     setIsSearch,
+    isSearchInput,
+    setIsSearchInput,
   } = useContext(SiteContext);
   useEffect(() => {
     const filterSearch = concertData.filter((v) => {
@@ -34,6 +36,7 @@ const SearchInput = () => {
     setFilteredToCategories(searchData);
     setIsCategory(false);
     setIsSearch(true)
+    setIsSearchInput(true)
     setShowPastEvents(false);
     setSidebar(false);
     setHead(`${search}`);

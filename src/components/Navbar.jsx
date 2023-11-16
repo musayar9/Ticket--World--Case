@@ -36,8 +36,8 @@ function Navbar() {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <>
-      <div className="bg-[#F5F5F5]  h-[80px] flex justify-between items-center ">
+    <div className="fixed top-0 w-full  z-10 ">
+      <div className="bg-[#F5F5F5] h-[80px] flex justify-between items-center ">
         <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
           <FaIcons.FaBars
             onClick={showSidebar}
@@ -152,7 +152,7 @@ function Navbar() {
           </li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 }
 

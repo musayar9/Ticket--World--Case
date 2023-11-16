@@ -1,8 +1,33 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdOutlinePrivacyTip } from "react-icons/md";
-import {IoMdContacts,IoIosCloseCircle,IoMdInformationCircleOutline} from "react-icons/io";
+import {
+  IoMdContacts,
+  IoIosCloseCircle,
+  IoMdInformationCircleOutline,
+} from "react-icons/io";
+import { useLocation } from "react-router";
+
+import { SiteContext } from "../context/SiteContext";
 
 function About() {
+  const {
+    setFilteredToCategories,
+    concertData,
+    setIsSearch,
+    setIsCategory,
+    setShowPastEvents,
+  } = useContext(SiteContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/about") {
+      setFilteredToCategories(concertData);
+      setIsSearch(false);
+      setIsCategory(true);
+      setShowPastEvents(false);
+    }
+  }, []);
+
   const [buttonSelected, setButtonSelected] = useState("aboutButton");
 
   const handleButtonClick = (button) => {
@@ -23,7 +48,7 @@ function About() {
   ];
   return (
     <>
-      <div className="my-20 max-w-2xl mx-auto">
+      <div className="my-20 max-w-2xl mx-auto mt-28">
         {/* buttons */}
         <div className="flex gap-x-4 mb-4">
           {buttonData.map((button) => (
@@ -60,7 +85,10 @@ function About() {
                 ? "Contact"
                 : ""}
             </h3>
-            <span onClick={handleCloseClick} className="text-2xl cursor-pointer">
+            <span
+              onClick={handleCloseClick}
+              className="text-2xl cursor-pointer"
+            >
               <IoIosCloseCircle />
             </span>
           </div>
