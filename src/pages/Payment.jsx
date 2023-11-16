@@ -1,4 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect, useContext } from "react";
+import { SiteContext } from "../context/SiteContext";
+import { useLocation } from "react-router";
 
 function Payment() {
   const [cardNumber, setCardNumber] = useState("");
@@ -7,6 +9,23 @@ function Payment() {
   const [submitted, setSubmitted] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
 
+  const {
+    setFilteredToCategories,
+    concertData,
+    setIsSearch,
+    setIsCategory,
+    setShowPastEvents,
+  } = useContext(SiteContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/payment") {
+      setFilteredToCategories(concertData);
+      setIsSearch(false);
+      setIsCategory(true);
+      setShowPastEvents(false);
+    }
+  }, []);
   //kart no uzunlugu
   const handleCardNumberChange = (e) => {
     if (e.target.value.length <= 16) {
@@ -48,19 +67,21 @@ function Payment() {
   return (
     <>
       {/* progress stepper */}
-      <div className="mx-3">
+      <div className="mx-3 mt-28">
         <ul className="flex items-center my-10 w-full mb-4 sm:mb-5">
           <li
             className={`flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800 ${
               submitted ? "text-gray-500 dark:text-gray-400" : ""
-            }`}>
+            }`}
+          >
             <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
               <svg
                 className="w-4 h-4 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
-                viewBox="0 0 20 16">
+                viewBox="0 0 20 16"
+              >
                 <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
               </svg>
             </div>
@@ -204,7 +225,7 @@ function Payment() {
                   name="expirationDate"
                   id="expirationDate"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                //   placeholder="MM/YYYY"
+                  //   placeholder="MM/YYYY"
                   required=""
                 />
               </div>
@@ -216,7 +237,7 @@ function Payment() {
                 >
                   CVV
                   <svg
-                    class="flex-shrink-0 inline w-4 h-4 me-3"
+                    className="flex-shrink-0 inline w-4 h-4 me-3"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -248,7 +269,11 @@ function Payment() {
               <p>
                 <input type="checkbox" id="kredikayit" />
                 <label className="mx-2" htmlFor="kredikayit">
-                  I accept <span className='text-blue-700 font-semibold'>Information Notice Regarding Personal Data Processing</span> regarding the storage of my card.
+                  I accept{" "}
+                  <span className="text-blue-700 font-semibold">
+                    Information Notice Regarding Personal Data Processing
+                  </span>{" "}
+                  regarding the storage of my card.
                 </label>
               </p>
             </div>
@@ -267,5 +292,4 @@ function Payment() {
   );
 }
 
-
-export default Payment
+export default Payment;

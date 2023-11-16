@@ -15,7 +15,7 @@ export default function Cart() {
     }, [])
 
     return (
-        <div className="p-2 max-2xl:w-[50%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[90%] max-sm:w-[100%] m-auto mt-20 flex flex-col items-center">
+        <div className="p-2 max-2xl:w-[50%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[90%] max-sm:w-[100%] m-auto mt-24 flex flex-col items-center">
             {
                 cartList?.length !== 0 ? cartList?.map((concert, index) => <CartCard key={index} item={concert.item} selectedSeats={concert.selectedSeats} />) : (<>
                     <div className="p-4 my-7 w-[100%] text-center text-lg text-blue-800 rounded-lg bg-blue-100 mt-20" role="alert">

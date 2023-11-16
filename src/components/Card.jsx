@@ -67,19 +67,19 @@ export default function Card({ item }) {
         </Link>
         <button
           onClick={() => handleAddFavorites(item)}
-          className="text-gray-50 ml-auto transition duration-200 ease-in mx-2 mt-2 absolute top-3 right-3 border border-[#f5f5f5f5]  bg-transparent rounded-full w-10 h-10 p-2  text-2xl"
+          className="text-gray-50 ml-auto transition duration-200 ease-in  border border-[#f5f5f5f5]  bg-transparent rounded-full w-10 h-10 p-2  text-2xl"
         >
-          {/* <FaHeart
-            className={` transition duration-150 ease-in border  bg-transparent rounded-full w-10 h-10 p-2  text-2xl ${
-              isFavorite ? "text-red-600 " : "text-gray-50 "
+          <FaHeart
+            className={` transition duration-150 ease-in border  bg-transparent rounded-full w-10 h-10 p-2 absolute top-3 right-3 text-2xl hover:text-red-600 hover:border-red-600 ${
+              isFavorite ? "text-red-600 border-red-600 " : " bg-transparent"
             }`}
-          /> */}
+          />
 
-          {isFavorite ? (
+          {/* {isFavorite ? (
             <FaHeart className="  text-[#ff0000] " />
           ) : (
             <CiHeart className="" />
-          )}
+          )} */}
         </button>
       </div>
 

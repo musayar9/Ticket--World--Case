@@ -21,3 +21,7 @@
   left: 0;
   transition: 350ms;
 }
+
+.custom-height {
+  height: calc(100% + 80px);
+}

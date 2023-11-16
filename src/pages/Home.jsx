@@ -24,6 +24,8 @@ export default function Home() {
     setIsCategory,
     isSearch,
     setIsSearch,
+    isSearchInput,
+    setIsSearchInput,
   } = useContext(SiteContext);
   const location = useLocation();
   useEffect(() => {
@@ -32,16 +34,29 @@ export default function Home() {
       setIsLogin(false);
     }
 
+    // if (location.pathname === "/") {
+
+    // if(!isSearchInput){
+    //      setFilteredToCategories(concertData);
+    //      setIsCategory(true);
+
+    // }else{
+    //   setFilteredToCategories(filteredToCategories);
+    // }
+
+    // }
+
+    //  setShowPastEvents(false);
+    // setIsCategory(true);
     if (location.pathname === "/") {
-      setFilteredToCategories(concertData);
+      // setFilteredToCategories(concertData);
       setShowPastEvents(false);
       setIsCategory(true);
-     
     }
   }, []);
 
   return (
-    <>
+    <div className="">
       <HeaderSlider />
       <FilterArea />
       <CategoriesButton />
@@ -94,6 +109,6 @@ export default function Home() {
         pauseOnFocusLoss={true}
         pauseOnHover={false}
       />
-    </>
+    </div>
   );
 }

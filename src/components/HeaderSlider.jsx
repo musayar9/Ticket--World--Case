@@ -30,13 +30,16 @@ const HeaderSlider = () => {
   };
 
   return (
-    <div className="z-10">
+    <div className="z-10 mt-20">
       <Slider {...settings}>
         {shuffledData.slice(0, 10).map((slide) => (
-          <div className="w-full group z-20 " key={slide._id}>
-            <div className="h-auto  w-full relative ">
+          <div
+            className="w-full group z-20  "
+            key={slide._id}
+          >
+            <div className="  w-full relative ">
               <img
-                className="h-[250px] sm:h-[360px] md:h-[450px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-100 "
+                className="h-[250px] sm:h-[360px] md:h-[420px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-100 "
                 src={images}
               />
 

@@ -7,11 +7,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto w-[100%]">
+      <div className="mx-auto w-[100%] ">
         <SiteRoutes />
       </div>
-      <AvatarModal/>
-      <Footer/>
+      <AvatarModal />
+      <Footer />
     </>
   );
 }
