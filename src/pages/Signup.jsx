@@ -6,7 +6,7 @@ import { axiosUserApi } from "../axios/axiosUserApi";
 import { SiteContext } from "../context/SiteContext";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
-
+import logo from "../assets/logo.png";
 export default function Signup() {
   const { showErrorToast, navigate, setIsSignup } = useContext(SiteContext)
 
@@ -41,8 +41,13 @@ export default function Signup() {
   };
 
   return (
-    <div className="container mx-auto my-14 max-2xl:w-[35%] max-xl:w-[55%] max-lg:w-[65%] max-sm:w-[100%]">
-      <div className="p-6 border border-solid border-gray-300">
+    <div className="mt-20 container mx-auto my-14 max-2xl:w-[35%] max-xl:w-[55%] max-lg:w-[65%] max-sm:w-[100%]">
+      <img
+        src={logo}
+        alt="logo"
+        className="w-44 h-44 mt-6 p-4 mx-auto drop-shadow-md bg-transparent rounded-full"
+      />
+      <div className="p-6 border border-solid border-gray-300 rounded-md shadow-sm shadow-gray-300">
         <Formik
           initialValues={defaultUser}
           validationSchema={validationSchema}
@@ -166,7 +171,7 @@ export default function Signup() {
         </Formik>
       </div>
       <div
-        className="border border-solid border-gray-300 p-4 my-2"
+        className="border border-solid border-gray-300 p-4 my-2 rounded-md shadow-sm shadow-gray-300"
         role="group"
       >
         <label htmlFor="terms" className="ml-2 text-sm">

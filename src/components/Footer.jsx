@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../assets/logoFive.png";
 function Footer() {
   return (
     <footer className="mt-24 bottom-0 w-full bg-[#d7d4d4]">
@@ -8,16 +8,7 @@ function Footer() {
         {/* footer logo */}
         <div className="md:mb-6 my-2 flex items-center text-center justify-center">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" className="flex items-center">
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8 me-3"
-                alt="FlowBite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Ticket
-              </span>
-            </a>
+            <img src={logo} alt="logo" className="w-24 h-24 rounded-full mt-2 -mb-8"/>
           </div>
         </div>
         {/* footer info */}
