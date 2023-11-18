@@ -59,89 +59,95 @@ export default function Login() {
   };
 
   return (
-    <div className="mt-20">
-      <div className="container mx-auto -mb-10 max-2xl:w-[35%] max-xl:w-[55%] max-lg:w-[65%] max-sm:w-[100%]">
-        <img
-          src={logo}
-          alt="logo"
-          className="w-44 h-44 mt-6 p-4 mx-auto drop-shadow-md bg-transparent rounded-full"
-        />
-        <div className=" p-6 border border-solid border-gray-300 rounded-md shadow-sm shadow-gray-300">
-          <Formik
-            initialValues={defaultLoginUser}
-            validationSchema={validationSchema}
-            onSubmit={handleLogin}
-          >
-            {() => (
-              <Form>
-                <div className="mb-2">
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Email
-                  </label>
-                  <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="shadow-sm bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5"
-                    placeholder="davis@flowbite.com"
-                    required
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="text-red-500 text-xs"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Password
-                  </label>
-                  <Field
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="shadow-sm bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5"
-                    placeholder="******"
-                    required
-                  />
-                  <ErrorMessage
-                    name="password"
-                    component="div"
-                    className="text-red-500 text-xs"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Log in
-                </button>
-                <ToastContainer />
-              </Form>
-            )}
-          </Formik>
-        </div>
-        <div
-          className="border border-solid border-gray-300 p-4 my-2 rounded-md shadow-sm shadow-gray-300"
-          role="group"
-        >
-          <label htmlFor="terms" className="ml-2 text-sm ">
-            Don't you have an account?
-            <Link
-              to="/signup"
-              className="text-blue-600 hover:underline dark:text-blue-500"
+    <>
+      <Helmet>
+        <title>Login</title>
+        <meta name="description" content="login" />
+      </Helmet>
+      <div className="mt-20">
+        <div className="container mx-auto -mb-10 max-2xl:w-[35%] max-xl:w-[55%] max-lg:w-[65%] max-sm:w-[100%]">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-44 h-44 mt-6 p-4 mx-auto drop-shadow-md bg-transparent rounded-full"
+          />
+          <div className=" p-6 border border-solid border-gray-300 rounded-md shadow-sm shadow-gray-300">
+            <Formik
+              initialValues={defaultLoginUser}
+              validationSchema={validationSchema}
+              onSubmit={handleLogin}
             >
-              Sign up
-            </Link>
-          </label>
+              {() => (
+                <Form>
+                  <div className="mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Email
+                    </label>
+                    <Field
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="shadow-sm bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5"
+                      placeholder="davis@flowbite.com"
+                      required
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="text-red-500 text-xs"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <label
+                      htmlFor="password"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Password
+                    </label>
+                    <Field
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="shadow-sm bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5"
+                      placeholder="******"
+                      required
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="text-red-500 text-xs"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Log in
+                  </button>
+                  <ToastContainer />
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div
+            className="border border-solid border-gray-300 p-4 my-2 rounded-md shadow-sm shadow-gray-300"
+            role="group"
+          >
+            <label htmlFor="terms" className="ml-2 text-sm ">
+              Don't you have an account?
+              <Link
+                to="/signup"
+                className="text-blue-600 hover:underline dark:text-blue-500"
+              >
+                Sign up
+              </Link>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

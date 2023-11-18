@@ -8,6 +8,7 @@ import {
 import { useLocation } from "react-router";
 
 import { SiteContext } from "../context/SiteContext";
+import { Helmet } from "react-helmet";
 
 function About() {
   const {
@@ -48,6 +49,10 @@ function About() {
   ];
   return (
     <>
+      <Helmet>
+        <title>About</title>
+        <meta name="description" content="about" />
+      </Helmet>
       <div className="my-20 max-w-2xl mx-auto mt-28">
         {/* buttons */}
         <div className="flex gap-x-4 mb-4">

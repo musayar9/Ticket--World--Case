@@ -3,7 +3,7 @@ import { SiteContext } from "../context/SiteContext";
 import { formatPrice } from "../components/Functions";
 // import { FiInfo } from "react-icons/fi";
 import { ImInfo } from "react-icons/im";
-
+import { Helmet } from "react-helmet";
 function Payment() {
   const [cardNumber, setCardNumber] = useState("");
   const [nameOnCard, setNameOnCard] = useState(""); // kart sahibinin adi
@@ -52,6 +52,10 @@ function Payment() {
 
   return (
     <>
+      <Helmet>
+        <title>Payment</title>
+        <meta name="description" content="payment" />
+      </Helmet>
       {/* payment form */}
       <div className="mx-3">
         {!submitted && (
@@ -207,8 +211,7 @@ function Payment() {
                   htmlFor="cvv"
                   className="inline-flex gap-x-1 mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  CVV <ImInfo/>
-                  
+                  CVV <ImInfo />
                   {/* <svg
                     class="flex-shrink-0 inline w-4 h-4 me-3"
                     aria-hidden="true"
@@ -234,9 +237,10 @@ function Payment() {
             {/* Total Cost */}
             <div className="my-2">
               <hr className="border border-t-2" />
-              <h3 className="my-2 text-base font-bold text-center text-gray-700">TOTAL : <span>{`${formatPrice(totalCost.toFixed(2))}`}</span></h3>
+              <h3 className="my-2 text-base font-bold text-center text-gray-700">
+                TOTAL : <span>{`${formatPrice(totalCost.toFixed(2))}`}</span>
+              </h3>
               <hr className="border border-b-2" />
-              
             </div>
             {/* checkbox */}
             <div>
@@ -262,8 +266,8 @@ function Payment() {
               type="submit"
               className={`my-3 text-black ${
                 !cardNumber || !nameOnCard || !cvv
-                  ? 'bg-gray-300 cursor-not-allowed'
-                  : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               } font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
               disabled={!cardNumber || !nameOnCard || !cvv}
               //  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800

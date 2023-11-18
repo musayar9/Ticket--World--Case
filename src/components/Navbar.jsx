@@ -32,6 +32,7 @@ function Navbar() {
     localStorage.removeItem("onlineUser");
     navigate("/login");
     setFilteredToCategories(concertData);
+    setSidebar(false);
   };
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -55,12 +56,14 @@ function Navbar() {
           {!isValid ? (
             <>
               <NavLink
+                onClick={() => setSidebar(false)}
                 to="/login"
                 className="mr-3 text-sm text-gray-50  bg-gray-500 px-4 py-2 rounded-md"
               >
                 Login
               </NavLink>
               <NavLink
+                onClick={() => setSidebar(false)}
                 to="/signup"
                 className="mr-6 text-sm text-gray-50  bg-gray-500 px-4 py-2 rounded-md"
               >

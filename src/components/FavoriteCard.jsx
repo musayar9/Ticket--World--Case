@@ -5,7 +5,7 @@ import { SiteContext } from "../context/SiteContext";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import LazyLoadImage from "./LazyLoadImage";
 import { dateFormat, formatPrice } from "./Functions";
-
+import {FaHeart} from "react-icons/fa6"
 export default function FavoriteCard({ item }) {
     const {setFavList} = useContext(SiteContext);
     const [showAlert, setShowAlert] = useState(false)
@@ -29,7 +29,7 @@ export default function FavoriteCard({ item }) {
     return (
       <>
         <div className="max-sm:w-[100%] max-md:w-[100%] max-lg:w-[85%] max-xl:w-[80%] max-2xl:w-[60%] max-md:h-[32vh] max-lg:h-[35vh] my-2 h-[25vh] flex   border border-gray-200 rounded-lg bg-[#F5F5F5] dark:border-gray-700 shadow-md shadow-gray-300">
-          <div className="w-[190px] h-[100%] overflow-hidden">
+          <div className="w-[190px] h-[100%] overflow-hidden group">
             <LazyLoadImage
               className="rounded-l-lg object-fill w-[350px] h-[100%]"
               src={item?.image[0]?.photo}
@@ -52,7 +52,7 @@ export default function FavoriteCard({ item }) {
                   item.date
                 )} | ${item.hour}`}</p>
                 <div className="w-[100%]">
-                  <span className="w-[30%] bg-red-100 text-red-800 text-base font-medium me-2 px-2.5 py-0.5 my-2 rounded dark:bg-red-900 dark:text-red-300">{`${formatPrice(
+                  <span className="w-[30%] bg-[#7a7a7a] text-gray-50  duration-150 transition ease-in  text-base font-medium me-2 px-2.5 py-0.5 my-2 rounded">{`${formatPrice(
                     item.ticketPrice
                   )}`}</span>
                 </div>
@@ -61,14 +61,16 @@ export default function FavoriteCard({ item }) {
             <div className="max-md:w-[30%] w-[50%] max-md:w-[60%] max-sm:w-[100%] flex flex-col justify-between h-[100%]">
               <button
                 onClick={() => handleRemoveFavorite(item)}
-                className="text-white ml-auto text-lg m-2"
+                className="text-red-700 ml-auto text-lg m-4"
               >
-                <BsFillBookmarkFill />
+    
+                  <FaHeart
+    />
               </button>
               <div>
                 {showAlert ? (
                   <div
-                    className="text-end mr-2 text-[14px] text-white rounded-lg"
+                    className="text-end mr-2 text-[14px] text-gray-500 rounded-lg"
                     role="alert"
                   >
                     <span className="font-light ">Choose the seat first!</span>
@@ -81,7 +83,7 @@ export default function FavoriteCard({ item }) {
                       setShowAlert(false);
                     }, 1000);
                   }}
-                  className={`m-2 p-2 px-3 float-right flex py-2 rounded-lg bg-red-700 text-gray-50 hover:bg-red-800 hover:text-white-700`}
+                  className={`m-2 p-2 px-3 float-right flex py-2 rounded-lg bg-[#7a7a7a] text-gray-50 hover:bg-[#5f5f5f] duration-150 transition ease-in hover:text-white-700`}
                 >
                   <svg
                     className="w-5 h-5 text-gray-800 dark:text-white mr-2"
