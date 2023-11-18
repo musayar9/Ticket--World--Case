@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logoFive.png";
 function Footer() {
   return (
-    <footer className="mt-24 bottom-0 w-full bg-[#d7d4d4]">
+    <footer className="mt-24 bottom-0 w-full bg-[#333333]">
       <div className="mx-auto w-full max-w-screen-xl p-4 lg:py-4">
         {/* footer logo */}
         <div className="md:mb-6 my-2 flex items-center text-center justify-center">
@@ -130,7 +130,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        {/* payment method */}
+        {/* payment method svg*/}
         <ul className="my-2 lg:my-4 flex justify-center items-center">
           <li className="mx-6">
             <svg

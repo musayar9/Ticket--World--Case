@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -36,10 +36,22 @@ function Navbar() {
   };
   const showSidebar = () => setSidebar(!sidebar);
 
+  const manageClick = (e) =>{
+    if (sidebar && !e.target.closest(".close-menu")) { 
+      showSidebar(); 
+    }
+  }
+  useEffect(() =>{
+    window.addEventListener("click", manageClick);
+    return () => {
+      window.removeEventListener("click", manageClick);
+    };
+  }, [sidebar]);
+
   return (
     <div className="fixed top-0 w-full  z-10 ">
-      <div className="bg-[#F5F5F5] h-[80px] flex justify-between items-center ">
-        <Link to="#" className="ml-[2rem] text-[2rem] bg-none">
+      <div className="bg-[#1A1C20] h-[80px] flex justify-between items-center ">
+        <Link to="#" className="ml-[2rem] text-[2rem] bg-none close-menu">
           <FaIcons.FaBars
             onClick={showSidebar}
             className="w-8 h-8 bg-transparent text-gray-600 hover:text-gray-800 duration-150 ease-out"
