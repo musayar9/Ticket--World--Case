@@ -57,7 +57,7 @@ function Payment() {
         <meta name="description" content="payment" />
       </Helmet>
       {/* payment form */}
-      <div className="mx-3">
+      <div className="mt-24 mx-3">
         {!submitted && (
           <form onSubmit={handleSubmit}>
             <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-black">

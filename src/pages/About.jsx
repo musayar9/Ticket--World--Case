@@ -5,29 +5,10 @@ import {
   IoIosCloseCircle,
   IoMdInformationCircleOutline,
 } from "react-icons/io";
-import { useLocation } from "react-router";
-
 import { SiteContext } from "../context/SiteContext";
 import { Helmet } from "react-helmet";
 
 function About() {
-  const {
-    setFilteredToCategories,
-    concertData,
-    setIsSearch,
-    setIsCategory,
-    setShowPastEvents,
-  } = useContext(SiteContext);
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === "/about") {
-      setFilteredToCategories(concertData);
-      setIsSearch(false);
-      setIsCategory(true);
-      setShowPastEvents(false);
-    }
-  }, []);
 
   const [buttonSelected, setButtonSelected] = useState("aboutButton");
 
