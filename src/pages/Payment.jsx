@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { formatPrice } from "../components/Functions";
-// import { FiInfo } from "react-icons/fi";
+
 import { ImInfo } from "react-icons/im";
 import { Helmet } from "react-helmet";
 function Payment() {
@@ -10,34 +10,68 @@ function Payment() {
   const [cvv, setCVV] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
-  const { totalCost } = useContext(SiteContext)
+  const { totalCost } = useContext(SiteContext);
 
-  //kart no uzunlugu
+  const [checkboxState, setCheckboxState] = useState({
+    "3dsecure": false,
+    informationNotice: false,
+  });
+
+  // checkbox management
+  const handleCheckboxChange = (checkboxId) => {
+    setCheckboxState((prevState) => ({
+      ...prevState,
+      [checkboxId]: !prevState[checkboxId],
+    }));
+  };
+
+  //numeric values
+  const numericValues = (e) => {
+    const numericValue = e.target.value.replace(/\D/g, "");
+    return numericValue;
+  };
+  //card number length
   const handleCardNumberChange = (e) => {
-    if (e.target.value.length <= 16) {
-      setCardNumber(e.target.value);
+    const numericCardNumber = numericValues(e);
+    if (numericCardNumber.length !== 16) {
+      setCardNumber(numericCardNumber);
     }
   };
-
-  //cvv uzunlugu
+  //cvv length
   const handleCVVChange = (e) => {
-    if (e.target.value.length <= 3) {
-      setCVV(e.target.value);
+    const numericCVV = numericValues(e);
+    if (numericCVV.length > 3) {
+      return;
+    }
+    setCVV(numericCVV);
+  };
+
+   // card holder name
+   const handleNameOnCardChange = (e) => {
+    const inputValue = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    if(e.target.value!==inputValue){
+       return;
+    }
+    setNameOnCard(inputValue);
+    
+    const words=inputValue.split(" ");
+    if(words.length<2 || words.length>5){
+      console.log("words length");
+      return;
     }
   };
-
-  // ad soyad kismi
-  const handleNameOnCardChange = (e) => {
-    const inputVal = e.target.value;
-    setNameOnCard(inputVal.replace(/\d/g, ""));
-  };
-
   // form gönderimi
   const handleSubmit = (e) => {
     e.preventDefault();
 
     //odeme onay kismi
-    if (cardNumber && nameOnCard && cvv) {
+    if (
+      cardNumber &&
+      nameOnCard &&
+      cvv &&
+      checkboxState["informationNotice"] &&
+      checkboxState["3dsecure"]
+    ) {
       console.log("Ödeme Onaylandı!");
       setSubmitted(true);
     } else {
@@ -65,21 +99,10 @@ function Payment() {
             </h3>
             {/* payment method */}
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+              <h4 className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
                 Select Payment Method
-              </label>
+              </h4>
               <div className="flex ">
-                {/* <button
-                  type="button"
-                  className={`${
-                    selectedPaymentOption === "troy"
-                      ? "bg-blue-700"
-                      : "bg-gray-300"
-                  } text-white font-medium rounded-lg text-sm px-3 py-2.5 mr-2 focus:outline-none`}
-                  onClick={() => handlePaymentOptionChange("troy")}
-                >
-                  Troy
-                </button> */}
                 <button
                   type="button"
                   className={`${
@@ -159,7 +182,7 @@ function Payment() {
                   Card Number
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="cardNumber"
                   id="cardNumber"
                   value={cardNumber}
@@ -211,19 +234,11 @@ function Payment() {
                   htmlFor="cvv"
                   className="inline-flex gap-x-1 mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  CVV <ImInfo />
-                  {/* <svg
-                    class="flex-shrink-0 inline w-4 h-4 me-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                  </svg> */}
+                  CVV
+                  {/* <ImInfo /> */}
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="cvv"
                   id="cvv"
                   value={cvv}
@@ -245,14 +260,24 @@ function Payment() {
             {/* checkbox */}
             <div>
               <p>
-                <input type="checkbox" id="3dsecure" />
+                <input
+                  type="checkbox"
+                  id="3dsecure"
+                  checked={checkboxState["3dsecure"]}
+                  onChange={() => handleCheckboxChange("3dsecure")}
+                />
                 <label className="mx-2" htmlFor="3dsecure">
                   I want to pay with 3D Secure.
                 </label>
               </p>
               <p>
-                <input type="checkbox" id="kredikayit" />
-                <label className="mx-2" htmlFor="kredikayit">
+                <input
+                  type="checkbox"
+                  id="informationNotice"
+                  checked={checkboxState["informationNotice"]}
+                  onChange={() => handleCheckboxChange("informationNotice")}
+                />
+                <label className="mx-2" htmlFor="informationNotice">
                   I accept{" "}
                   <span className="text-blue-700 font-semibold cursor-pointer">
                     Information Notice Regarding Personal Data Processing
@@ -265,12 +290,21 @@ function Payment() {
             <button
               type="submit"
               className={`my-3 text-black ${
-                !cardNumber || !nameOnCard || !cvv
+                !cardNumber ||
+                !nameOnCard ||
+                !cvv ||
+                !checkboxState["informationNotice"] ||
+                !checkboxState["3dsecure"]
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                  : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
               } font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
-              disabled={!cardNumber || !nameOnCard || !cvv}
-              //  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+              disabled={
+                !cardNumber ||
+                !nameOnCard ||
+                !cvv ||
+                checkboxState["informationNotice"] ||
+                checkboxState["3dsecure"]
+              }
             >
               Confirm Payment
             </button>
