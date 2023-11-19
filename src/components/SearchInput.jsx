@@ -29,7 +29,6 @@ const SearchInput = () => {
 
     setSearchData(filterSearch);
   }, [search]);
-  // console.log(filteredToCategories);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +44,6 @@ const SearchInput = () => {
     }, 2000);
     navigate("/");
   };
-  // console.log("fiteredDate", filteredToCategories);
   return (
     <div
       className="

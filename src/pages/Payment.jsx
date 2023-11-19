@@ -56,7 +56,6 @@ function Payment() {
 
     const words = inputValue.split(" ");
     if (words.length < 2 || words.length > 5) {
-      console.log("words length");
       return;
     }
   };
@@ -230,11 +229,9 @@ function Payment() {
                   className="inline-flex gap-x-1 mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
                   CVV
-                  <span className="text-gray-800 font-normal">
-                    (It is the three-digit code printed on the back of the
-                    card.)
+                  <span className=" text-gray-800 text-xs font-normal flex flex-wrap">
+                    (back of the card)
                   </span>
-                  {/* <ImInfo /> */}
                 </label>
                 <input
                   type="text"

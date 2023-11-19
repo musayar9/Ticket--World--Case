@@ -1,3 +1,5 @@
+import Error from "./Error";
+
 export default function PageNotFound(){
-    return <h1>404 - Page Not Found</h1>
+    return <Error message="404 - Page not found"/>
 }

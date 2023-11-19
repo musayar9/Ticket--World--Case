@@ -29,6 +29,8 @@ export default function SiteContextProvider({ children }) {
 
   const location = useLocation();
   const currentPathName = location.pathname;
+  // scroll
+  window.scrollTo(0, 0);
 
   // location onchange olduğunda selectedSeat i remove et
   useEffect(() => {

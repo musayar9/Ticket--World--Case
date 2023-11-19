@@ -21,7 +21,6 @@ const CategoriesButton = () => {
 
   useEffect(() => {
     const categories = ["all", ...new Set(concertData?.map((v) => v.category))];
-    console.log(categories);
     setUniqueCategory(categories);
   }, [setUniqueCategory, concertData]);
 
@@ -64,7 +63,6 @@ const CategoriesButton = () => {
       setFilteredToCategories(concertData);
     }
   };
-  console.log(filteredToCategories);
 
   const getIconsCategory = (categoryName) => {
     switch (categoryName) {

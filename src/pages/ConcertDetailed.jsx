@@ -8,7 +8,7 @@ import { MdDateRange } from "react-icons/md";
 import en from "date-fns/locale/en-US";
 import { SiteContext } from "../context/SiteContext";
 import { FaHeart, FaMapMarkerAlt } from "react-icons/fa";
-import CardSliderM from "../components/CardSliderM";
+import CardSliderM from "../components/CardSlider";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";

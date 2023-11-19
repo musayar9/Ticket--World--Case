@@ -74,12 +74,6 @@ export default function Card({ item }) {
               isFavorite ? "text-red-600 border-red-600 " : " bg-transparent"
             }`}
           />
-
-          {/* {isFavorite ? (
-            <FaHeart className="  text-[#ff0000] " />
-          ) : (
-            <CiHeart className="" />
-          )} */}
         </button>
       </div>
 

@@ -13,12 +13,10 @@ import { SiteContext } from "../context/SiteContext";
 import { dateLongFormat } from "./Functions";
 
 const HeaderSlider = () => {
-  // const [concertData] = useActivityAxiosApi();
   const { concertData } = useContext(SiteContext);
   const shuffledData = useMemo(() => {
     return [...concertData].sort(() => Math.random() - 0.5);
   });
-  // console.log("shuffled", shuffledData);
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,

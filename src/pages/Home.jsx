@@ -101,15 +101,15 @@ export default function Home() {
 
         {filteredToCategories?.length >= 10 && (
           <button
-            className="border bg-[#949494] opacity-90 px-5 py-2  text-white font-semibold
-                                                    rounded-xl flex items-center justify-between space-x-3
+            className="animate-bounce border bg-[#949494] opacity-90 p-4 text-white font-semibold
+                                                    rounded-full flex items-center justify-between space-x-3
                                                   hover:bg-[#7a7a7a] hover:text-[#f3f3f3] duration-700
                                                     hover:border-[#7a7a7a] active:translate-y-7
                                                     "
             onClick={backToTop}
             style={{ bottom: "20px", right: "40px", position: "fixed" }}
           >
-            <FiArrowUp /> <span>Back To Top</span>
+            <FiArrowUp className="text-lg"/>
           </button>
         )}
 

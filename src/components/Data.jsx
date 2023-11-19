@@ -14,7 +14,6 @@ const Data = () => {
     const fetchData = async () => {
       try {
         const resp = await axios.get("http://localhost:5030/api/activity");
-        console.log("res", resp);
         if (resp.status !== 200) {
           setIsError(true);
           setLoading(false);
@@ -47,7 +46,6 @@ const Data = () => {
 
   //! FİLTERELEME
   const filterData = ["all", ...new Set(value.map((v) => v.category))];
-  console.log("filterData", filterData);
 
   const handleFilter = (category) => {
     if (category === "all") {
@@ -61,8 +59,6 @@ const Data = () => {
     setHead(category);
   };
 
-  console.log("value", value);
-  console.log("filter", filter, filter.length);
 
   const handleDetail = (id) => {
     axios.get(`http://localhost:5030/api/activity/${id}`).then((res) => {

@@ -185,10 +185,10 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="bg-red-900 dark:bg-red-700 flex items-center">
-        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" />
+        {/* <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" /> */}
+      <div className="bg-[#1A1C20] flex justify-center text-center items-center p-5">
 
-        <div className="sm:flex sm:items-center sm:justify-between mx-2">
+        <div className="sm:flex sm:items-center mx-2 text-center">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
             <a href="/" className="hover:underline">

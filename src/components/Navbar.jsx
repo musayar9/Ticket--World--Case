@@ -49,7 +49,7 @@ function Navbar() {
   }, [sidebar]);
 
   return (
-    <div className="fixed top-0 w-full  z-10 ">
+    <div className="fixed top-0 w-full z-10 ">
       <div className="bg-[#1A1C20] h-[80px] flex justify-between items-center ">
         <Link to="#" className="ml-[2rem] text-[2rem] bg-none close-menu">
           <FaIcons.FaBars
