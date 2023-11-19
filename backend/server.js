@@ -41,47 +41,8 @@ app.get("/api/activity", async (req, res) => {
   res.json({ activity });
 });
 
-// app.post("/api/activity", async (req, res) => {
-//   const {
-//     artist,
-//     players,
-//     title,
-//     city,
-//     description,
-//     category,
-//     image,
-//     location,
-//     locationName,
-//     locationMap,
-//     hour,
-//     date,
-//     ticketPrice,
-//   } = req.body;
 
-//   const activity = new Activity({
-//     artist,
-//     players,
-//     title,
-//     city,
-//     description,
-//     category,
-//     image,
-//     location,
-//     locationName,
-//     locationMap,
-//     hour,
-//     date,
-//     ticketPrice,
-//   });
 
-//   try {
-//     const savedActivity = await activity.save();
-//     res.json({ activity: savedActivity });
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
-// Endpoint to filter activities by category
 
 app.post("/api/activity", async (req, res) => {
   const {
@@ -127,6 +88,7 @@ app.post("/api/activity", async (req, res) => {
   }
 });
 
+// Endpoint to filter activities by category
 app.get("/api/activity/category/:category", async (req, res) => {
   const { category } = req.params;
 
@@ -144,6 +106,7 @@ app.get("/api/activity/category/:category", async (req, res) => {
   }
 });
 
+//update data by id
 app.put("/api/activity/:id", async (req, res) => {
   const { id } = req.params;
   const {
