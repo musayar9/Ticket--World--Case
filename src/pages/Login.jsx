@@ -7,6 +7,7 @@ import { useContext, useEffect } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { Helmet } from "react-helmet";
 export default function Login() {
   const {
     showSuccessToast,
