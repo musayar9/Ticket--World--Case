@@ -31,27 +31,12 @@ export default function Home() {
   } = useContext(SiteContext);
   const location = useLocation();
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (isLogin) {
       showSuccessToast("Login success");
       setIsLogin(false);
-    }
-
-    // if (location.pathname === "/") {
-
-    // if(!isSearchInput){
-    //      setFilteredToCategories(concertData);
-    //      setIsCategory(true);
-
-    // }else{
-    //   setFilteredToCategories(filteredToCategories);
-    // }
-
-    // }
-
-    //  setShowPastEvents(false);
-    // setIsCategory(true);
+    }    
     if (location.pathname === "/") {
-      // setFilteredToCategories(concertData);
       setShowPastEvents(false);
       setIsCategory(true);
     }

@@ -16,8 +16,10 @@ export default function Favorites() {
     setShowPastEvents,
   } = useContext(SiteContext);
   const location = useLocation();
-
+ 
+  
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (localStorage.getItem("onlineUser")) {
       setIsValid(true);
     }

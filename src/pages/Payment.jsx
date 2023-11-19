@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { formatPrice } from "../components/Functions";
 import { Helmet } from "react-helmet";
@@ -9,6 +9,10 @@ function Payment() {
   const [cvv, setCVV] = useState("");
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const { totalCost } = useContext(SiteContext);
+
+  useEffect(()=> {
+    window.scrollTo(0, 0);
+  },[])
 
   const [checkboxState, setCheckboxState] = useState({
     "3dsecure": false,

@@ -37,6 +37,10 @@ export default function ConcertDetailed() {
 
   const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
 
+  useEffect(()=> {
+    window.scrollTo(0, 0);
+  },[])
+
   useEffect(() => {
     const getData = async () => {
       try {
