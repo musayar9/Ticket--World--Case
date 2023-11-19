@@ -1,14 +1,12 @@
 import React, { useState, useContext } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { formatPrice } from "../components/Functions";
-
-import { ImInfo } from "react-icons/im";
 import { Helmet } from "react-helmet";
+
 function Payment() {
   const [cardNumber, setCardNumber] = useState("");
-  const [nameOnCard, setNameOnCard] = useState(""); // kart sahibinin adi
+  const [nameOnCard, setNameOnCard] = useState("");
   const [cvv, setCVV] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const { totalCost } = useContext(SiteContext);
 
@@ -32,10 +30,12 @@ function Payment() {
   };
   //card number length
   const handleCardNumberChange = (e) => {
-    const numericCardNumber = numericValues(e);
-    if (numericCardNumber.length !== 16) {
-      setCardNumber(numericCardNumber);
-    }
+    const numericCardNumber = e.target.value.replace(/\D/g, "");
+    let formattedCardNumber = numericCardNumber.slice(0, 16);
+    formattedCardNumber = formattedCardNumber
+      .replace(/\s/g, "")
+      .replace(/(.{4})/g, "$1 ");
+    setCardNumber(formattedCardNumber.trim());
   };
   //cvv length
   const handleCVVChange = (e) => {
@@ -46,42 +46,34 @@ function Payment() {
     setCVV(numericCVV);
   };
 
-   // card holder name
-   const handleNameOnCardChange = (e) => {
+  // card holder name
+  const handleNameOnCardChange = (e) => {
     const inputValue = e.target.value.replace(/[^a-zA-Z\s]/g, "");
-    if(e.target.value!==inputValue){
-       return;
-    }
-    setNameOnCard(inputValue);
-    
-    const words=inputValue.split(" ");
-    if(words.length<2 || words.length>5){
-      console.log("words length");
+    if (e.target.value !== inputValue) {
       return;
     }
-  };
-  // form gönderimi
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    setNameOnCard(inputValue);
 
-    //odeme onay kismi
-    if (
-      cardNumber &&
-      nameOnCard &&
-      cvv &&
-      checkboxState["informationNotice"] &&
-      checkboxState["3dsecure"]
-    ) {
-      console.log("Ödeme Onaylandı!");
-      setSubmitted(true);
-    } else {
-      console.log("Lütfen tüm alanları doldurun!");
+    const words = inputValue.split(" ");
+    if (words.length < 2 || words.length > 5) {
+      console.log("words length");
+      return;
     }
   };
 
   //odeme secenegi
   const handlePaymentOptionChange = (option) => {
     setSelectedPaymentOption(option);
+  };
+  const [expirationDate, setExpirationDate] = useState("");
+
+  const handleExpirationDateChange = (e) => {
+    const formattedDate = e.target.value
+      .replace(/\D/g, "")
+      .slice(0, 4)
+      .replace(/(\d{2})(\d{0,2})/, "$1/$2");
+
+    setExpirationDate(formattedDate);
   };
 
   return (
@@ -91,9 +83,9 @@ function Payment() {
         <meta name="description" content="payment" />
       </Helmet>
       {/* payment form */}
-      <div className="mt-24 mx-3">
-        {!submitted && (
-          <form onSubmit={handleSubmit}>
+      <div className="mt-24 mx-3 px-44 pt-16">
+        {
+          <form>
             <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-black">
               Payment Information
             </h3>
@@ -105,11 +97,10 @@ function Payment() {
               <div className="flex ">
                 <button
                   type="button"
-                  className={`${
-                    selectedPaymentOption === "mastercard"
-                      ? "bg-blue-700"
-                      : "bg-gray-300"
-                  } text-white font-medium rounded-lg text-sm px-1.5 py-1 mr-2 focus:outline-none`}
+                  className={`${selectedPaymentOption === "mastercard"
+                    ? "bg-blue-700"
+                    : "bg-gray-300"
+                    } text-white font-medium rounded-lg text-sm px-1.5 py-1 mr-2 focus:outline-none`}
                   onClick={() => handlePaymentOptionChange("mastercard")}
                 >
                   <svg
@@ -139,11 +130,10 @@ function Payment() {
                 </button>
                 <button
                   type="button"
-                  className={`${
-                    selectedPaymentOption === "visa"
-                      ? "bg-blue-700"
-                      : "bg-gray-300"
-                  } text-white font-medium rounded-lg text-sm px-1.5 py-1 focus:outline-none`}
+                  className={`${selectedPaymentOption === "visa"
+                    ? "bg-blue-700"
+                    : "bg-gray-300"
+                    } text-white font-medium rounded-lg text-sm px-1.5 py-1 focus:outline-none`}
                   onClick={() => handlePaymentOptionChange("visa")}
                 >
                   <svg
@@ -187,9 +177,10 @@ function Payment() {
                   id="cardNumber"
                   value={cardNumber}
                   onChange={handleCardNumberChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                   placeholder="1234 5678 9012 3456"
                   required=""
+                  disabled={totalCost === 0}
                 />
               </div>
               {/* card holder name */}
@@ -206,12 +197,14 @@ function Payment() {
                   id="nameOnCard"
                   value={nameOnCard}
                   onChange={handleNameOnCardChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
+                  className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
+                  placeholder="Lydia Harris"
                   required=""
+                  disabled={totalCost === 0}
                 />
               </div>
               {/* expiration date */}
+
               <div>
                 <label
                   htmlFor="expirationDate"
@@ -220,12 +213,14 @@ function Payment() {
                   Expiration Date
                 </label>
                 <input
-                  type="month"
+                  type="text"
                   name="expirationDate"
                   id="expirationDate"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  //   placeholder="MM/YYYY"
-                  required=""
+                  className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
+                  value={expirationDate}
+                  onChange={handleExpirationDateChange}
+                  placeholder="mm/yy"
+                  disabled={totalCost === 0}
                 />
               </div>
               {/* cvv */}
@@ -235,6 +230,10 @@ function Payment() {
                   className="inline-flex gap-x-1 mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
                   CVV
+                  <span className="text-gray-800 font-normal">
+                    (It is the three-digit code printed on the back of the
+                    card.)
+                  </span>
                   {/* <ImInfo /> */}
                 </label>
                 <input
@@ -243,9 +242,9 @@ function Payment() {
                   id="cvv"
                   value={cvv}
                   onChange={handleCVVChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="It is the three-digit code printed on the back of the card."
-                  required=""
+                  className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
+                  placeholder="573"
+                  disabled={totalCost === 0}
                 />
               </div>
             </div>
@@ -276,6 +275,7 @@ function Payment() {
                   id="informationNotice"
                   checked={checkboxState["informationNotice"]}
                   onChange={() => handleCheckboxChange("informationNotice")}
+                  disabled={totalCost === 0}
                 />
                 <label className="mx-2" htmlFor="informationNotice">
                   I accept{" "}
@@ -288,28 +288,30 @@ function Payment() {
             </div>
             {/* pay */}
             <button
-              type="submit"
-              className={`my-3 text-black ${
-                !cardNumber ||
+              className={`my-3 text-black ${!cardNumber ||
                 !nameOnCard ||
-                !cvv ||
+                cardNumber.replace(/\s/g, "").length !== 16 ||
+                !expirationDate ||
+                cvv.length !== 3 ||
                 !checkboxState["informationNotice"] ||
                 !checkboxState["3dsecure"]
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
-              } font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
+                } font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
               disabled={
                 !cardNumber ||
                 !nameOnCard ||
-                !cvv ||
-                checkboxState["informationNotice"] ||
-                checkboxState["3dsecure"]
+                cardNumber.replace(/\s/g, "").length !== 16 ||
+                !expirationDate ||
+                cvv.length !== 3 ||
+                !checkboxState["informationNotice"] ||
+                !checkboxState["3dsecure"]
               }
             >
               Confirm Payment
             </button>
           </form>
-        )}
+        }
       </div>
     </>
   );
