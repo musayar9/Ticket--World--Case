@@ -1,0 +1,1 @@
+export const dummyConcertImage = "https://cdn.myportfolio.com/e6901fe0-9c7e-4b48-a845-779fd19d2eae/c2286f56-d1a0-4e28-846c-4b71b792af35_rw_1200.jpg?h=dc0522c11882503302b66694a462460e"

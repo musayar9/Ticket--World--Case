@@ -1,0 +1,187 @@
+{
+  "users": [
+    {
+      "id": "67399fa1-7091-4bbc-b4db-5a35d749b6ec",
+      "email": "admin@admin.com",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "password": "123456",
+      "terms": true,
+      "favorites": [
+        {
+          "_id": "6546087319ea40ef9d79bb2e",
+          "artist": "Cem Adrian",
+          "players": [
+            {
+              "name": "Cem Adrian",
+              "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjzScPKPBjDivV4iscS4Z-vQ1Xhwqzgl8Qug&usqp=CAU",
+              "_id": "6546087319ea40ef9d79bb2f"
+            }
+          ],
+          "title": "Cem  Adrian Denizli Konseri",
+          "city": "Denizli",
+          "description": "Cem Adrian, 8 Kasım akşamı Jolly Joker Denizli sahnesinde.",
+          "category": "concerts",
+          "image": [
+            {
+              "photo": "https://i.hbrcdn.com/haber/2021/05/03/cem-adrian-kimdir-cem-adrian-kac-yasinda-nereli-14106540_9871_amp.jpg",
+              "_id": "655104716c7da97a7d998756"
+            },
+            {
+              "photo": "https://pusulagazetesicomtr.teimg.com/crop/1280x720/pusulagazetesi-com-tr/uploads/2023/05/a3c290a5-82a0-41a5-af6e-5559eff38b3e.jpeg",
+              "_id": "655104716c7da97a7d998757"
+            },
+            {
+              "photo": "https://egetelgrafcom.teimg.com/crop/1280x720/egetelgraf-com/uploads/2023/09/cem-adrian-konserinde-hayranlarina-sitem-etti-burasi-ciftlesebilecegiz-bir-yer-degil-1.jpg",
+              "_id": "655104716c7da97a7d998758"
+            },
+            {
+              "photo": "https://cemadrian.net/wp-content/uploads/2020/10/cem-adrian-yolun-sonunda-piyano-1024x1024.jpg",
+              "_id": "655104716c7da97a7d998759"
+            }
+          ],
+          "location": "Cumhuriyet, Tenis Kulübü, 1891. Sk. Üzeri No:198, 20160 Pamukkale/Denizli",
+          "locationName": "Jolly Joker Denizli",
+          "ticketPrice": "678",
+          "hour": "22:00",
+          "date": "2023-11-08",
+          "__v": 0,
+          "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.1133429615643!2d29.116118611394704!3d37.76394047187124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c73f0f9a3043eb%3A0x2395795fac6ab796!2sJolly%20Joker%20Denizli!5e0!3m2!1sen!2str!4v1699200253754!5m2!1sen!2str"
+        },
+        {
+          "_id": "65460bb819ea40ef9d79bc5d",
+          "artist": "Zakkum",
+          "players": [
+            {
+              "name": "Yusuf Demirkol",
+              "personImage": "https://i.discogs.com/com8vd8UUXXkHERfEE6fY4IHPldCKIMu1stYFs25-VA/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTM2MTMw/NjAtMTU1NDIyNDY2/My0yOTc3LmpwZWc.jpeg",
+              "_id": "65460bb819ea40ef9d79bc5e"
+            },
+            {
+              "name": "Emre Yılmaztürk",
+              "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYILXZv3pYpx-mw86lqBXQigAfPJgpBxqpQ&usqp=CAU",
+              "_id": "65460bb819ea40ef9d79bc5f"
+            },
+            {
+              "name": "Eren Parlakgümüş",
+              "personImage": "https://blog.reklamverelim.com/upload/21/eren-parlakgumus.jpg",
+              "_id": "65460bb819ea40ef9d79bc60"
+            },
+            {
+              "name": "Cem Senyücel",
+              "personImage": "https://galeri2.uludagsozluk.com/202/cem-senyucel_268124.jpg",
+              "_id": "65460bb819ea40ef9d79bc61"
+            }
+          ],
+          "title": "Zakkum İstanbul Konseri",
+          "city": "İstanbul",
+          "description": "Zakkum, Hayal Kahvesi Aqua Florya sahnesinde...",
+          "category": "concerts",
+          "image": [
+            {
+              "photo": "https://cdn1.ntv.com.tr/gorsel/4erg1-JzJkKt7uPf3EjkUg.jpg?width=960&mode=crop&scale=both",
+              "_id": "65460bb819ea40ef9d79bc62"
+            },
+            {
+              "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW6oRdETdDqIymYdQLCwOB7B4mH2AmfO9dD7gFH6FHRFxWMeZDykQvL4T50wsXtl-Ptco&usqp=CAU",
+              "_id": "65460bb819ea40ef9d79bc63"
+            },
+            {
+              "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfIAdvo5FryDKl-ErwG3bxvlUalNKk7mcbg&usqp=CAU",
+              "_id": "65460bb819ea40ef9d79bc64"
+            }
+          ],
+          "location": "Yeşilköy Halkalı Cd.Şenlikköy Mahallesi, 34153 FLORYA / İstanbul",
+          "locationName": "Hayal Kahvesi Aqua Florya",
+          "ticketPrice": "168",
+          "hour": "22:00",
+          "date": "2023-11-18",
+          "__v": 0,
+          "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3012.694589058837!2d28.793966411553416!3d40.96626897123692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa3fc0c4708ff%3A0x40f0f14f847530ad!2sHayal%20Kahvesi!5e0!3m2!1sen!2str!4v1699200651130!5m2!1sen!2str"
+        }
+      ],
+      "cart": [
+        {
+          "item": {
+            "_id": "65460b0f19ea40ef9d79bbc9",
+            "artist": "Zakkum",
+            "players": [
+              {
+                "name": "Yusuf Demirkol",
+                "personImage": "https://i.discogs.com/com8vd8UUXXkHERfEE6fY4IHPldCKIMu1stYFs25-VA/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTM2MTMw/NjAtMTU1NDIyNDY2/My0yOTc3LmpwZWc.jpeg",
+                "_id": "65460b0f19ea40ef9d79bbca"
+              },
+              {
+                "name": "Emre Yılmaztürk",
+                "personImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYILXZv3pYpx-mw86lqBXQigAfPJgpBxqpQ&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbcb"
+              },
+              {
+                "name": "Eren Parlakgümüş",
+                "personImage": "https://blog.reklamverelim.com/upload/21/eren-parlakgumus.jpg",
+                "_id": "65460b0f19ea40ef9d79bbcc"
+              },
+              {
+                "name": "Cem Senyücel",
+                "personImage": "https://galeri2.uludagsozluk.com/202/cem-senyucel_268124.jpg",
+                "_id": "65460b0f19ea40ef9d79bbcd"
+              }
+            ],
+            "title": "Zakkum Aksaray Konseri",
+            "city": "Aksaray",
+            "description": "Zakkum, 09 Kasım akşamı Sonat Sahne Aksaray'da...",
+            "category": "concerts",
+            "image": [
+              {
+                "photo": "https://cdn1.ntv.com.tr/gorsel/4erg1-JzJkKt7uPf3EjkUg.jpg?width=960&mode=crop&scale=both",
+                "_id": "65460b0f19ea40ef9d79bbce"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW6oRdETdDqIymYdQLCwOB7B4mH2AmfO9dD7gFH6FHRFxWMeZDykQvL4T50wsXtl-Ptco&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbcf"
+              },
+              {
+                "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfIAdvo5FryDKl-ErwG3bxvlUalNKk7mcbg&usqp=CAU",
+                "_id": "65460b0f19ea40ef9d79bbd0"
+              }
+            ],
+            "location": "Bayram Baba, 3512. Sk. No:8, 68200 Gençosman/Aksaray Merkez/Aksaray",
+            "locationName": "Sonat Sahne",
+            "ticketPrice": "335",
+            "hour": "21:00",
+            "date": "2023-11-10",
+            "__v": 0,
+            "locationMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3127.6763981383483!2d34.03790131142445!3d38.37960687172175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d6713779e2b48d%3A0x4245bca12a01d9ed!2sBayram%20Baba%2C%203512.%20Sk.%20No%3A8%2C%2068010%20Gen%C3%A7osman%2FAksaray%20Merkez%2FAksaray!5e0!3m2!1sen!2str!4v1699200509806!5m2!1sen!2str"
+          },
+          "selectedSeats": [
+            {
+              "rowIndex": 5,
+              "columnIndex": 12
+            },
+            {
+              "rowIndex": 5,
+              "columnIndex": 14
+            },
+            {
+              "rowIndex": 6,
+              "columnIndex": 16
+            }
+          ]
+        }
+      ],
+      "tickets": [],
+      "avatar": "blob:http://localhost:3000/9995e6e5-06bd-4637-8959-7d7049a0ea67"
+    },
+    {
+      "id": "679769fb-c4fb-47d3-809c-7093ddcfe24d",
+      "email": "deneme@deneme.com",
+      "firstName": "Kübra",
+      "lastName": "Emektar",
+      "password": "123456",
+      "terms": true,
+      "favorites": [],
+      "cart": [],
+      "avatar": ""
+    }
+  ]
+}
