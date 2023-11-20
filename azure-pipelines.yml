@@ -7,7 +7,9 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Azure Pipelines
+  #name: docker
+  vmImage: windows-2019
 
 steps:
 - task: CopyFiles@2
