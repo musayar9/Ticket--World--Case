@@ -77,12 +77,10 @@ export default function Card({ item }) {
         </button>
       </div>
 
-      <div className="p-4 flex flex-col justify-between">
-   
-          <h5 className="mb-2 text-lg font-bold tracking-tight truncate text-gray-900 ">
-            {item.title}
-          </h5>
-
+      <div className="p-4 flex -mt-6 flex-col justify-between">
+        <h5 className="mb-2 text-lg font-bold tracking-tight truncate text-gray-900 ">
+          {item.title}
+        </h5>
 
         <p className="font-normal flex items-center  text-gray-700 0">
           <FaMapMarkerAlt />{" "}
