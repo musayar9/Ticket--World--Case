@@ -27,6 +27,7 @@ export default function Login() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (isSignup) {
       showSuccessToast("Registry success");
       setIsSignup(false);

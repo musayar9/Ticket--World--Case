@@ -51,7 +51,7 @@ export default function Card({ item }) {
 
   return (
     <div
-      className="max-w-md   w-[420px] md:w-[280px] h-[70vh]  m-3.5 flex flex-col justify-between border border-gray-200 rounded-lg
+      className="max-w-md   w-[420px] md:w-[280px]   m-2.5 flex flex-col justify-between border border-gray-200 rounded-lg
     shadow-md shadow-gray-300 bg-[#F5F5F5]"
     >
       <div className="relative">
@@ -77,12 +77,12 @@ export default function Card({ item }) {
         </button>
       </div>
 
-      <div className="p-5 flex flex-col justify-between">
-        <a href="#">
+      <div className="p-4 flex flex-col justify-between">
+   
           <h5 className="mb-2 text-lg font-bold tracking-tight truncate text-gray-900 ">
             {item.title}
           </h5>
-        </a>
+
 
         <p className="font-normal flex items-center  text-gray-700 0">
           <FaMapMarkerAlt />{" "}
