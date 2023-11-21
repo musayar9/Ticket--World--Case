@@ -51,7 +51,7 @@ export default function Card({ item }) {
 
   return (
     <div
-      className="max-w-md   w-[420px] md:w-[280px]   m-2.5 flex flex-col justify-between border border-gray-200 rounded-lg
+      className="max-w-md   w-[420px] md:w-[280px]   m-3.5 flex flex-col justify-between border border-gray-200 rounded-lg
     shadow-md shadow-gray-300 bg-[#F5F5F5]"
     >
       <div className="relative">
