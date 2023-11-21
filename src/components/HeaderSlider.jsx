@@ -25,6 +25,7 @@ const HeaderSlider = () => {
     autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
+    // fade:true
   };
 
   return (
