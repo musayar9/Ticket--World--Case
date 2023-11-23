@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosConcertApi = axios.create({
-    baseURL : "http://localhost:5030/api",
+    baseURL : "http://ticket-verse.azurewebsites.net/api",
     headers : {
      "Content-Type":" application/json"
     }
