@@ -22,7 +22,7 @@ const SelectInput = () => {
 
   useEffect(() => {
     const fetchCity = async () => {
-      const res = await axios.get("http://localhost:5030/api/city");
+      const res = await axios.get("http://ticket-verse.azurewebsites.net/api/city");
       const data = await res.data.city;
       setCity(data);
     };
