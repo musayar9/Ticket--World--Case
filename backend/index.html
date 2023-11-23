@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin-top: 50px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .activity {
+        margin: 10px;
+        width: 1200px;
+      }
+
+      .activity h3 {
+        font-size: 24px;
+        text-decoration: underline;
+        margin-bottom: 5px;
+      }
+      table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome To Ticket World</h1>
+
+    <div class="activity">
+      <h3>Activity Crud</h3>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>HTTP Verb</th>
+          <th>POST body</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>/api/activity</td>
+          <td>GET</td>
+          <td>Empty</td>
+          <td>List all activity.</td>
+        </tr>
+        <tr>
+          <td>/api/activity</td>
+          <td>POST</td>
+          <td>
+            { "title": "İzmir Gastrofest", "city": "İzmir", "description":
+            "İZMİR GASTROFEST 12 KASIM PAZAR...", "category": "festivals",
+            "image": [ { "photo":
+            "https://cdn.bubilet.com.tr/files/Etkinlik/izmir-gastrofest-80683.png"
+            } ], "location": "Alsancak, Umurbey Mahallesi, 35000",
+            "locationName": "Alsancak Tarihi Hava Gazı Fabrikası",
+            "ticketPrice": "300", "hour": "09:00", "date": "2023-11-12",
+            "locationMap":
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125..." }
+          </td>
+          <td>Create a new activity.</td>
+        </tr>
+        <tr>
+          <td>/api/activity/:id</td>
+          <td>GET</td>
+          <td>Empty</td>
+          <td>Get a activity.</td>
+        </tr>
+        <tr>
+          <td>/api/activity/:id</td>
+          <td>PUT</td>
+          <td>
+            {'title':'Zakkum İstanbul Konseri', 'city':'İstanbul',
+            category:"theatre"}
+          </td>
+          <td>Update a activity with new info.</td>
+        </tr>
+        <tr>
+          <td>/api/activity/:id</td>
+          <td>DELETE</td>
+          <td>Empty</td>
+          <td>Delete a activity.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="activity">
+      <h3>City Crud</h3>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>HTTP Verb</th>
+          <th>POST body</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>/api/city</td>
+          <td>GET</td>
+          <td>Empty</td>
+          <td>List all city.</td>
+        </tr>
+        <tr>
+          <td>/api/city</td>
+          <td>POST</td>
+          <td>{ "plate": "58", "name": "Sivas" }</td>
+          <td>Create a new city.</td>
+        </tr>
+        <tr>
+          <td>/api/city/:id</td>
+          <td>GET</td>
+          <td>Empty</td>
+          <td>Get a city.</td>
+        </tr>
+        <tr>
+          <td>/api/city/:id</td>
+          <td>PUT</td>
+          <td>{'plate':"34",name':'İstanbul'}</td>
+          <td>Update a city with new info.</td>
+        </tr>
+        <tr>
+          <td>/api/city/:id</td>
+          <td>DELETE</td>
+          <td>Empty</td>
+          <td>Delete a city.</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

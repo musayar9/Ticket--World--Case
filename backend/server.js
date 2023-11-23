@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const path = require("path");
 const app = express();
 app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,16 +33,29 @@ const citySchema = new mongoose.Schema({
   name: String,
 });
 
+const userSchema = new mongoose.Schema({
+  email: String,
+  firstName: String,
+  lastName: String,
+  password: String,
+  terms: Boolean,
+  favorites: [],
+  cart: [],
+  tickets: [],
+  avatar: String,
+});
+
 const Activity = mongoose.model("Activity", activitySchema);
 const City = mongoose.model("City", citySchema);
+const User = mongoose.model("User", userSchema);
 // Define your routes
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 app.get("/api/activity", async (req, res) => {
   const activity = await Activity.find({});
   res.json({ activity });
 });
-
-
-
 
 app.post("/api/activity", async (req, res) => {
   const {
@@ -60,13 +73,13 @@ app.post("/api/activity", async (req, res) => {
     ticketPrice,
   } = req.body;
 
-  const players = req.body.players || []; 
+  const players = req.body.players || [];
   if (players.length === 0) {
     req.body.players = null;
   }
   const activity = new Activity({
     artist,
-    players: req.body.players, 
+    players: req.body.players,
     title,
     city,
     description,
@@ -267,6 +280,103 @@ app.delete("/api/city/:id", async (req, res) => {
   }
 });
 
+//User Schema
+
+app.get("/api/users", async (req, res) => {
+  const user = await User.find({});
+  res.json({ user });
+});
+
+//new user add
+app.post("/api/users", async (req, res) => {
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    terms,
+    favorites,
+    cart,
+    tickets,
+    avatar,
+  } = req.body;
+
+  const user = new User({
+    email,
+    password,
+    firstName,
+    lastName,
+    terms,
+    favorites,
+    cart,
+    tickets,
+    avatar,
+  });
+  try {
+    const savedUser = await user.save();
+    res.json({ user: savedUser });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+//update user
+
+app.put("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    terms,
+    favorites,
+    cart,
+    tickets,
+    avatar,
+  } = req.body;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        email,
+        password,
+        firstName,
+        lastName,
+        terms,
+        favorites,
+        cart,
+        tickets,
+        avatar,
+      },
+      { new: true }
+    );
+
+    if (updatedUser) {
+      res.json({ user: updatedUser });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.delete("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findByIdAndDelete(id);
+    if (user) {
+      res.status(200).json({ message: "User deleted" });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
 // Start the Express server
 const port = process.env.PORT || 5030;
 app.listen(port, () => {
