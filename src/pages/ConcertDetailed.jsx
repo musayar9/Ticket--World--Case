@@ -82,7 +82,7 @@ export default function ConcertDetailed() {
 
     try {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      await axiosConcertApi.put(`/users/${updatedUser._id}`, { ...updatedUser });
       setIsFavorite(!isFavorite);
     } catch (error) {
       console.error("Favorite update error:", error.message);
@@ -111,7 +111,7 @@ export default function ConcertDetailed() {
 
     try {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      await axiosConcertApi.put(`/users/${updatedUser._id}`, { ...updatedUser });
       setCartList(updatedUser?.cart);
       showSuccessToast("Added to Cart")
     } catch (error) {

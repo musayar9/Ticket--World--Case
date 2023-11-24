@@ -9,6 +9,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import LazyLoadImage from "./LazyLoadImage";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function Card({ item }) {
   const { setFavList } = useContext(SiteContext);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -42,7 +43,7 @@ export default function Card({ item }) {
 
     try {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      await axiosConcertApi.put(`/users/${updatedUser._id}`, { ...updatedUser });
       setIsFavorite(!isFavorite);
     } catch (error) {
       console.error("Favori güncelleme hatası:", error.message);

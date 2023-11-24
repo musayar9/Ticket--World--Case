@@ -6,6 +6,7 @@ import { axiosUserApi } from "../axios/axiosUserApi";
 import LazyLoadImage from "./LazyLoadImage";
 import { dateFormat, formatPrice } from "./Functions";
 import {FaHeart} from "react-icons/fa6"
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function FavoriteCard({ item }) {
     const {setFavList} = useContext(SiteContext);
     const [showAlert, setShowAlert] = useState(false)
@@ -19,7 +20,7 @@ export default function FavoriteCard({ item }) {
                 favorites: storedOnlineUser.favorites.filter((fav) => fav._id !== item._id),
             };
             localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-            await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+            await axiosConcertApi.put(`/users/${updatedUser._id}`, { ...updatedUser });
             setFavList(updatedUser.favorites);
         } catch (error) {
             console.error("Favori kaldırma işlemi sırasında bir hata oluştu:", error);

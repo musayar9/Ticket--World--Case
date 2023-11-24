@@ -8,6 +8,7 @@ import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Helmet } from "react-helmet";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function Login() {
   const {
     showSuccessToast,
@@ -40,9 +41,10 @@ export default function Login() {
   };
 
   const handleLogin = async (loginUser) => {
-    const response = await axiosUserApi.get("/users");
+    const response = await axiosConcertApi.get("/users");
+    console.log(response);
     const responseData = await response.data;
-    const filtered = responseData?.find(
+    const filtered = responseData.user?.find(
       (user) => user.email === loginUser.email
     );
     if (filtered === undefined) {

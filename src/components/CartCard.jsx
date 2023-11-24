@@ -4,6 +4,7 @@ import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { dateFormat, formatPrice } from "./Functions";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 
 export default function CartCard({ item, selectedSeats }) {
     const { cartList, setCartList } = useContext(SiteContext)
@@ -31,7 +32,7 @@ export default function CartCard({ item, selectedSeats }) {
 
             try {
                 localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-                await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+                await axiosConcertApi.put(`/users/${updatedUser._id}`, { ...updatedUser });
                 setCartList(updatedUser.cart);
             } catch (error) {
                 console.error("Sepette kaldırma işlemi sırasında bir hata oluştu:", error);
