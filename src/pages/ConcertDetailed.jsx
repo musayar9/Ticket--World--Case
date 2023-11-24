@@ -12,11 +12,18 @@ import CardSliderM from "../components/CardSlider";
 import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
-import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from "react-share";
 import LazyLoadImage from "../components/LazyLoadImage";
-import { formatPrice } from "../components/Functions"
+import { formatPrice } from "../components/Functions";
 import { CiHeart } from "react-icons/ci";
-import {dateFormat} from "../components/Functions"
+import { dateFormat } from "../components/Functions";
 import { Helmet } from "react-helmet";
 export default function ConcertDetailed() {
   const params = useParams();
@@ -32,19 +39,19 @@ export default function ConcertDetailed() {
     setCartList,
     showSuccessToast,
     setFavList,
-    isValid
+    isValid,
   } = useContext(SiteContext);
 
-  const [selectedConcertInfo, setSelectedConcertInfo] = useState({})
+  const [selectedConcertInfo, setSelectedConcertInfo] = useState({});
 
-  useEffect(()=> {
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axiosConcertApi(`/activity/${params.id}`);
+        const response = await axiosConcertApi(`/api/activity/${params.id}`);
         const responseData = await response.data;
         setConcertData(responseData.activity);
       } catch (error) {
@@ -74,7 +81,7 @@ export default function ConcertDetailed() {
     } else {
       newFavorites = [...storedOnlineUser?.favorites, item];
     }
-    setFavList(newFavorites)
+    setFavList(newFavorites);
     const updatedUser = {
       ...storedOnlineUser,
       favorites: newFavorites,
@@ -89,21 +96,19 @@ export default function ConcertDetailed() {
     }
   };
 
-
-
   const handleAddCart = async (item) => {
-    setSelectedSeats(selectedSeats)
+    setSelectedSeats(selectedSeats);
 
     const updatedConcertInfo = {
       item,
-      selectedSeats
-    }
-    setSelectedConcertInfo(updatedConcertInfo)
+      selectedSeats,
+    };
+    setSelectedConcertInfo(updatedConcertInfo);
 
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     let newCartList = [...storedOnlineUser?.cart, updatedConcertInfo];
 
-    await setCartList(newCartList)
+    await setCartList(newCartList);
     const updatedUser = {
       ...storedOnlineUser,
       cart: newCartList,
@@ -113,7 +118,7 @@ export default function ConcertDetailed() {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
       await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
       setCartList(updatedUser?.cart);
-      showSuccessToast("Added to Cart")
+      showSuccessToast("Added to Cart");
     } catch (error) {
       console.error("Favorite update error:", error.message);
     }

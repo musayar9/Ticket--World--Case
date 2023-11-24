@@ -9,7 +9,7 @@ export default function useCityAxiosApi() {
 
     const getData = async () => {
         try {
-            const response = await axiosConcertApi.get("/city");
+            const response = await axiosConcertApi.get("/api/city");
             const responseData = await response.data;
             if (response.status !== 200) {
                 setIsError(true)

@@ -67,11 +67,11 @@ export default function SiteContextProvider({ children }) {
   const [filteredToCategories, setFilteredToCategories] = useState();
   const [isCategory, setIsCategory] = useState(true);
   const [showPastEvents, setShowPastEvents] = useState(false);
-  const [isSearch, setIsSearch] = useState(false)
-  const [isSearchInput, setIsSearchInput] = useState(false)
+  const [isSearch, setIsSearch] = useState(false);
+  const [isSearchInput, setIsSearchInput] = useState(false);
   const getData = async () => {
     try {
-      const response = await axiosConcertApi.get("/activity");
+      const response = await axiosConcertApi.get("/api/activity");
       const responseData = response.data;
       if (response.status !== 200) {
         setIsError(true);
@@ -86,8 +86,7 @@ export default function SiteContextProvider({ children }) {
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
-      setError(error);
-      throw new Error(error);
+      console.log("erorr", error.message);
     }
   };
   useEffect(() => {

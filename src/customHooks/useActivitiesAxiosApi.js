@@ -10,7 +10,7 @@ export default function useActivitiesAxiosApi() {
   const [sidebar, setSidebar] = useState(false);
   const getData = async () => {
     try {
-      const response = await axiosConcertApi.get("/activity");
+      const response = await axiosConcertApi.get("/api/activity");
       const responseData = response.data;
       if (response.status !== 200) {
         setIsError(true);
