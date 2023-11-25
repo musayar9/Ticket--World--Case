@@ -4,10 +4,10 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- deploy-v1
 
 pool:
-  name: ms-activity
+  vmImage: ubuntu-latest
 
 steps:
 - task: CopyFiles@2
