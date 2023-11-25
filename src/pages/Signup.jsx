@@ -2,21 +2,23 @@ import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { axiosUserApi } from "../axios/axiosUserApi";
 import { SiteContext } from "../context/SiteContext";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Helmet } from "react-helmet";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 
 export default function Signup() {
-  const { showErrorToast, navigate, setIsSignup } = useContext(SiteContext)
+  const { showErrorToast, navigate, setIsSignup } = useContext(SiteContext);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
-    password: Yup.string().min(6, "Password must contain at least 6 characters").required("Required"),
+    password: Yup.string()
+      .min(6, "Password must contain at least 6 characters")
+      .required("Required"),
     terms: Yup.boolean().oneOf([true]),
   });
 
@@ -29,16 +31,18 @@ export default function Signup() {
   };
 
   const handleSubmit = async (user) => {
-    const response = await axiosUserApi.get("/users");
+    const response = await axiosConcertApi.get("/api/users");
     const responseData = await response.data;
-    const filtered = responseData.find((item) => item.email === user.email);
+    const filtered = responseData.user?.find(
+      (item) => item.email === user.email
+    );
 
     if (filtered !== undefined) {
       showErrorToast("User exist");
     } else {
-      axiosUserApi.post("/users", user);
-      setIsSignup(true)
-      navigate("/login")
+      axiosConcertApi.post("/api/users", user);
+      setIsSignup(true);
+      navigate("/login");
     }
   };
 

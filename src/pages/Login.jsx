@@ -1,6 +1,5 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { axiosUserApi } from "../axios/axiosUserApi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
@@ -8,6 +7,7 @@ import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Helmet } from "react-helmet";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function Login() {
   const {
     showSuccessToast,
@@ -40,9 +40,9 @@ export default function Login() {
   };
 
   const handleLogin = async (loginUser) => {
-    const response = await axiosUserApi.get("/users");
+    const response = await axiosConcertApi.get("/api/users");
     const responseData = await response.data;
-    const filtered = responseData?.find(
+    const filtered = responseData.user?.find(
       (user) => user.email === loginUser.email
     );
     if (filtered === undefined) {

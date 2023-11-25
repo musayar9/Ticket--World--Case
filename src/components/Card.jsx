@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
-import { axiosUserApi } from "../axios/axiosUserApi";
 import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { dateFormat, formatPrice } from "./Functions";
@@ -9,6 +8,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import LazyLoadImage from "./LazyLoadImage";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function Card({ item }) {
   const { setFavList } = useContext(SiteContext);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -42,7 +42,9 @@ export default function Card({ item }) {
 
     try {
       localStorage.setItem("onlineUser", JSON.stringify(updatedUser));
-      await axiosUserApi.put(`/users/${updatedUser.id}`, { ...updatedUser });
+      await axiosConcertApi.put(`/api/users/${updatedUser._id}`, {
+        ...updatedUser,
+      });
       setIsFavorite(!isFavorite);
     } catch (error) {
       console.error("Favori güncelleme hatası:", error.message);

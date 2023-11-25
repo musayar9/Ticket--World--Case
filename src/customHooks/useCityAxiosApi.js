@@ -1,33 +1,31 @@
-import { useEffect, useState } from "react"
-import { axiosConcertApi } from "../axios/axiosConcertApi"
+import { useEffect, useState } from "react";
+import { axiosConcertApi } from "../axios/axiosConcertApi";
 
 export default function useCityAxiosApi() {
-    const [cityData, setCityData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [isError, setIsError] = useState(false)
-    const [error, setError] = useState()
+  const [cityData, setCityData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState();
 
-    const getData = async () => {
-        try {
-            const response = await axiosConcertApi.get("/api/city");
-            const responseData = await response.data;
-            if (response.status !== 200) {
-                setIsError(true)
-                setError("Veri alınamadı")
-                throw new Error("Veri alınamadı")
-            }
-            else {
-                setCityData(responseData.city)
-                setIsLoading(false)
-            }
-        } catch (error) {
-            throw new Error("Veri alınamadı")
-        }
-
+  const getData = async () => {
+    try {
+      const response = await axiosConcertApi.get("/api/city");
+      const responseData = await response.data;
+      if (response.status !== 200) {
+        setIsError(true);
+        setError("Veri alınamadı");
+        throw new Error("Veri alınamadı");
+      } else {
+        setCityData(responseData.city);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      throw new Error("Veri alınamadı");
     }
-    useEffect(() => {
-        getData()
-    }, [])
+  };
+  useEffect(() => {
+    getData();
+  }, []);
 
-    return [cityData]
+  return [cityData];
 }
