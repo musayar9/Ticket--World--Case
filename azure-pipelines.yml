@@ -10,12 +10,17 @@ pool:
   name: ms-activity
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      npm install
+      npm run build
 - task: CopyFiles@2
   displayName: 'Copy Files'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
-      **
+      dist/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
 - task: PublishBuildArtifacts@1
