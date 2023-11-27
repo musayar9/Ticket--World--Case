@@ -132,7 +132,7 @@ export default function ConcertDetailed() {
         <meta name="description" content="activity-detail" />
       </Helmet>
 
-      {concertData === "" ? (
+      {concertData?.locationName === "" ? (
         <Loading />
       ) : (
         <div className="flex items-center justify-center mt-24">
