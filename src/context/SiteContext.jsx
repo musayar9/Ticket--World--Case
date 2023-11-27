@@ -39,7 +39,7 @@ export default function SiteContextProvider({ children }) {
 
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
-    if (storedOnlineUser?.id) {
+    if (storedOnlineUser?._id) {
       navigate(`${currentPathName}`);
       setIsValid(true);
       setFavList([
