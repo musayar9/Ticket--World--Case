@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
-
 import LazyLoadImage from "./LazyLoadImage";
 import { dateFormat, formatPrice } from "./Functions";
 import { FaHeart } from "react-icons/fa6";

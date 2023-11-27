@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import {useState } from "react";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import {
   IoMdContacts,
   IoIosCloseCircle,
   IoMdInformationCircleOutline,
 } from "react-icons/io";
-import { SiteContext } from "../context/SiteContext";
 import { Helmet } from "react-helmet";
 
 function About() {

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import FavoriteCard from "../components/FavoriteCard";
 import { SiteContext } from "../context/SiteContext";
 import { useLocation } from "react-router";

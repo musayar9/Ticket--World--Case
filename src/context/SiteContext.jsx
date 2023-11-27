@@ -86,7 +86,7 @@ export default function SiteContextProvider({ children }) {
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
-      console.log("erorr", error.message);
+      setError(error.message)
     }
   };
   useEffect(() => {

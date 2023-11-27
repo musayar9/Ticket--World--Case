@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "../context/SiteContext";
 import { dateFormat, formatPrice } from "./Functions";
@@ -7,7 +6,6 @@ import { BsCalendar2DateFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import LazyLoadImage from "./LazyLoadImage";
 import { FaHeart } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
 import { axiosConcertApi } from "../axios/axiosConcertApi";
 export default function Card({ item }) {
   const { setFavList } = useContext(SiteContext);

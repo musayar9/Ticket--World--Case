@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { isToday, format } from "date-fns";
-import { parseISO } from "date-fns";
-import en from "date-fns/locale/en-US";
-
 import { SiteContext } from "../context/SiteContext";
+import { dateLongFormat } from "./Functions";
 
 const DateInput = () => {
   const [date, setDate] = useState("");
@@ -20,13 +18,7 @@ const DateInput = () => {
     setIsSearch,
   } = useContext(SiteContext);
 
-  const dateFormat = (dateValue) => {
-    const parsedDate = parseISO(dateValue);
-    const formattedDate = format(parsedDate, "d  MMMM  EEEE yyyy", {
-      locale: en,
-    });
-    return formattedDate;
-  };
+
 
   const handleDate = async (e) => {
     setDate(e.target.value);
@@ -39,7 +31,7 @@ const DateInput = () => {
     setShowPastEvents(false);
     setIsSearch(true);
 
-    setHead(`${dateFormat(e.target.value)}`);
+    setHead(`${dateLongFormat(e.target.value)}`);
     setSidebar(false);
     setTimeout(() => {
       setDate("");

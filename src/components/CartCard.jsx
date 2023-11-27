@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BsTrash3Fill } from "react-icons/bs";
 import { SiteContext } from "../context/SiteContext";
 import { Link } from "react-router-dom";

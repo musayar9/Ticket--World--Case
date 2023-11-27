@@ -16,7 +16,6 @@ export default function Login() {
     isSignup,
     setIsSignup,
     setIsLogin,
-    isValid,
     setIsValid,
   } = useContext(SiteContext);
   const validationSchema = Yup.object().shape({

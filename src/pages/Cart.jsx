@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CartCard from "../components/CartCard";
 import { useContext, useEffect } from "react";
 import { SiteContext } from "../context/SiteContext";
-import { dateFormat, formatPrice } from "../components/Functions"
+import {  formatPrice } from "../components/Functions"
 import { Helmet } from "react-helmet";
 
 export default function Cart() {
