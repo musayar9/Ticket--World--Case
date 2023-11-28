@@ -11,7 +11,7 @@ import { useLocation } from "react-router";
 import { BiSolidErrorCircle } from "react-icons/bi";
 import { TbError404 } from "react-icons/tb";
 import { Helmet } from "react-helmet";
-import {images} from "../assets/activity.avif"
+import images from "../assets/activity.avif";
 import Loading from "../components/Loading";
 export default function Home() {
   const {
@@ -36,7 +36,7 @@ export default function Home() {
     if (isLogin) {
       showSuccessToast("Login success");
       setIsLogin(false);
-    }    
+    }
     if (location.pathname === "/") {
       setShowPastEvents(false);
       setIsCategory(true);
