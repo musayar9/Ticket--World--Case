@@ -29,7 +29,7 @@ export default function SiteContextProvider({ children }) {
 
   const location = useLocation();
   const currentPathName = location.pathname;
-
+  console.log("currentPahtName", currentPathName);
   // location onchange olduğunda selectedSeat i remove et
   useEffect(() => {
     localStorage.removeItem("selectedSeats");
@@ -86,7 +86,7 @@ export default function SiteContextProvider({ children }) {
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
-      setError(error.message)
+      setError(error.message);
     }
   };
   useEffect(() => {
