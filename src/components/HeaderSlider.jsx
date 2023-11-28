@@ -27,15 +27,12 @@ const HeaderSlider = () => {
     arrows: false,
     // fade:true
   };
-
+  console.log("images", images);
   return (
     <div className="z-10 mt-20">
       <Slider {...settings}>
         {shuffledData.slice(0, 10).map((slide) => (
-          <div
-            className="w-full group z-20  "
-            key={slide._id}
-          >
+          <div className="w-full group z-20  " key={slide._id}>
             <div className="  w-full relative ">
               <img
                 className="h-[250px] sm:h-[360px] md:h-[420px]  w-full  bg-no-repeat bg-cover object-center  relative  filter brightness-100 "
