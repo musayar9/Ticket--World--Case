@@ -54,12 +54,11 @@ export default function ConcertDetailed() {
         setConcertData(responseData.activity);
       } catch (error) {
         console.error("Error fetching concert data:", error);
-        
       }
     };
     getData();
   }, [params.id]);
-console.log("concertData", concertData)
+  console.log("concertData", concertData);
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     if (storedOnlineUser) {
@@ -133,7 +132,7 @@ console.log("concertData", concertData)
         <meta name="description" content="activity-detail" />
       </Helmet>
 
-      {concertData?.title === " " ? (
+      {concertData === null ? (
         <Loading />
       ) : (
         <div className="flex items-center justify-center mt-24">
