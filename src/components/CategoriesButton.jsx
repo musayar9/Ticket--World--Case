@@ -124,7 +124,7 @@ const CategoriesButton = () => {
             <label
               htmlFor="checkbox"
               className={`p-2 text-md text-gray-700 cursor-pointer hover:text-gray-100 ${
-                showPastEvents ? "text-gray-50" : "text-gray-700"
+                showPastEvents ? "text-gray-100" : "text-gray-700"
               } `}
             >
               Past Events
