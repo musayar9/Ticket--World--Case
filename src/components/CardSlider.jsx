@@ -26,8 +26,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const CardSlider= ({ image }) => {
-
+const CardSlider = ({ image }) => {
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -51,6 +50,7 @@ const CardSlider= ({ image }) => {
                   className="w-full h-44 rounded-lg"
                   src={img?.photo}
                   alt={img?._id}
+                  title={img?._id}
                 />
               ) : (
                 <p>No Image Available</p>
