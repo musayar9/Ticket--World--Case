@@ -54,11 +54,12 @@ export default function ConcertDetailed() {
         setConcertData(responseData.activity);
       } catch (error) {
         console.error("Error fetching concert data:", error);
+        
       }
     };
     getData();
   }, [params.id]);
-
+console.log("concertData", concertData)
   useEffect(() => {
     const storedOnlineUser = JSON.parse(localStorage.getItem("onlineUser"));
     if (storedOnlineUser) {
