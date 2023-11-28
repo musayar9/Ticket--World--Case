@@ -1,9 +1,10 @@
 // db.js
 const mongoose = require("mongoose");
 require("dotenv").config();
-
-// const dbUrl = "mongodb://127.0.0.1:27017/activity"; 
-const dbUrl = process.env.MONGODB_CONNECT_URI;// Your MongoDB connection URL
+const express = require("express");
+const app = express();
+// const dbUrl = "mongodb://127.0.0.1:27017/activity";
+const dbUrl = process.env.MONGODB_CONNECT_URI; // Your MongoDB connection URL
 
 mongoose.connect(dbUrl);
 
