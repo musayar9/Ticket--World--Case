@@ -46,14 +46,19 @@ const CardSlider = ({ image }) => {
           image?.map((img) => (
             <div key={img?._id} className="flex items-center rounded-lg">
               {img?.photo ? (
-                <LazyLoadImage
+                <img
                   className="w-full h-44 rounded-lg"
                   src={img?.photo}
                   alt={img?._id}
                   title={img?._id}
                 />
               ) : (
-                <p>No Image Available</p>
+                <LazyLoadImage
+                  className="w-full h-44 rounded-lg"
+                  src={img?.photo}
+                  alt={img?._id}
+                  title={img?._id}
+                />
               )}
             </div>
           ))}
