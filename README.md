@@ -48,17 +48,15 @@
 - **Add to Favorites:** Users can add their favorite concerts or events to their favorites for easy access later.
 - **Price Determination and Purchase Based on Seat Numbers:** Users can view prices based on specific seat numbers for a concert and purchase tickets for their preferred seats.
 - **User Registration and Login:** Users can register for the application and log into their accounts to save their favorite lists and purchase history.
--**Filtering by Category, Date, and City:**Users can filter concerts by category, date, and city to easily find events of their interest.
--**Search by Artist or Title:**Users can search for events or artists by their names, making it easier to find specific concerts or performances.
+- **Filtering by Category, Date, and City:** Users can filter concerts by category, date, and city to easily find events of their interest.
+- **Search by Artist or Title:** Users can search for events or artists by their names, making it easier to find specific concerts or performances.
 
 
-## EventAPI
+<!-- ## EventAPI
 
 
 
-### Endpoints
-
-
+### Endpoints -->
 
 ## Installation
 
@@ -86,8 +84,7 @@ yarn
 1. Before run the app, add the following information to the .env file in the root directory:
 
 ```javascript
-// VITE_RECIPE_API_URL = https://api.spoonacular.com/recipes
-// VITE_USER_API_URL = http://localhost:3001
+VITE_API_BASE_URL = https://ticket-verse.azurewebsites.net
 ```
 
 2. Run the app locally:
@@ -101,19 +98,11 @@ or
 yarn dev
 ```
 
-The app will be accessible at `http://localhost:3000`.
-
-3. To launch JSON Server with the JSON file you've created, run the following command:
-
-```
-json-server --watch db.json --port 3001
-```
-
-Once launch server, will be accessible at `http://localhost:3001/users`
+The app will be accessible at `https://blue-river-005515f10.4.azurestaticapps.net/`.
 
 ## User
 
-To start using the app sign up an then login 
+To start using the app sign up, login and start using
 
 ## Build
 
